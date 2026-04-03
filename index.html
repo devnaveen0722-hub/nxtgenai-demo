@@ -39,11 +39,14 @@
       .card--2:hover{border-color:var(--indigo)}
       .card--3::before{background:linear-gradient(135deg,rgba(168,85,247,.03),rgba(168,85,247,.01))}
       .card--3:hover{border-color:var(--purple)}
+      .card--4::before{background:linear-gradient(135deg,rgba(124,58,237,.03),rgba(236,72,153,.01))}
+      .card--4:hover{border-color:#7c3aed}
 
       .card__num{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;flex-shrink:0}
       .card--1 .card__num{background:var(--green)}
       .card--2 .card__num{background:var(--indigo)}
       .card--3 .card__num{background:linear-gradient(135deg,var(--purple),#ec4899)}
+      .card--4 .card__num{background:linear-gradient(135deg,#7c3aed,#ec4899)}
 
       .card__body{flex:1;min-width:0}
       .card__title{font-size:16px;font-weight:700;color:var(--g900);margin-bottom:2px}
@@ -53,6 +56,7 @@
       .card--1 .card__tag{background:rgba(22,163,74,.08);color:var(--green)}
       .card--2 .card__tag{background:rgba(99,102,241,.08);color:var(--indigo)}
       .card--3 .card__tag{background:rgba(168,85,247,.08);color:var(--purple)}
+      .card--4 .card__tag{background:rgba(124,58,237,.08);color:#7c3aed}
 
       .card__arrow{color:var(--g300);transition:color .3s,transform .3s;flex-shrink:0}
       .card__arrow svg{width:20px;height:20px}
@@ -60,6 +64,7 @@
       .card--1:hover .card__arrow{color:var(--green)}
       .card--2:hover .card__arrow{color:var(--indigo)}
       .card--3:hover .card__arrow{color:var(--purple)}
+      .card--4:hover .card__arrow{color:#7c3aed}
 
       .footer-note{margin-top:48px;font-size:12px;color:var(--g400)}
 
@@ -102,6 +107,16 @@
             <div class="card__desc">Search bar + tool cards at the top. Marketplace-style layout with categories.</div>
           </div>
           <span class="card__tag">Green</span>
+          <div class="card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+        </a>
+
+        <a href="concept-4-saas-dashboard.html" class="card card--4">
+          <div class="card__num">4</div>
+          <div class="card__body">
+            <div class="card__title">SaaS Dashboard</div>
+            <div class="card__desc">Clean, testgrid-inspired dark SaaS design with bento grids and product previews.</div>
+          </div>
+          <span class="card__tag">SaaS</span>
           <div class="card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
         </a>
       </div>

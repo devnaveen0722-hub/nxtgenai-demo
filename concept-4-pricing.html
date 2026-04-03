@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>NXTGENAI — Pricing</title>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" /></noscript>
+    <style>
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+      :root{
+        --bg:#06060e;--bg2:#0a0a16;--surface:#111122;--surface2:#161630;
+        --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.1);--border3:rgba(255,255,255,0.15);
+        --w:#fff;--w90:rgba(255,255,255,.9);--w70:rgba(255,255,255,.7);--w50:rgba(255,255,255,.5);--w30:rgba(255,255,255,.3);--w08:rgba(255,255,255,.06);
+        --purple:#7c3aed;--purple-light:#a78bfa;--purple-glow:rgba(124,58,237,.15);
+        --pink:#ec4899;--green:#22c55e;--amber:#f59e0b;
+        --grad:linear-gradient(135deg,#7c3aed,#ec4899);
+        --r:10px;--rl:14px;--r2:20px;
+      }
+      html{scroll-behavior:smooth}
+      body{font-family:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;color:var(--w70);line-height:1.6;-webkit-font-smoothing:antialiased;background:var(--bg);overflow-x:hidden}
+      a{text-decoration:none;color:inherit}
+
+      .nav{padding:16px 0;border-bottom:1px solid var(--border)}
+      .nav__inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+      .nav__left{display:flex;align-items:center;gap:16px}
+      .nav__back{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--w50);font-weight:500;padding:6px 12px;border-radius:8px;transition:color .2s,background-color .2s}
+      .nav__back:hover{color:var(--w90);background:var(--w08)}
+      .nav__back svg{width:16px;height:16px}
+      .nav__logo{font-size:18px;font-weight:800;color:var(--w);letter-spacing:-.5px}
+      .nav__logo span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+      .nav__right{display:flex;align-items:center;gap:12px}
+      .nav__link{font-size:14px;color:var(--w50);font-weight:500;padding:6px 12px;border-radius:8px;transition:color .2s,background-color .2s}
+      .nav__link:hover{color:var(--w90);background:var(--w08)}
+
+      .ctn{max-width:1100px;margin:0 auto;padding:0 24px}
+
+      .page-header{text-align:center;padding:64px 0 48px}
+      .page-header__title{font-size:clamp(28px,3.5vw,44px);font-weight:800;color:var(--w);letter-spacing:-1px;margin-bottom:12px}
+      .page-header__title em{font-style:normal;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+      .page-header__sub{font-size:16px;color:var(--w50);margin-bottom:32px}
+
+      .toggle{display:inline-flex;background:var(--surface);border:1px solid var(--border2);border-radius:100px;padding:3px;gap:2px}
+      .toggle__btn{padding:8px 20px;border-radius:100px;font-size:13px;font-weight:600;color:var(--w50);cursor:pointer;border:none;background:transparent;font-family:inherit;transition:color .25s,background-color .25s,box-shadow .25s;display:flex;align-items:center;gap:6px}
+      .toggle__btn.active{background:var(--purple);color:var(--w);box-shadow:0 0 20px var(--purple-glow)}
+      .toggle__save{font-size:10px;font-weight:700;color:var(--green);padding:2px 6px;border-radius:100px;background:rgba(34,197,94,.1)}
+
+      .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:48px 0 100px}
+
+      .pcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:32px 28px;position:relative;transition:transform .35s,border-color .35s,box-shadow .35s}
+      .pcard:hover{border-color:var(--border2);box-shadow:0 16px 48px rgba(0,0,0,.4);transform:translateY(-4px)}
+      .pcard--pop{border-color:var(--purple);background:linear-gradient(180deg,rgba(124,58,237,.06),var(--surface) 60%)}
+      .pcard--pop:hover{border-color:var(--purple-light);box-shadow:0 16px 48px var(--purple-glow)}
+      .pcard__popular{position:absolute;top:-12px;left:50%;transform:translateX(-50%);padding:4px 16px;border-radius:100px;font-size:10px;font-weight:700;background:var(--grad);color:var(--w);white-space:nowrap}
+      .pcard__name{font-size:18px;font-weight:700;color:var(--w);margin-bottom:4px}
+      .pcard__desc{font-size:13px;color:var(--w30);margin-bottom:20px}
+      .pcard__price{font-size:42px;font-weight:900;color:var(--w);letter-spacing:-1px;margin-bottom:4px}
+      .pcard__price span{font-size:14px;font-weight:500;color:var(--w30)}
+      .pcard__period{font-size:12px;color:var(--w30);margin-bottom:24px}
+      .pcard__cta{display:block;width:100%;padding:12px;border-radius:var(--r);font-size:14px;font-weight:600;text-align:center;cursor:pointer;border:none;font-family:inherit;transition:color .25s,background-color .25s,border-color .25s,box-shadow .25s}
+      .pcard__cta--outline{background:transparent;color:var(--w70);border:1px solid var(--border2)}
+      .pcard__cta--outline:hover{border-color:var(--border3);color:var(--w);background:var(--w08)}
+      .pcard__cta--fill{background:var(--grad);color:var(--w);border:none}
+      .pcard__cta--fill:hover{box-shadow:0 4px 20px var(--purple-glow)}
+      .pcard__divider{height:1px;background:var(--border);margin:20px 0}
+      .pcard__feat{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--w50);padding:5px 0}
+      .pcard__feat svg{width:16px;height:16px;color:var(--green);flex-shrink:0}
+
+      .pcard__custom-cta{display:block;width:100%;padding:10px;border-radius:var(--r);font-size:12px;font-weight:600;text-align:center;color:var(--amber);border:1px dashed rgba(245,158,11,.4);background:rgba(245,158,11,.06);margin-bottom:20px;transition:background-color .2s,border-color .2s;cursor:pointer}
+      .pcard__custom-cta:hover{background:rgba(245,158,11,.1);border-color:var(--amber)}
+
+      @media(max-width:768px){.pricing{grid-template-columns:1fr;max-width:400px;margin-left:auto;margin-right:auto}}
+      @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important}}
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav__inner">
+        <div class="nav__left">
+          <a href="concept-4-saas-dashboard.html" class="nav__back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg> Back</a>
+          <a href="concept-4-saas-dashboard.html" class="nav__logo">NXTGEN<span>AI</span></a>
+        </div>
+        <div class="nav__right">
+          <a href="concept-4-saas-dashboard.html#tools" class="nav__link">Tools</a>
+          <a href="concept-4-saas-dashboard.html#agents" class="nav__link">Agents</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="ctn">
+      <div class="page-header">
+        <h1 class="page-header__title">Simple, transparent <em>pricing</em></h1>
+        <p class="page-header__sub">Start free. Scale when you're ready.</p>
+        <div class="toggle">
+          <button class="toggle__btn active" data-plan="mo">Monthly</button>
+          <button class="toggle__btn" data-plan="yr">Yearly <span class="toggle__save">-20%</span></button>
+        </div>
+      </div>
+
+      <div class="pricing">
+        <div class="pcard">
+          <div class="pcard__name">Starter</div>
+          <div class="pcard__desc">For individuals getting started</div>
+          <div class="pcard__price price-mo">$0<span>/mo</span></div>
+          <div class="pcard__price price-yr" style="display:none">$0<span>/mo</span></div>
+          <div class="pcard__period">Free forever</div>
+          <button class="pcard__cta pcard__cta--outline">Get Started</button>
+          <div class="pcard__divider"></div>
+          <div class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 50 credits / month</div>
+          <div class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 10 tools access</div>
+          <div class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 1 AI agent</div>
+          <div class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Community support</div>
+        </div>
+
+        <div class="pcard pcard--pop">
+          <div class="pcard__popular">Most Popular</div>
+          <div class="pcard__name">Professional</div>
+          <div class="pcard__desc">For teams that need more power</div>
+          <div class="pcard__price price-mo">$29<span>/mo</span></div>
+          <div class="pcard__price price-yr" style="display:none">$23<span>/mo</span></div>
+          <div class="pcard__period price-mo">Billed monthly</div>
+          <div class="pcard__period price-yr" style="display:none">Billed $276/year</div>
+          <button class="pcard__cta pcard__cta--fill">Start Free Trial</button>
+          <div class="pcard__divider"></div>
+          <div class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 2,000 credits / month</div>
+          <div class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> All 50+ tools</div>
+          <div class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 6 AI agents</div>
+          <div class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Priority support</div>
+          <div class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> API access</div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard__name">Enterprise</div>
+          <div class="pcard__desc">For organizations at scale</div>
+          <div class="pcard__price price-mo">$99<span>/mo</span></div>
+          <div class="pcard__price price-yr" style="display:none">$79<span>/mo</span></div>
+          <div class="pcard__period price-mo">Billed monthly</div>
+          <div class="pcard__period price-yr" style="display:none">Billed $948/year</div>
+          <a href="#" class="pcard__custom-cta">Need custom plan? Contact us</a>
+          <button class="pcard__cta pcard__cta--outline">Contact Sales</button>
+          <div class="pcard__divider"></div>
+          <div class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Unlimited credits</div>
+          <div class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> All 50+ tools</div>
+          <div class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> All 12 AI agents</div>
+          <div class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Dedicated support</div>
+          <div class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Custom integrations</div>
+          <div class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> SSO &amp; advanced security</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.querySelectorAll(".toggle__btn").forEach(function(btn){
+        btn.addEventListener("click",function(){
+          document.querySelectorAll(".toggle__btn").forEach(function(b){b.classList.remove("active")});
+          btn.classList.add("active");
+          var yr=btn.dataset.plan==="yr";
+          document.querySelectorAll(".price-mo").forEach(function(e){e.style.display=yr?"none":""});
+          document.querySelectorAll(".price-yr").forEach(function(e){e.style.display=yr?"":""});
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NXTGENAI — Design Concepts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+      :root{
+        --bg:#fafbfc;--surface:#fff;
+        --g900:#0f172a;--g700:#334155;--g500:#64748b;--g400:#94a3b8;--g300:#cbd5e1;--g200:#e2e8f0;--g100:#f1f5f9;
+        --green:#16a34a;--indigo:#6366f1;--purple:#a855f7;--teal:#2dd4bf;
+      }
+      html{scroll-behavior:smooth}
+      body{font-family:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;color:var(--g700);line-height:1.6;-webkit-font-smoothing:antialiased;background:var(--bg);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px}
+
+      .page{max-width:680px;width:100%;text-align:center}
+
+      .logo{font-size:28px;font-weight:900;color:var(--g900);letter-spacing:-1px;margin-bottom:6px}
+      .logo span{background:linear-gradient(135deg,var(--teal),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+      .subtitle{font-size:15px;color:var(--g500);margin-bottom:48px}
+
+      .cards{display:flex;flex-direction:column;gap:16px}
+
+      .card{display:flex;align-items:center;gap:20px;background:var(--surface);border:1px solid var(--g200);border-radius:16px;padding:24px 28px;text-decoration:none;color:inherit;transition:all .3s cubic-bezier(.4,0,.2,1);cursor:pointer;text-align:left;position:relative;overflow:hidden}
+      .card::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .3s;pointer-events:none;border-radius:16px}
+      .card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.06)}
+      .card:hover::before{opacity:1}
+      .card:active{transform:translateY(-1px)}
+
+      .card--1::before{background:linear-gradient(135deg,rgba(22,163,74,.03),rgba(22,163,74,.01))}
+      .card--1:hover{border-color:var(--green)}
+      .card--2::before{background:linear-gradient(135deg,rgba(99,102,241,.03),rgba(99,102,241,.01))}
+      .card--2:hover{border-color:var(--indigo)}
+      .card--3::before{background:linear-gradient(135deg,rgba(168,85,247,.03),rgba(168,85,247,.01))}
+      .card--3:hover{border-color:var(--purple)}
+
+      .card__num{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;flex-shrink:0}
+      .card--1 .card__num{background:var(--green)}
+      .card--2 .card__num{background:var(--indigo)}
+      .card--3 .card__num{background:linear-gradient(135deg,var(--purple),#ec4899)}
+
+      .card__body{flex:1;min-width:0}
+      .card__title{font-size:16px;font-weight:700;color:var(--g900);margin-bottom:2px}
+      .card__desc{font-size:13px;color:var(--g500);line-height:1.5}
+
+      .card__tag{padding:4px 10px;border-radius:100px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;flex-shrink:0}
+      .card--1 .card__tag{background:rgba(22,163,74,.08);color:var(--green)}
+      .card--2 .card__tag{background:rgba(99,102,241,.08);color:var(--indigo)}
+      .card--3 .card__tag{background:rgba(168,85,247,.08);color:var(--purple)}
+
+      .card__arrow{color:var(--g300);transition:all .3s;flex-shrink:0}
+      .card__arrow svg{width:20px;height:20px}
+      .card:hover .card__arrow{transform:translateX(4px)}
+      .card--1:hover .card__arrow{color:var(--green)}
+      .card--2:hover .card__arrow{color:var(--indigo)}
+      .card--3:hover .card__arrow{color:var(--purple)}
+
+      .footer-note{margin-top:48px;font-size:12px;color:var(--g400)}
+
+      @media(max-width:600px){
+        .card{flex-wrap:wrap;gap:14px;padding:20px}
+        .card__tag{order:5}
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="logo">NXTGEN<span>AI</span></div>
+      <p class="subtitle">Choose a design concept to preview</p>
+
+      <div class="cards">
+        <a href="concept-3-product-showcase.html" class="card card--3">
+          <div class="card__num">1</div>
+          <div class="card__body">
+            <div class="card__title">Show Product First</div>
+            <div class="card__desc">Dark, visual-first design with AI team showcase and minimal text.</div>
+          </div>
+          <span class="card__tag">Dark</span>
+          <div class="card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+        </a>
+
+        <a href="concept-2-problem-solution.html" class="card card--2">
+          <div class="card__num">2</div>
+          <div class="card__body">
+            <div class="card__title">Explain First</div>
+            <div class="card__desc">Clear headline + product explanation, then tools in a step-by-step flow.</div>
+          </div>
+          <span class="card__tag">Indigo</span>
+          <div class="card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+        </a>
+
+        <a href="concept-1-search-first.html" class="card card--1">
+          <div class="card__num">3</div>
+          <div class="card__body">
+            <div class="card__title">Explore First</div>
+            <div class="card__desc">Search bar + tool cards at the top. Marketplace-style layout with categories.</div>
+          </div>
+          <span class="card__tag">Green</span>
+          <div class="card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+        </a>
+      </div>
+
+      <p class="footer-note">&copy; 2026 NXTGENAI. Design concept preview.</p>
+    </div>
+  </body>
+</html>

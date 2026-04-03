@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NXTGENAI — Pricing Plans</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+      :root{
+        --black:#000;--g900:#0f172a;--g800:#1e293b;--g700:#334155;--g600:#475569;
+        --g500:#64748b;--g400:#94a3b8;--g300:#cbd5e1;--g200:#e2e8f0;--g100:#f1f5f9;--g50:#f8fafc;--w:#fff;
+        --green:#16a34a;--green-light:#dcfce7;--green-dark:#15803d;--green-50:#f0fdf4;
+        --amber:#f59e0b;--amber-light:#fffbeb;
+        --r:12px;--rl:16px;--r2:24px;
+      }
+      html{scroll-behavior:smooth}
+      body{font-family:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;color:var(--g800);line-height:1.6;-webkit-font-smoothing:antialiased;background:var(--g50);overflow-x:hidden;min-height:100vh}
+      a{text-decoration:none;color:inherit}
+
+      /* Nav */
+      .nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--g200);padding:12px 0}
+      .nav__i{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+      .nav__left{display:flex;align-items:center;gap:16px}
+      .nav__back{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--g500);font-weight:500;padding:6px 12px;border-radius:8px;transition:all .2s}
+      .nav__back:hover{color:var(--g900);background:var(--g100)}
+      .nav__back svg{width:16px;height:16px}
+      .nav__title{font-size:17px;font-weight:800;color:var(--g900)}
+      .nav__right{display:flex;align-items:center;gap:12px}
+      .nav__link{font-size:14px;color:var(--g500);font-weight:500;padding:6px 12px;border-radius:8px;transition:all .2s}
+      .nav__link:hover{color:var(--g900);background:var(--g100)}
+
+      /* Container */
+      .ctn{max-width:1140px;margin:0 auto;padding:0 24px}
+
+      /* Header */
+      .pricing-header{text-align:center;padding:48px 0 32px}
+      .pricing-header__sub{font-size:14px;color:var(--g500);max-width:520px;margin:0 auto 28px;line-height:1.7}
+
+      /* Toggle */
+      .toggle-wrap{display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:16px}
+      .toggle{display:flex;background:var(--w);border:1px solid var(--g200);border-radius:100px;padding:3px;gap:2px}
+      .toggle__btn{padding:8px 20px;border-radius:100px;font-size:13px;font-weight:600;color:var(--g500);cursor:pointer;border:none;background:transparent;font-family:inherit;transition:all .25s;display:flex;align-items:center;gap:6px}
+      .toggle__btn.active{background:var(--g900);color:var(--w);box-shadow:0 2px 8px rgba(0,0,0,.15)}
+      .toggle__badge{background:var(--green);color:#fff;font-size:9px;font-weight:700;padding:2px 8px;border-radius:100px;text-transform:uppercase;letter-spacing:.5px}
+
+      /* Credits bar */
+      .credits-bar{display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:var(--g400);margin-bottom:0}
+      .credits-bar__item{display:flex;align-items:center;gap:5px}
+      .credits-bar__item svg{width:14px;height:14px;color:var(--green)}
+      .credits-bar__sep{width:1px;height:14px;background:var(--g200)}
+
+      /* Grid */
+      .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:40px 0 64px;align-items:start}
+
+      /* Card */
+      .pcard{background:var(--w);border:1px solid var(--g200);border-radius:var(--rl);padding:32px 28px;position:relative;transition:all .3s}
+      .pcard:hover{box-shadow:0 12px 40px rgba(0,0,0,.06);transform:translateY(-4px)}
+      .pcard--popular{border-color:var(--green);box-shadow:0 8px 32px rgba(22,163,74,.1)}
+      .pcard--popular:hover{box-shadow:0 12px 40px rgba(22,163,74,.15)}
+      .pcard--enterprise{border-color:var(--amber);box-shadow:0 8px 32px rgba(245,158,11,.08)}
+      .pcard__ribbon{position:absolute;top:-1px;right:16px;padding:4px 14px;border-radius:0 0 8px 8px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#fff}
+      .pcard__ribbon--active{background:var(--green)}
+      .pcard__ribbon--popular{background:var(--green-dark)}
+      .pcard__ribbon--apply{background:var(--amber)}
+
+      .pcard__icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px}
+      .pcard__icon--starter{background:var(--green-light);color:var(--green)}
+      .pcard__icon--biz{background:var(--green-50);color:var(--green)}
+      .pcard__icon--ent{background:var(--amber-light);color:var(--amber)}
+      .pcard__name{font-size:22px;font-weight:800;color:var(--g900);margin-bottom:2px}
+      .pcard__desc{font-size:13px;color:var(--g400);margin-bottom:20px}
+
+      .pcard__price{display:flex;align-items:baseline;gap:4px;margin-bottom:4px}
+      .pcard__amount{font-size:40px;font-weight:900;color:var(--g900);letter-spacing:-1.5px;line-height:1}
+      .pcard__period{font-size:14px;color:var(--g400);font-weight:500}
+      .pcard__monthly{font-size:12px;color:var(--g400);margin-bottom:16px}
+
+      .pcard__credits{background:var(--g50);border-radius:var(--r);padding:16px;text-align:center;margin-bottom:12px}
+      .pcard__credits-value{display:flex;align-items:center;justify-content:center;gap:6px;font-size:28px;font-weight:800;color:var(--g900)}
+      .pcard__credits-value svg{width:18px;height:18px;color:var(--green)}
+      .pcard__credits-label{font-size:12px;color:var(--g400);margin-top:2px}
+      .pcard--popular .pcard__credits{background:var(--green-light)}
+
+      .pcard__save{display:flex;align-items:center;justify-content:center;gap:5px;font-size:12px;font-weight:600;color:var(--green);padding:8px;border-radius:8px;background:var(--green-50);margin-bottom:20px}
+
+      .pcard__features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;padding:0}
+      .pcard__feat{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--g600);line-height:1.5}
+      .pcard__feat svg{width:16px;height:16px;flex-shrink:0;margin-top:2px;color:var(--green)}
+
+      .pcard__cta{display:block;width:100%;padding:12px;border-radius:var(--r);font-size:14px;font-weight:600;text-align:center;cursor:pointer;border:none;font-family:inherit;transition:all .2s}
+      .pcard__cta--outline{background:transparent;color:var(--g700);border:1px solid var(--g200)}
+      .pcard__cta--outline:hover{border-color:var(--green);color:var(--green);background:var(--green-50)}
+      .pcard__cta--fill{background:var(--g900);color:#fff}
+      .pcard__cta--fill:hover{background:var(--g800);box-shadow:0 4px 16px rgba(0,0,0,.15)}
+      .pcard__cta--amber{background:var(--amber);color:#fff}
+      .pcard__cta--amber:hover{background:#d97706;box-shadow:0 4px 16px rgba(245,158,11,.2)}
+      .pcard__cta--muted{background:var(--g100);color:var(--g400);cursor:default}
+
+      .pcard__custom-label{font-size:13px;color:var(--g400);margin-bottom:4px}
+      .pcard__custom-cta{display:block;width:100%;padding:10px;border-radius:var(--r);font-size:12px;font-weight:600;text-align:center;color:var(--amber);border:1px dashed var(--amber);background:var(--amber-light);margin-bottom:20px;transition:all .2s;cursor:pointer}
+      .pcard__custom-cta:hover{background:rgba(245,158,11,.12)}
+
+      /* Info section */
+      .info-section{padding:48px 0 64px;border-top:1px solid var(--g200)}
+      .info-section__title{font-size:22px;font-weight:800;color:var(--g900);text-align:center;margin-bottom:32px}
+      .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:800px;margin:0 auto}
+      .info-col__title{font-size:14px;font-weight:700;color:var(--g900);margin-bottom:12px}
+      .info-col__item{display:flex;align-items:flex-start;gap:6px;font-size:13px;color:var(--g500);margin-bottom:8px;line-height:1.5}
+      .info-col__item svg{width:14px;height:14px;flex-shrink:0;margin-top:2px;color:var(--green)}
+
+      /* Responsive */
+      @media(max-width:1024px){.pricing-grid{grid-template-columns:1fr;max-width:440px;margin-left:auto;margin-right:auto}}
+      @media(max-width:768px){.nav__right{display:none}.info-grid{grid-template-columns:1fr}}
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav__i">
+        <div class="nav__left">
+          <a href="concept-1-search-first.html" class="nav__back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg> Back</a>
+          <div class="nav__title">Pricing Plans</div>
+        </div>
+        <div class="nav__right">
+          <a href="#" class="nav__link">Docs</a>
+          <a href="#" class="nav__link">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="ctn">
+      <div class="pricing-header">
+        <p class="pricing-header__sub">All tools are premium and categorized by tier: Starter and Advanced. Credit-based system with flexible pricing. Save 20% with annual billing.</p>
+        <div class="toggle-wrap">
+          <div class="toggle">
+            <button class="toggle__btn" data-plan="monthly">Monthly</button>
+            <button class="toggle__btn active" data-plan="annual">Annual <span class="toggle__badge">Save 20%</span></button>
+          </div>
+        </div>
+        <div class="credits-bar">
+          <div class="credits-bar__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg> 0 Credits</div>
+          <div class="credits-bar__sep"></div>
+          <div class="credits-bar__item">Current: <strong style="color:var(--g700);margin-left:3px">Business</strong> (annual)</div>
+        </div>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Starter -->
+        <div class="pcard">
+          <span class="pcard__ribbon pcard__ribbon--active">Active</span>
+          <div class="pcard__icon pcard__icon--starter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+          <div class="pcard__name">Starter</div>
+          <div class="pcard__desc">Perfect for getting started</div>
+          <div class="pcard__price"><span class="pcard__amount" data-annual="279" data-monthly="29">$279</span><span class="pcard__period" data-annual="/year" data-monthly="/month">/year</span></div>
+          <div class="pcard__monthly" data-annual="~$23.25/mo • Save $69/year" data-monthly="Billed monthly">~$23.25/mo &bull; Save $69/year</div>
+          <div class="pcard__credits">
+            <div class="pcard__credits-value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg> 100</div>
+            <div class="pcard__credits-label">AI Credits/month</div>
+          </div>
+          <div class="pcard__save" data-annual="🎉 Save $69/year with annual billing" data-monthly="">&#127881; Save $69/year with annual billing</div>
+          <ul class="pcard__features">
+            <li class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> 100 credits/month</li>
+            <li class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Email support</li>
+            <li class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Basic analytics</li>
+            <li class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Access to all AI agents and tools</li>
+          </ul>
+          <button class="pcard__cta pcard__cta--outline">Contact Support</button>
+        </div>
+
+        <!-- Business -->
+        <div class="pcard pcard--popular">
+          <span class="pcard__ribbon pcard__ribbon--popular">Most Popular</span>
+          <div class="pcard__icon pcard__icon--biz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <div class="pcard__name">Business</div>
+          <div class="pcard__desc">For growing businesses</div>
+          <div class="pcard__price"><span class="pcard__amount" data-annual="949" data-monthly="99">$949</span><span class="pcard__period" data-annual="/year" data-monthly="/month">/year</span></div>
+          <div class="pcard__monthly" data-annual="~$79.08/mo • Save $239/year" data-monthly="Billed monthly">~$79.08/mo &bull; Save $239/year</div>
+          <div class="pcard__credits">
+            <div class="pcard__credits-value"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg> 500</div>
+            <div class="pcard__credits-label">AI Credits/month</div>
+          </div>
+          <div class="pcard__save" data-annual="🎉 Save $239/year with annual billing" data-monthly="">&#127881; Save $239/year with annual billing</div>
+          <ul class="pcard__features">
+            <li class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> 500 credits/month</li>
+            <li class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Priority support</li>
+            <li class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Advanced analytics</li>
+            <li class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Secured Payment System</li>
+            <li class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Access to all AI agents and tools</li>
+          </ul>
+          <button class="pcard__cta pcard__cta--muted">Current Plan</button>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="pcard pcard--enterprise">
+          <span class="pcard__ribbon pcard__ribbon--apply">Apply</span>
+          <div class="pcard__icon pcard__icon--ent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8l-2 4h12l-2-4z"/></svg></div>
+          <div class="pcard__name">Custom Business Automation</div>
+          <div class="pcard__desc">Tailored AI systems and automation for your business</div>
+          <div class="pcard__price"><span class="pcard__amount">Custom</span></div>
+          <div class="pcard__monthly">Tailored proposal after review</div>
+          <a href="#" class="pcard__custom-cta">Not a subscription — submit your details for a tailored proposal</a>
+          <ul class="pcard__features">
+            <li class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Business onboarding application</li>
+            <li class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Internal review &amp; custom proposal</li>
+            <li class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Tailored AI system design</li>
+            <li class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Dedicated support</li>
+            <li class="pcard__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Custom integrations</li>
+          </ul>
+          <button class="pcard__cta pcard__cta--amber">Apply Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Credit System Info -->
+    <div class="info-section">
+      <div class="ctn">
+        <h2 class="info-section__title">Credit System Information</h2>
+        <div class="info-grid">
+          <div>
+            <div class="info-col__title">How Credits Work:</div>
+            <div class="info-col__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg> Starter tools use fewer credits</div>
+            <div class="info-col__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg> Advanced tools use more credits</div>
+            <div class="info-col__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg> AI Agents consume the most credits</div>
+            <div class="info-col__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg> Credits refresh monthly</div>
+            <div class="info-col__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg> Unused credits reset each cycle</div>
+          </div>
+          <div>
+            <div class="info-col__title">Billing Tips:</div>
+            <div class="info-col__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg> Save 20% with annual billing</div>
+            <div class="info-col__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg> Custom Business Automation: apply for a tailored proposal</div>
+            <div class="info-col__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg> Cancel anytime, active until period end</div>
+            <div class="info-col__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg> Upgrade instantly, no downtime</div>
+            <div class="info-col__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg> All tools are premium (Starter &amp; Advanced)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const toggleBtns = document.querySelectorAll('.toggle__btn');
+      toggleBtns.forEach(btn => btn.addEventListener('click', () => {
+        toggleBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const plan = btn.dataset.plan;
+        document.querySelectorAll('.pcard__amount[data-annual]').forEach(el => {
+          el.textContent = '$' + el.dataset[plan];
+        });
+        document.querySelectorAll('.pcard__period[data-annual]').forEach(el => {
+          el.textContent = el.dataset[plan];
+        });
+        document.querySelectorAll('.pcard__monthly[data-annual]').forEach(el => {
+          el.textContent = el.dataset[plan];
+        });
+        document.querySelectorAll('.pcard__save[data-annual]').forEach(el => {
+          el.textContent = el.dataset[plan];
+          el.style.display = el.dataset[plan] ? 'flex' : 'none';
+        });
+      }));
+    </script>
+  </body>
+</html>

@@ -4,10 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NXTGENAI — Explore AI Tools</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://randomuser.me" />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" /></noscript>
     <style>
       *,
       *::before,
@@ -138,6 +141,8 @@
       .sec {
         padding: 100px 0;
         position: relative;
+        content-visibility: auto;
+        contain-intrinsic-size: auto 600px;
       }
       .sec--gray {
         background: var(--g50);
@@ -252,7 +257,7 @@
         font-weight: 500;
         padding: 7px 14px;
         border-radius: 8px;
-        transition: all 0.2s;
+        transition: color 0.2s, background-color 0.2s;
       }
       .nav__link:hover {
         color: var(--g900);
@@ -270,7 +275,11 @@
         cursor: pointer;
         border: none;
         font-family: inherit;
-        transition: all 0.2s;
+        transition:
+          color 0.2s,
+          background-color 0.2s,
+          border-color 0.2s,
+          box-shadow 0.2s;
       }
       .btn svg {
         width: 15px;
@@ -381,7 +390,9 @@
         border: 1px solid var(--g200);
         background: var(--w);
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-        transition: all 0.35s;
+        transition:
+          border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+          box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       }
       .hs__w:focus-within {
         border-color: var(--green);
@@ -431,7 +442,7 @@
         border: none;
         cursor: pointer;
         font-family: inherit;
-        transition: all 0.3s;
+        transition: background-color 0.3s, box-shadow 0.3s;
         display: flex;
         align-items: center;
         gap: 5px;
@@ -458,7 +469,7 @@
         font-size: 11px;
         font-weight: 500;
         cursor: pointer;
-        transition: all 0.2s;
+        transition: color 0.2s, background-color 0.2s, border-color 0.2s;
       }
       .hero-hint:hover {
         background: var(--green-light);
@@ -487,7 +498,7 @@
         background: var(--w);
         color: var(--g600);
         font-family: inherit;
-        transition: all 0.25s;
+        transition: color 0.25s, background-color 0.25s, border-color 0.25s;
       }
       .hcat svg {
         width: 15px;
@@ -531,7 +542,10 @@
         border: 1px solid var(--g200);
         border-radius: var(--r);
         overflow: hidden;
-        transition: all 0.25s;
+        transition:
+          transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+          border-color 0.25s,
+          box-shadow 0.25s;
         cursor: pointer;
       }
       .hc:hover {
@@ -754,7 +768,10 @@
         border-radius: var(--rl);
         padding: 28px 22px;
         text-align: center;
-        transition: all 0.3s;
+        transition:
+          transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+          border-color 0.3s,
+          box-shadow 0.3s;
       }
       .vp:hover {
         transform: translateY(-4px);
@@ -808,7 +825,7 @@
         background: var(--w);
         border: 1px solid var(--g200);
         cursor: pointer;
-        transition: all 0.25s;
+        transition: color 0.25s, background-color 0.25s, border-color 0.25s;
         font-family: inherit;
         display: flex;
         align-items: center;
@@ -871,7 +888,10 @@
         border: 1px solid var(--g200);
         border-radius: var(--rl);
         overflow: hidden;
-        transition: all 0.3s;
+        transition:
+          transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+          border-color 0.3s,
+          box-shadow 0.3s;
         cursor: pointer;
         display: flex;
         flex-direction: column;
@@ -1320,7 +1340,7 @@
         border: 1px solid var(--g200);
         border-radius: var(--rxl);
         padding: 36px 28px;
-        transition: all 0.3s;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
         position: relative;
       }
       .pc:hover {
@@ -1413,7 +1433,7 @@
         border: 1px solid var(--g200);
         border-radius: var(--rl);
         padding: 28px;
-        transition: all 0.3s;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
       }
       .te:hover {
         transform: translateY(-3px);
@@ -1805,6 +1825,14 @@
           font-size: 12px;
         }
       }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1942,7 +1970,7 @@
         <div class="hero-cards rv d4">
           <div class="hc">
             <div class="hc__img">
-              <img
+              <img width="400" height="260" decoding="async"
                 src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=260&fit=crop&q=80"
                 alt=""
               /><span class="hc__badge hc__badge--free">Free</span
@@ -1996,7 +2024,7 @@
 
           <div class="hc">
             <div class="hc__img">
-              <img
+              <img width="400" height="260" decoding="async"
                 src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&h=260&fit=crop&q=80"
                 alt=""
               /><span class="hc__badge hc__badge--agent">Agent</span
@@ -2050,7 +2078,7 @@
 
           <div class="hc">
             <div class="hc__img">
-              <img
+              <img width="400" height="260" decoding="async"
                 src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=260&fit=crop&q=80"
                 alt=""
               /><span class="hc__badge hc__badge--pro">Premium</span
@@ -2300,22 +2328,22 @@
         <div class="tab-panel tab-panel--on" id="tab-content">
           <div class="card-grid">
             <div class="card rv d1">
-              <div class="card__img"><img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--free">Free</span><span class="card__credit">2 cr</span></div>
+              <div class="card__img"><img width="600" height="400" decoding="async" src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--free">Free</span><span class="card__credit">2 cr</span></div>
               <div class="card__body"><div class="card__cat">Content</div><div class="card__name">Social Media Caption Generator</div><p class="card__desc">Generate engaging captions for Instagram, Facebook, LinkedIn, X in seconds.</p></div>
               <div class="card__foot"><div class="card__stats"><span class="card__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>2.4k</span><span class="card__stat"><svg viewBox="0 0 24 24" fill="#fbbf24" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>4.9</span></div><div class="card__action">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div>
             </div>
             <div class="card rv d2">
-              <div class="card__img"><img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--free">Free</span><span class="card__credit">2 cr</span></div>
+              <div class="card__img"><img width="600" height="400" decoding="async" src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--free">Free</span><span class="card__credit">2 cr</span></div>
               <div class="card__body"><div class="card__cat">Content</div><div class="card__name">Hashtag Generator</div><p class="card__desc">Discover viral and niche hashtags for Instagram, TikTok, LinkedIn, X.</p></div>
               <div class="card__foot"><div class="card__stats"><span class="card__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>1.6k</span><span class="card__stat"><svg viewBox="0 0 24 24" fill="#fbbf24" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>4.8</span></div><div class="card__action">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div>
             </div>
             <div class="card rv d3">
-              <div class="card__img"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--free">Free</span><span class="card__credit">2 cr</span></div>
+              <div class="card__img"><img width="600" height="400" decoding="async" src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--free">Free</span><span class="card__credit">2 cr</span></div>
               <div class="card__body"><div class="card__cat">Content</div><div class="card__name">Content Ideas Generator</div><p class="card__desc">Never run out of ideas for Instagram, YouTube, LinkedIn, TikTok, Blog.</p></div>
               <div class="card__foot"><div class="card__stats"><span class="card__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>980</span><span class="card__stat"><svg viewBox="0 0 24 24" fill="#fbbf24" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>4.7</span></div><div class="card__action">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div>
             </div>
             <div class="card rv d4">
-              <div class="card__img"><img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--pro">Premium</span><span class="card__credit">3 cr</span></div>
+              <div class="card__img"><img width="600" height="400" decoding="async" src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--pro">Premium</span><span class="card__credit">3 cr</span></div>
               <div class="card__body"><div class="card__cat">Content</div><div class="card__name">30-Day Content Calendar</div><p class="card__desc">Complete 30-day social calendar with tone, template, and platform options.</p></div>
               <div class="card__foot"><div class="card__stats"><span class="card__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>1.1k</span><span class="card__stat"><svg viewBox="0 0 24 24" fill="#fbbf24" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>4.8</span></div><div class="card__action">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div>
             </div>
@@ -2325,20 +2353,20 @@
         <!-- TAB: BUSINESS -->
         <div class="tab-panel" id="tab-business">
           <div class="card-grid">
-            <div class="card"><div class="card__img"><img src="https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--free">Free</span><span class="card__credit">2 cr</span></div><div class="card__body"><div class="card__cat">Business</div><div class="card__name">Email Reply Assistant</div><p class="card__desc">Transform drafts into professional emails with tone customization.</p></div><div class="card__foot"><div class="card__stats"><span class="card__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>760</span></div><div class="card__action">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div></div>
-            <div class="card"><div class="card__img"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--pro">Premium</span><span class="card__credit">3 cr</span></div><div class="card__body"><div class="card__cat">Business</div><div class="card__name">Product Description Generator</div><p class="card__desc">Compelling product descriptions with SEO meta tags for e-commerce.</p></div><div class="card__foot"><div class="card__stats"><span class="card__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>540</span></div><div class="card__action">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div></div>
-            <div class="card"><div class="card__img"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--pro">Premium</span><span class="card__credit">3 cr</span></div><div class="card__body"><div class="card__cat">Business</div><div class="card__name">Real Estate Listing Generator</div><p class="card__desc">Stunning property listings that sell. Professional and persuasive.</p></div><div class="card__foot"><div class="card__stats"><span class="card__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>890</span></div><div class="card__action">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div></div>
-            <div class="card"><div class="card__img"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--pro">Premium</span><span class="card__credit">3 cr</span></div><div class="card__body"><div class="card__cat">Business</div><div class="card__name">Market Research Generator</div><p class="card__desc">In-depth competitive analysis, SWOT, personas, and market trends.</p></div><div class="card__foot"><div class="card__stats"><span class="card__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>1.2k</span></div><div class="card__action">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div></div>
+            <div class="card"><div class="card__img"><img width="600" height="400" decoding="async" src="https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--free">Free</span><span class="card__credit">2 cr</span></div><div class="card__body"><div class="card__cat">Business</div><div class="card__name">Email Reply Assistant</div><p class="card__desc">Transform drafts into professional emails with tone customization.</p></div><div class="card__foot"><div class="card__stats"><span class="card__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>760</span></div><div class="card__action">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div></div>
+            <div class="card"><div class="card__img"><img width="600" height="400" decoding="async" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--pro">Premium</span><span class="card__credit">3 cr</span></div><div class="card__body"><div class="card__cat">Business</div><div class="card__name">Product Description Generator</div><p class="card__desc">Compelling product descriptions with SEO meta tags for e-commerce.</p></div><div class="card__foot"><div class="card__stats"><span class="card__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>540</span></div><div class="card__action">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div></div>
+            <div class="card"><div class="card__img"><img width="600" height="400" decoding="async" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--pro">Premium</span><span class="card__credit">3 cr</span></div><div class="card__body"><div class="card__cat">Business</div><div class="card__name">Real Estate Listing Generator</div><p class="card__desc">Stunning property listings that sell. Professional and persuasive.</p></div><div class="card__foot"><div class="card__stats"><span class="card__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>890</span></div><div class="card__action">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div></div>
+            <div class="card"><div class="card__img"><img width="600" height="400" decoding="async" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--pro">Premium</span><span class="card__credit">3 cr</span></div><div class="card__body"><div class="card__cat">Business</div><div class="card__name">Market Research Generator</div><p class="card__desc">In-depth competitive analysis, SWOT, personas, and market trends.</p></div><div class="card__foot"><div class="card__stats"><span class="card__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>1.2k</span></div><div class="card__action">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div></div>
           </div>
         </div>
 
         <!-- TAB: AI AGENTS -->
         <div class="tab-panel" id="tab-agents">
           <div class="card-grid">
-            <div class="card"><div class="card__img"><img src="https://images.unsplash.com/photo-1531746790095-e5995e40bdbe?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--agent">Agent</span><span class="card__credit">5 cr</span><span class="card__agent-tag">24/7 Active</span></div><div class="card__body"><div class="card__cat">AI Agent</div><div class="card__name">Virtual Assistant</div><p class="card__desc">Task orchestration, scheduling, workflow management, and general assistance.</p></div><div class="card__foot"><div class="card__stats"><span class="card__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>1.8k</span></div><div class="card__action">Chat now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div></div>
-            <div class="card"><div class="card__img"><img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--agent">Agent</span><span class="card__credit">5 cr</span><span class="card__agent-tag">24/7 Active</span></div><div class="card__body"><div class="card__cat">AI Agent</div><div class="card__name">SEO Specialist</div><p class="card__desc">Keyword research, meta optimization, content strategy, and ranking analysis.</p></div><div class="card__foot"><div class="card__stats"><span class="card__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>890</span></div><div class="card__action">Chat now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div></div>
-            <div class="card"><div class="card__img"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--agent">Agent</span><span class="card__credit">5 cr</span><span class="card__agent-tag">24/7 Active</span></div><div class="card__body"><div class="card__cat">AI Agent</div><div class="card__name">Sales Strategist</div><p class="card__desc">Pitch development, objection handling, closing techniques, and sales frameworks.</p></div><div class="card__foot"><div class="card__stats"><span class="card__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>650</span></div><div class="card__action">Chat now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div></div>
-            <div class="card"><div class="card__img"><img src="https://images.unsplash.com/photo-1563986768609-322da13575f2?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--agent">Agent</span><span class="card__credit">5 cr</span><span class="card__agent-tag">24/7 Active</span></div><div class="card__body"><div class="card__cat">AI Agent</div><div class="card__name">Email Marketer</div><p class="card__desc">Campaign strategy, A/B testing, segmentation, and high-converting email copy.</p></div><div class="card__foot"><div class="card__stats"><span class="card__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>720</span></div><div class="card__action">Chat now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div></div>
+            <div class="card"><div class="card__img"><img width="600" height="400" decoding="async" src="https://images.unsplash.com/photo-1531746790095-e5995e40bdbe?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--agent">Agent</span><span class="card__credit">5 cr</span><span class="card__agent-tag">24/7 Active</span></div><div class="card__body"><div class="card__cat">AI Agent</div><div class="card__name">Virtual Assistant</div><p class="card__desc">Task orchestration, scheduling, workflow management, and general assistance.</p></div><div class="card__foot"><div class="card__stats"><span class="card__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>1.8k</span></div><div class="card__action">Chat now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div></div>
+            <div class="card"><div class="card__img"><img width="600" height="400" decoding="async" src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--agent">Agent</span><span class="card__credit">5 cr</span><span class="card__agent-tag">24/7 Active</span></div><div class="card__body"><div class="card__cat">AI Agent</div><div class="card__name">SEO Specialist</div><p class="card__desc">Keyword research, meta optimization, content strategy, and ranking analysis.</p></div><div class="card__foot"><div class="card__stats"><span class="card__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>890</span></div><div class="card__action">Chat now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div></div>
+            <div class="card"><div class="card__img"><img width="600" height="400" decoding="async" src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--agent">Agent</span><span class="card__credit">5 cr</span><span class="card__agent-tag">24/7 Active</span></div><div class="card__body"><div class="card__cat">AI Agent</div><div class="card__name">Sales Strategist</div><p class="card__desc">Pitch development, objection handling, closing techniques, and sales frameworks.</p></div><div class="card__foot"><div class="card__stats"><span class="card__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>650</span></div><div class="card__action">Chat now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div></div>
+            <div class="card"><div class="card__img"><img width="600" height="400" decoding="async" src="https://images.unsplash.com/photo-1563986768609-322da13575f2?w=600&h=400&fit=crop&q=80" alt="" loading="lazy"/><span class="card__badge card__badge--agent">Agent</span><span class="card__credit">5 cr</span><span class="card__agent-tag">24/7 Active</span></div><div class="card__body"><div class="card__cat">AI Agent</div><div class="card__name">Email Marketer</div><p class="card__desc">Campaign strategy, A/B testing, segmentation, and high-converting email copy.</p></div><div class="card__foot"><div class="card__stats"><span class="card__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>720</span></div><div class="card__action">Chat now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div></div>
           </div>
         </div>
       </div>
@@ -2405,7 +2433,7 @@
     <div class="ctn">
       <div class="split rv">
         <div class="split__visual">
-          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&q=80" alt="Credit system dashboard" />
+          <img width="600" height="400" decoding="async" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&q=80" alt="Credit system dashboard" />
         </div>
         <div>
           <div class="sh-ey">Simple credit system</div>
@@ -2487,17 +2515,17 @@
           <div class="te rv-l d1">
             <div class="te__stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
             <p class="te__q">"NxtGenAI has completely transformed our content workflow. We produce 5x more content with half the team."</p>
-            <div class="te__a"><div class="te__av"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&q=80" alt=""/></div><div><div class="te__name">Sarah Chen</div><div class="te__role">Content Manager, TechFlow</div></div></div>
+            <div class="te__a"><div class="te__av"><img width="40" height="40" decoding="async" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&q=80" alt=""/></div><div><div class="te__name">Sarah Chen</div><div class="te__role">Content Manager, TechFlow</div></div></div>
           </div>
           <div class="te rv d2">
             <div class="te__stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
             <p class="te__q">"The AI agents are like having an entire marketing department. The ROI is incredible."</p>
-            <div class="te__a"><div class="te__av"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&q=80" alt=""/></div><div><div class="te__name">Marcus Rivera</div><div class="te__role">Founder, GrowthScale</div></div></div>
+            <div class="te__a"><div class="te__av"><img width="40" height="40" decoding="async" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&q=80" alt=""/></div><div><div class="te__name">Marcus Rivera</div><div class="te__role">Founder, GrowthScale</div></div></div>
           </div>
           <div class="te rv-r d3">
             <div class="te__stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
             <p class="te__q">"The listing generator saves me hours every week. More views and inquiries than ever."</p>
-            <div class="te__a"><div class="te__av"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&q=80" alt=""/></div><div><div class="te__name">Emily Park</div><div class="te__role">Real Estate Agent</div></div></div>
+            <div class="te__a"><div class="te__av"><img width="40" height="40" decoding="async" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&q=80" alt=""/></div><div><div class="te__name">Emily Park</div><div class="te__role">Real Estate Agent</div></div></div>
           </div>
         </div>
       </div>
@@ -2603,6 +2631,7 @@
     </footer>
 
     <script>
+      document.addEventListener('DOMContentLoaded',function(){
       // Reveal animations
       const obs = new IntersectionObserver(
         (e) => e.forEach((x) => { if (x.isIntersecting) x.target.classList.add("vis"); }),
@@ -2689,6 +2718,7 @@
       const sty = document.createElement("style");
       sty.textContent = "@keyframes hcFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}";
       document.head.appendChild(sty);
+      });
     </script>
   </body>
 </html>

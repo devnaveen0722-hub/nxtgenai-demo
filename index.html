@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NXTGENAI — Design Concepts</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" /></noscript>
     <style>
       *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
       :root{
@@ -23,7 +27,7 @@
 
       .cards{display:flex;flex-direction:column;gap:16px}
 
-      .card{display:flex;align-items:center;gap:20px;background:var(--surface);border:1px solid var(--g200);border-radius:16px;padding:24px 28px;text-decoration:none;color:inherit;transition:all .3s cubic-bezier(.4,0,.2,1);cursor:pointer;text-align:left;position:relative;overflow:hidden}
+      .card{display:flex;align-items:center;gap:20px;background:var(--surface);border:1px solid var(--g200);border-radius:16px;padding:24px 28px;text-decoration:none;color:inherit;transition:transform .3s cubic-bezier(.4,0,.2,1),border-color .3s,box-shadow .3s;cursor:pointer;text-align:left;position:relative;overflow:hidden}
       .card::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .3s;pointer-events:none;border-radius:16px}
       .card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.06)}
       .card:hover::before{opacity:1}
@@ -50,7 +54,7 @@
       .card--2 .card__tag{background:rgba(99,102,241,.08);color:var(--indigo)}
       .card--3 .card__tag{background:rgba(168,85,247,.08);color:var(--purple)}
 
-      .card__arrow{color:var(--g300);transition:all .3s;flex-shrink:0}
+      .card__arrow{color:var(--g300);transition:color .3s,transform .3s;flex-shrink:0}
       .card__arrow svg{width:20px;height:20px}
       .card:hover .card__arrow{transform:translateX(4px)}
       .card--1:hover .card__arrow{color:var(--green)}

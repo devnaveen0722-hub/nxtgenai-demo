@@ -7,10 +7,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://randomuser.me" />
     <link rel="preconnect" href="https://images.unsplash.com" />
-    <title>NXTGENAI — Meet Your AI Team</title>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" /></noscript>
+    <title>NXTGENAI — AI Automation for Business</title>
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+    /></noscript>
     <style>
       *,
       *::before,
@@ -79,49 +92,64 @@
         display: block;
       }
 
+      /* GPU-composited reveal animations — only opacity + transform for 60fps */
+      .rv,
+      .rv-l,
+      .rv-r,
+      .rv-s {
+        will-change: transform, opacity;
+        backface-visibility: hidden;
+      }
       .rv {
         opacity: 0;
-        transform: translateY(24px);
+        transform: translateY(28px) translateZ(0);
         transition:
-          opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-          transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+          opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
       }
       .rv.vis {
         opacity: 1;
-        transform: none;
+        transform: translateZ(0);
       }
       .rv-l {
         opacity: 0;
-        transform: translateX(-28px);
+        transform: translateX(-48px) translateZ(0);
         transition:
-          opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-          transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+          opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
       }
       .rv-l.vis {
         opacity: 1;
-        transform: none;
+        transform: translateZ(0);
       }
       .rv-r {
         opacity: 0;
-        transform: translateX(28px);
+        transform: translateX(48px) translateZ(0);
         transition:
-          opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-          transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+          opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
       }
       .rv-r.vis {
         opacity: 1;
-        transform: none;
+        transform: translateZ(0);
       }
       .rv-s {
         opacity: 0;
-        transform: scale(0.92);
+        transform: scale(0.94) translateZ(0);
         transition:
-          opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-          transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+          opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
       }
       .rv-s.vis {
         opacity: 1;
-        transform: none;
+        transform: translateZ(0);
+      }
+      /* Remove will-change after animation to free GPU memory */
+      .rv.done,
+      .rv-l.done,
+      .rv-r.done,
+      .rv-s.done {
+        will-change: auto;
       }
       .d1 {
         transition-delay: 0.07s;
@@ -154,7 +182,7 @@
         padding: 0 24px;
       }
       .sec {
-        padding: 100px 0;
+        padding: 96px 0;
         position: relative;
         content-visibility: auto;
         contain-intrinsic-size: auto 600px;
@@ -169,10 +197,8 @@
         border-bottom: 1px solid transparent;
         padding: 14px 0;
         transition:
-          top 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-          padding 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-          background 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-          border-bottom-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          top 0.4s ease-out,
+          padding 0.4s ease-out;
       }
       .nav.scrolled {
         top: 12px;
@@ -185,23 +211,20 @@
         align-items: center;
         justify-content: space-between;
         transition:
-          border-radius 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-          padding 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-          border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-          box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-          background 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-          max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-          margin 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-          backdrop-filter 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-          -webkit-backdrop-filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          border-radius 0.4s ease-out,
+          padding 0.4s ease-out,
+          border-color 0.4s ease-out,
+          background 0.4s ease-out,
+          max-width 0.4s ease-out,
+          margin 0.4s ease-out;
         border-radius: 0;
         padding: 0;
         border: 1px solid transparent;
       }
       .nav.scrolled .nav__i {
         background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(40px) saturate(1.4);
-        -webkit-backdrop-filter: blur(40px) saturate(1.4);
+        backdrop-filter: blur(20px) saturate(1.3);
+        -webkit-backdrop-filter: blur(20px) saturate(1.3);
         border-radius: 100px;
         padding: 8px 8px 8px 24px;
         border: 1px solid rgba(255, 255, 255, 0.14);
@@ -234,7 +257,9 @@
         font-weight: 500;
         padding: 7px 14px;
         border-radius: 8px;
-        transition: color 0.3s, background 0.3s;
+        transition:
+          color 0.3s,
+          background 0.3s;
       }
       .nav__link:hover {
         color: var(--w90);
@@ -280,33 +305,41 @@
         height: 15px;
       }
       .btn--glow {
-        background: var(--purple);
+        background: linear-gradient(135deg, #a855f7, #ec4899);
         color: #fff;
-        box-shadow: 0 0 20px var(--purple-glow);
+        box-shadow: 0 4px 20px rgba(168, 85, 247, 0.25), 0 0 0 1px rgba(255,255,255,0.06) inset;
+        background-size: 200% 200%;
+        background-position: 0% 50%;
+        transition: background-position 0.4s ease-out, transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease-out;
       }
       .btn--glow:hover {
-        background: var(--purple-dark);
-        box-shadow: 0 0 32px rgba(168, 85, 247, 0.3);
+        background-position: 100% 50%;
+        box-shadow: 0 8px 32px rgba(236, 72, 153, 0.35), 0 0 0 1px rgba(255,255,255,0.1) inset;
         transform: translateY(-2px);
       }
       .btn--ghost {
         background: transparent;
         color: var(--w70);
         border: 1px solid var(--border2);
+        position: relative;
       }
       .btn--ghost:hover {
-        border-color: var(--w30);
-        color: var(--w90);
-        background: var(--w08);
+        border-color: rgba(168, 85, 247, 0.4);
+        color: var(--w);
+        background: linear-gradient(135deg, rgba(168,85,247,0.08), rgba(45,212,191,0.05));
       }
       .btn--white {
-        background: var(--w);
+        background: linear-gradient(135deg, #fff, #e8e0f0);
         color: var(--bg);
+        box-shadow: 0 4px 16px rgba(255,255,255,0.12);
+        background-size: 200% 200%;
+        background-position: 0% 50%;
+        transition: background-position 0.4s ease-out, transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease-out;
       }
       .btn--white:hover {
-        background: var(--w90);
+        background-position: 100% 50%;
         transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 28px rgba(255, 255, 255, 0.18);
       }
       .btn--lg {
         padding: 13px 30px;
@@ -351,16 +384,16 @@
       .sh__sub {
         font-size: 15px;
         color: var(--w50);
-        margin-top: 12px;
-        max-width: 500px;
+        margin-top: 14px;
+        max-width: 520px;
         margin-left: auto;
         margin-right: auto;
-        line-height: 1.7;
+        line-height: 1.75;
       }
 
       /* ═══ HERO ═══ */
       .hero {
-        padding: 80px 0 60px;
+        padding: 90px 0 70px;
         text-align: center;
         position: relative;
         overflow: hidden;
@@ -371,25 +404,40 @@
         top: -200px;
         left: 50%;
         transform: translateX(-50%);
-        width: 800px;
-        height: 800px;
+        width: 900px;
+        height: 900px;
         border-radius: 50%;
         background: radial-gradient(
           circle,
-          rgba(168, 85, 247, 0.12) 0%,
-          rgba(45, 212, 191, 0.06) 40%,
+          rgba(168, 85, 247, 0.14) 0%,
+          rgba(45, 212, 191, 0.07) 40%,
           transparent 70%
         );
         pointer-events: none;
       }
+      .hero__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 18px;
+        border-radius: 100px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        border: 1px solid var(--border2);
+        color: var(--teal);
+        margin-bottom: 24px;
+        background: var(--teal-glow);
+      }
       .hero__title {
-        font-size: clamp(40px, 6vw, 72px);
+        font-size: clamp(40px, 6vw, 76px);
         font-weight: 900;
         color: var(--w);
         letter-spacing: -2.5px;
-        line-height: 1.05;
-        max-width: 800px;
-        margin: 0 auto 20px;
+        line-height: 1.04;
+        max-width: 860px;
+        margin: 0 auto 22px;
         position: relative;
       }
       .hero__title em {
@@ -402,21 +450,21 @@
       .hero__sub {
         font-size: 17px;
         color: var(--w50);
-        max-width: 520px;
-        margin: 0 auto 32px;
-        line-height: 1.7;
+        max-width: 560px;
+        margin: 0 auto 36px;
+        line-height: 1.75;
       }
       .hero__ctas {
         display: flex;
         gap: 12px;
         justify-content: center;
-        margin-bottom: 48px;
+        margin-bottom: 52px;
       }
       .hero__meta {
         display: flex;
         justify-content: center;
         gap: 32px;
-        margin-bottom: 56px;
+        margin-bottom: 0;
       }
       .hero__meta-item {
         display: flex;
@@ -432,38 +480,226 @@
         color: var(--teal);
       }
 
-      /* Agent team showcase — hero cards */
-      .team-show{max-width:880px;margin:0 auto}
-      .team-show__label{font-size:13px;font-weight:700;color:var(--w30);text-transform:uppercase;letter-spacing:1.5px;text-align:center;margin-bottom:24px}
-      .team-show__grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
-      .team-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:18px 14px;text-align:center;cursor:pointer;transition:transform .35s cubic-bezier(.4,0,.2,1),border-color .35s cubic-bezier(.4,0,.2,1),box-shadow .35s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
-      .team-card::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .35s;pointer-events:none;border-radius:var(--rl)}
-      .team-card:hover{border-color:var(--border2);transform:translateY(-6px)}
-      .team-card:hover::before{opacity:1}
-      .team-card:nth-child(1)::before{background:radial-gradient(circle at 50% 0%,rgba(168,85,247,.1),transparent 70%)}
-      .team-card:nth-child(1):hover{box-shadow:0 12px 40px rgba(168,85,247,.12)}
-      .team-card:nth-child(2)::before{background:radial-gradient(circle at 50% 0%,rgba(45,212,191,.1),transparent 70%)}
-      .team-card:nth-child(2):hover{box-shadow:0 12px 40px rgba(45,212,191,.12)}
-      .team-card:nth-child(3)::before{background:radial-gradient(circle at 50% 0%,rgba(244,63,94,.1),transparent 70%)}
-      .team-card:nth-child(3):hover{box-shadow:0 12px 40px rgba(244,63,94,.12)}
-      .team-card:nth-child(4)::before{background:radial-gradient(circle at 50% 0%,rgba(59,130,246,.1),transparent 70%)}
-      .team-card:nth-child(4):hover{box-shadow:0 12px 40px rgba(59,130,246,.12)}
-      .team-card:nth-child(5)::before{background:radial-gradient(circle at 50% 0%,rgba(245,158,11,.1),transparent 70%)}
-      .team-card:nth-child(5):hover{box-shadow:0 12px 40px rgba(245,158,11,.12)}
-      .team-card:nth-child(6)::before{background:radial-gradient(circle at 50% 0%,rgba(34,197,94,.1),transparent 70%)}
-      .team-card:nth-child(6):hover{box-shadow:0 12px 40px rgba(34,197,94,.12)}
-      .team-card__av{width:56px;height:56px;border-radius:50%;overflow:hidden;margin:0 auto 12px;position:relative;border:2px solid var(--border2);transition:border-color .35s,transform .35s}
-      .team-card:hover .team-card__av{border-color:var(--w15);transform:scale(1.06)}
-      .team-card__av img{width:100%;height:100%;object-fit:cover}
-      .team-card__status{position:absolute;bottom:1px;right:1px;width:12px;height:12px;border-radius:50%;background:var(--teal);border:2.5px solid var(--surface);z-index:1}
-      @keyframes tcPulse{0%,100%{box-shadow:0 0 0 0 rgba(45,212,191,.4)}50%{box-shadow:0 0 0 5px rgba(45,212,191,0)}}
-      .team-card__status{animation:tcPulse 2.5s ease-in-out infinite}
-      .team-card__name{font-size:12px;font-weight:700;color:var(--w90);margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-      .team-card__role{font-size:10px;color:var(--w30);margin-bottom:10px}
-      .team-card__skill{display:inline-block;padding:3px 8px;border-radius:100px;font-size:9px;font-weight:600;background:var(--w08);border:1px solid var(--border);color:var(--w30);transition:border-color .25s,color .25s}
-      .team-card:hover .team-card__skill{border-color:var(--border2);color:var(--w50)}
+      /* ═══ HOW IT WORKS ═══ */
+      .how-steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 0;
+      }
+      .hs {
+        text-align: center;
+        position: relative;
+        padding: 36px 24px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--r2);
+        contain: content;
+        transition:
+          border-color 0.3s ease-out,
+          box-shadow 0.3s;
+      }
+      .hs:hover {
+        border-color: var(--border2);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
+      }
+      .hs__num {
+        font-size: 56px;
+        font-weight: 900;
+        background: var(--grad2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+        margin-bottom: 20px;
+        opacity: 0.35;
+      }
+      .hs__icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        background: var(--surface2);
+        border: 1px solid var(--border2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 16px;
+        color: var(--purple-light);
+      }
+      .hs__icon svg {
+        width: 24px;
+        height: 24px;
+      }
+      .hs__title {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--w);
+        margin-bottom: 8px;
+      }
+      .hs__desc {
+        font-size: 13px;
+        color: var(--w50);
+        line-height: 1.65;
+        max-width: 260px;
+        margin: 0 auto;
+      }
+      .hs__connector {
+        position: absolute;
+        right: -13px;
+        top: 50%;
+        width: 26px;
+        height: 2px;
+        background: var(--grad2);
+        opacity: 0.25;
+        z-index: 2;
+      }
 
-      /* ═══ TOOL CARDS — Sintra-style large feature cards ═══ */
+      /* ═══ TOOL CARDS — (sol-* kept for compat) ═══ */
+      .sol-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .sol-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--r2);
+        padding: 32px 28px;
+        cursor: default;
+        transition:
+          transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+          border-color 0.35s,
+          box-shadow 0.35s;
+        position: relative;
+        overflow: hidden;
+      }
+      .sol-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.35s;
+        pointer-events: none;
+      }
+      .sol-card:hover {
+        border-color: var(--border2);
+        transform: translateY(-5px);
+      }
+      .sol-card:hover::before {
+        opacity: 1;
+      }
+      .sol-card--purple::before {
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          rgba(168, 85, 247, 0.09),
+          transparent 65%
+        );
+      }
+      .sol-card--purple:hover {
+        box-shadow: 0 20px 56px rgba(168, 85, 247, 0.1);
+      }
+      .sol-card--teal::before {
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          rgba(45, 212, 191, 0.09),
+          transparent 65%
+        );
+      }
+      .sol-card--teal:hover {
+        box-shadow: 0 20px 56px rgba(45, 212, 191, 0.1);
+      }
+      .sol-card--blue::before {
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          rgba(59, 130, 246, 0.09),
+          transparent 65%
+        );
+      }
+      .sol-card--blue:hover {
+        box-shadow: 0 20px 56px rgba(59, 130, 246, 0.1);
+      }
+      .sol-card--rose::before {
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          rgba(244, 63, 94, 0.09),
+          transparent 65%
+        );
+      }
+      .sol-card--rose:hover {
+        box-shadow: 0 20px 56px rgba(244, 63, 94, 0.1);
+      }
+      .sol-card--amber::before {
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          rgba(245, 158, 11, 0.09),
+          transparent 65%
+        );
+      }
+      .sol-card--amber:hover {
+        box-shadow: 0 20px 56px rgba(245, 158, 11, 0.1);
+      }
+      .sol-card--green::before {
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          rgba(34, 197, 94, 0.09),
+          transparent 65%
+        );
+      }
+      .sol-card--green:hover {
+        box-shadow: 0 20px 56px rgba(34, 197, 94, 0.1);
+      }
+      .sol-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        font-size: 20px;
+      }
+      .sol-icon svg {
+        width: 22px;
+        height: 22px;
+      }
+      .sol-icon--purple {
+        background: rgba(168, 85, 247, 0.12);
+        color: var(--purple-light);
+      }
+      .sol-icon--teal {
+        background: rgba(45, 212, 191, 0.12);
+        color: var(--teal);
+      }
+      .sol-icon--blue {
+        background: rgba(59, 130, 246, 0.12);
+        color: var(--blue);
+      }
+      .sol-icon--rose {
+        background: rgba(244, 63, 94, 0.12);
+        color: var(--rose);
+      }
+      .sol-icon--amber {
+        background: rgba(245, 158, 11, 0.12);
+        color: var(--amber);
+      }
+      .sol-icon--green {
+        background: rgba(34, 197, 94, 0.12);
+        color: var(--green);
+      }
+      .sol-title {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--w);
+        margin-bottom: 8px;
+        letter-spacing: -0.3px;
+      }
+      .sol-desc {
+        font-size: 13px;
+        color: var(--w50);
+        line-height: 1.65;
+      }
+
+      /* ═══ TOOL CARDS ═══ */
       .tool-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -471,19 +707,23 @@
         margin-top: 0;
         contain: layout style;
       }
-      .tool-grid--3{grid-template-columns:repeat(3,1fr)}
+      .tool-grid--3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
       .fc {
         background: var(--surface);
         border: 1px solid var(--border);
         border-radius: var(--r2);
         padding: 36px 32px 0;
         cursor: pointer;
-        transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), border-color 0.4s, box-shadow 0.4s;
+        transition:
+          transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+          border-color 0.3s ease-out;
         position: relative;
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        will-change: transform;
+        contain: content;
       }
       .fc::before {
         content: "";
@@ -497,35 +737,109 @@
         border-color: var(--border2);
         transform: translateY(-6px);
       }
-      .fc:hover::before { opacity: 1 }
-      .fc--purple::before{background:radial-gradient(ellipse at 50% 0%,rgba(168,85,247,.08),transparent 60%)}
-      .fc--purple:hover{box-shadow:0 20px 60px rgba(168,85,247,.1)}
-      .fc--teal::before{background:radial-gradient(ellipse at 50% 0%,rgba(45,212,191,.08),transparent 60%)}
-      .fc--teal:hover{box-shadow:0 20px 60px rgba(45,212,191,.1)}
-      .fc--rose::before{background:radial-gradient(ellipse at 50% 0%,rgba(244,63,94,.08),transparent 60%)}
-      .fc--rose:hover{box-shadow:0 20px 60px rgba(244,63,94,.1)}
-      .fc--blue::before{background:radial-gradient(ellipse at 50% 0%,rgba(59,130,246,.08),transparent 60%)}
-      .fc--blue:hover{box-shadow:0 20px 60px rgba(59,130,246,.1)}
-      .fc--amber::before{background:radial-gradient(ellipse at 50% 0%,rgba(245,158,11,.08),transparent 60%)}
-      .fc--amber:hover{box-shadow:0 20px 60px rgba(245,158,11,.1)}
-      .fc--green::before{background:radial-gradient(ellipse at 50% 0%,rgba(34,197,94,.08),transparent 60%)}
-      .fc--green:hover{box-shadow:0 20px 60px rgba(34,197,94,.1)}
-
-      .fc__icon {
-        width: 44px; height: 44px; border-radius: 14px;
-        display: flex; align-items: center; justify-content: center;
-        margin-bottom: 20px; font-size: 20px;
+      .fc:hover::before {
+        opacity: 1;
       }
-      .fc__icon svg{width:22px;height:22px}
-      .fc__icon--purple{background:rgba(168,85,247,.12);color:var(--purple-light)}
-      .fc__icon--teal{background:rgba(45,212,191,.12);color:var(--teal)}
-      .fc__icon--rose{background:rgba(244,63,94,.12);color:var(--rose)}
-      .fc__icon--blue{background:rgba(59,130,246,.12);color:var(--blue)}
-      .fc__icon--amber{background:rgba(245,158,11,.12);color:var(--amber)}
-      .fc__icon--green{background:rgba(34,197,94,.12);color:var(--green)}
-
+      .fc--purple::before {
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          rgba(168, 85, 247, 0.08),
+          transparent 60%
+        );
+      }
+      .fc--purple:hover {
+        box-shadow: 0 20px 60px rgba(168, 85, 247, 0.1);
+      }
+      .fc--teal::before {
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          rgba(45, 212, 191, 0.08),
+          transparent 60%
+        );
+      }
+      .fc--teal:hover {
+        box-shadow: 0 20px 60px rgba(45, 212, 191, 0.1);
+      }
+      .fc--rose::before {
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          rgba(244, 63, 94, 0.08),
+          transparent 60%
+        );
+      }
+      .fc--rose:hover {
+        box-shadow: 0 20px 60px rgba(244, 63, 94, 0.1);
+      }
+      .fc--blue::before {
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          rgba(59, 130, 246, 0.08),
+          transparent 60%
+        );
+      }
+      .fc--blue:hover {
+        box-shadow: 0 20px 60px rgba(59, 130, 246, 0.1);
+      }
+      .fc--amber::before {
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          rgba(245, 158, 11, 0.08),
+          transparent 60%
+        );
+      }
+      .fc--amber:hover {
+        box-shadow: 0 20px 60px rgba(245, 158, 11, 0.1);
+      }
+      .fc--green::before {
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          rgba(34, 197, 94, 0.08),
+          transparent 60%
+        );
+      }
+      .fc--green:hover {
+        box-shadow: 0 20px 60px rgba(34, 197, 94, 0.1);
+      }
+      .fc__icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        font-size: 20px;
+      }
+      .fc__icon svg {
+        width: 22px;
+        height: 22px;
+      }
+      .fc__icon--purple {
+        background: rgba(168, 85, 247, 0.12);
+        color: var(--purple-light);
+      }
+      .fc__icon--teal {
+        background: rgba(45, 212, 191, 0.12);
+        color: var(--teal);
+      }
+      .fc__icon--rose {
+        background: rgba(244, 63, 94, 0.12);
+        color: var(--rose);
+      }
+      .fc__icon--blue {
+        background: rgba(59, 130, 246, 0.12);
+        color: var(--blue);
+      }
+      .fc__icon--amber {
+        background: rgba(245, 158, 11, 0.12);
+        color: var(--amber);
+      }
+      .fc__icon--green {
+        background: rgba(34, 197, 94, 0.12);
+        color: var(--green);
+      }
       .fc__title {
-        font-size: clamp(22px,2.5vw,28px);
+        font-size: clamp(22px, 2.5vw, 28px);
         font-weight: 800;
         color: var(--w);
         letter-spacing: -0.5px;
@@ -539,10 +853,21 @@
         max-width: 360px;
         margin-bottom: 24px;
       }
-      .fc__tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
-      .fc__tag{padding:4px 12px;border-radius:100px;font-size:10px;font-weight:600;background:var(--w08);border:1px solid var(--border);color:var(--w30)}
-
-      /* Preview area at bottom */
+      .fc__tags {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+      }
+      .fc__tag {
+        padding: 4px 12px;
+        border-radius: 100px;
+        font-size: 10px;
+        font-weight: 600;
+        background: var(--w08);
+        border: 1px solid var(--border);
+        color: var(--w30);
+      }
       .fc__preview {
         flex: 1;
         min-height: 160px;
@@ -555,10 +880,16 @@
         overflow: hidden;
         margin: 0 -32px;
       }
-      .fc__preview-bar{display:flex;gap:5px;margin-bottom:14px}
-      .fc__preview-dot{width:8px;height:8px;border-radius:50%}
-
-      /* Floating snippet chips inside preview */
+      .fc__preview-bar {
+        display: flex;
+        gap: 5px;
+        margin-bottom: 14px;
+      }
+      .fc__preview-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
       .fc__snip {
         background: var(--surface3);
         border: 1px solid var(--border2);
@@ -571,21 +902,50 @@
         gap: 6px;
         position: absolute;
         backdrop-filter: blur(8px);
-        box-shadow: 0 4px 16px rgba(0,0,0,.2);
-        transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         white-space: nowrap;
       }
-      .fc:hover .fc__snip{transform:translateY(-4px)}
-      .fc__snip-icon{width:18px;height:18px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
-      .fc__snip strong{color:var(--w90);font-weight:600}
-      .fc__snip small{color:var(--w30);font-size:9px;display:block;margin-top:1px}
+      .fc:hover .fc__snip {
+        transform: translateY(-4px);
+      }
+      .fc__snip-icon {
+        width: 18px;
+        height: 18px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        flex-shrink: 0;
+      }
+      .fc__snip strong {
+        color: var(--w90);
+        font-weight: 600;
+      }
+      .fc__snip small {
+        color: var(--w30);
+        font-size: 9px;
+        display: block;
+        margin-top: 1px;
+      }
+      .fc__preview-line {
+        height: 8px;
+        border-radius: 4px;
+        background: var(--w08);
+        margin-bottom: 8px;
+      }
+      .fc__preview-line--short {
+        width: 60%;
+      }
+      .fc__preview-line--med {
+        width: 80%;
+      }
+      .fc__preview-line--long {
+        width: 95%;
+      }
 
-      .fc__preview-line{height:8px;border-radius:4px;background:var(--w08);margin-bottom:8px}
-      .fc__preview-line--short{width:60%}
-      .fc__preview-line--med{width:80%}
-      .fc__preview-line--long{width:95%}
-
-      /* ═══ AI AGENTS — redesigned profile grid ═══ */
+      /* ═══ AI AGENTS ═══ */
       .agents-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -598,8 +958,11 @@
         border: 1px solid var(--border);
         border-radius: var(--r2);
         overflow: hidden;
-        transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+        transition:
+          transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+          border-color 0.3s ease-out;
         cursor: pointer;
+        contain: content;
         position: relative;
       }
       .ag:hover {
@@ -641,6 +1004,16 @@
         background: var(--teal);
         border: 3px solid var(--surface);
         box-shadow: 0 0 10px rgba(45, 212, 191, 0.5);
+        animation: agPulse 2s ease-in-out infinite;
+      }
+      @keyframes agPulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.4);
+        }
+        50% {
+          box-shadow: 0 0 0 6px rgba(45, 212, 191, 0);
+        }
       }
       .ag__name {
         font-size: 16px;
@@ -667,7 +1040,9 @@
         background: var(--w08);
         border: 1px solid var(--border);
         color: var(--w50);
-        transition: border-color 0.2s, color 0.2s;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
       }
       .ag:hover .ag__skill {
         border-color: var(--border2);
@@ -701,80 +1076,56 @@
       .ag:hover .ag__action svg {
         transform: translateX(3px);
       }
-      @keyframes agPulse {
-        0%,
-        100% {
-          box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.4);
-        }
-        50% {
-          box-shadow: 0 0 0 6px rgba(45, 212, 191, 0);
-        }
-      }
-      .ag__avatar::after {
-        animation: agPulse 2s ease-in-out infinite;
-      }
 
-      /* ═══ HOW IT WORKS ═══ */
-      .how-steps {
+      /* ═══ TRUST SECTION ═══ */
+      .trust-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-        margin-top: 0;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
       }
-      .hs {
+      .trust-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--r2);
+        padding: 32px 24px;
         text-align: center;
-        position: relative;
-        padding: 32px 20px;
+        contain: content;
+        transition:
+          transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+          border-color 0.3s ease-out,
+          transform 0.3s;
       }
-      .hs__num {
-        font-size: 64px;
-        font-weight: 900;
-        background: var(--grad2);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        line-height: 1;
-        margin-bottom: 16px;
-        opacity: 0.4;
+      .trust-card:hover {
+        border-color: var(--border2);
+        transform: translateY(-4px);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
       }
-      .hs__icon {
-        width: 56px;
-        height: 56px;
+      .trust-icon {
+        width: 52px;
+        height: 52px;
         border-radius: 16px;
         background: var(--surface2);
         border: 1px solid var(--border2);
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto 16px;
+        margin: 0 auto 18px;
         color: var(--purple-light);
       }
-      .hs__icon svg {
-        width: 24px;
-        height: 24px;
+      .trust-icon svg {
+        width: 22px;
+        height: 22px;
       }
-      .hs__title {
-        font-size: 18px;
+      .trust-card__title {
+        font-size: 16px;
         font-weight: 700;
         color: var(--w);
         margin-bottom: 8px;
       }
-      .hs__desc {
+      .trust-card__desc {
         font-size: 13px;
         color: var(--w50);
-        line-height: 1.6;
-        max-width: 280px;
-        margin: 0 auto;
-      }
-      .hs:not(:last-child)::after {
-        content: "";
-        position: absolute;
-        right: -12px;
-        top: 50%;
-        width: 24px;
-        height: 2px;
-        background: var(--grad2);
-        opacity: 0.3;
+        line-height: 1.65;
       }
 
       /* ═══ TESTIMONIALS ═══ */
@@ -789,7 +1140,10 @@
         border: 1px solid var(--border);
         border-radius: var(--rl);
         padding: 28px;
-        transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        contain: content;
+        transition:
+          transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+          border-color 0.3s ease-out;
       }
       .tcard:hover {
         border-color: var(--border2);
@@ -841,7 +1195,7 @@
         color: var(--w30);
       }
 
-      /* ═══ CTA — gradient banner ═══ */
+      /* ═══ CTA BANNER ═══ */
       .cta-banner {
         padding: 100px 0;
         text-align: center;
@@ -877,12 +1231,12 @@
         pointer-events: none;
       }
       .cta-banner__title {
-        font-size: clamp(32px, 5vw, 56px);
+        font-size: clamp(32px, 5vw, 58px);
         font-weight: 900;
         color: var(--w);
         letter-spacing: -2px;
-        line-height: 1.08;
-        margin-bottom: 14px;
+        line-height: 1.07;
+        margin-bottom: 16px;
         position: relative;
         z-index: 1;
       }
@@ -896,9 +1250,13 @@
       .cta-banner__sub {
         font-size: 16px;
         color: var(--w50);
-        margin-bottom: 32px;
+        margin-bottom: 36px;
         position: relative;
         z-index: 1;
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.7;
       }
       .cta-banner__btns {
         display: flex;
@@ -965,8 +1323,263 @@
         color: var(--w15);
       }
 
+      /* ═══ SERVICE CARDS — premium 3-col ═══ */
+      .svc-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .svc-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--r2);
+        padding: 36px 30px;
+        position: relative;
+        overflow: hidden;
+        contain: content;
+        transition:
+          transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+          border-color 0.3s ease-out;
+      }
+      .svc-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.35s;
+        pointer-events: none;
+      }
+      .svc-card:hover {
+        border-color: var(--border2);
+        transform: translateY(-6px);
+      }
+      .svc-card:hover::before {
+        opacity: 1;
+      }
+      .svc-card--purple::before {
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          rgba(168, 85, 247, 0.1),
+          transparent 65%
+        );
+      }
+      .svc-card--purple:hover {
+        box-shadow: 0 20px 56px rgba(168, 85, 247, 0.12);
+      }
+      .svc-card--teal::before {
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          rgba(45, 212, 191, 0.1),
+          transparent 65%
+        );
+      }
+      .svc-card--teal:hover {
+        box-shadow: 0 20px 56px rgba(45, 212, 191, 0.12);
+      }
+      .svc-card--blue::before {
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          rgba(59, 130, 246, 0.1),
+          transparent 65%
+        );
+      }
+      .svc-card--blue:hover {
+        box-shadow: 0 20px 56px rgba(59, 130, 246, 0.12);
+      }
+      .svc-card__icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 22px;
+      }
+      .svc-card__icon svg {
+        width: 22px;
+        height: 22px;
+      }
+      .svc-card__title {
+        font-size: 19px;
+        font-weight: 800;
+        color: var(--w);
+        margin-bottom: 10px;
+        letter-spacing: -0.4px;
+      }
+      .svc-card__desc {
+        font-size: 13.5px;
+        color: var(--w50);
+        line-height: 1.7;
+        margin-bottom: 22px;
+      }
+      .svc-card__divider {
+        height: 1px;
+        background: var(--border);
+        margin-bottom: 18px;
+      }
+      .svc-checks {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .svc-check {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--w70);
+        line-height: 1.45;
+      }
+      .svc-check svg {
+        width: 15px;
+        height: 15px;
+        color: var(--teal);
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      /* ═══ CONSULT CTA ═══ */
+      .consult-cta {
+        background: var(--surface);
+        border: 1px solid var(--border2);
+        border-radius: var(--r2);
+        padding: 48px 52px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+        position: relative;
+        overflow: hidden;
+      }
+      .consult-cta::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(168, 85, 247, 0.06),
+          rgba(45, 212, 191, 0.04)
+        );
+        pointer-events: none;
+        border-radius: var(--r2);
+      }
+      .consult-cta__text {
+        position: relative;
+        z-index: 1;
+      }
+      .consult-cta__text h3 {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--w);
+        margin-bottom: 10px;
+        letter-spacing: -0.5px;
+      }
+      .consult-cta__text p {
+        font-size: 14px;
+        color: var(--w50);
+        line-height: 1.7;
+        max-width: 480px;
+      }
+      .consult-cta .btn {
+        position: relative;
+        z-index: 1;
+        flex-shrink: 0;
+      }
+
+      /* ═══ WHO THIS IS FOR ═══ */
+      .for-sec {
+        padding: 64px 0;
+      }
+      .for-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+      .for-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--r2);
+        padding: 28px 20px;
+        text-align: center;
+        transition:
+          border-color 0.3s,
+          box-shadow 0.3s,
+          transform 0.3s;
+      }
+      .for-card:hover {
+        border-color: var(--border2);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+      }
+      .for-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: var(--surface2);
+        border: 1px solid var(--border2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 14px;
+        color: var(--purple-light);
+      }
+      .for-icon svg {
+        width: 20px;
+        height: 20px;
+      }
+      .for-label {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--w);
+        margin-bottom: 6px;
+        letter-spacing: -0.2px;
+      }
+      .for-note {
+        font-size: 12px;
+        color: var(--w30);
+        line-height: 1.55;
+      }
+
+      /* ═══ TOOLS SECTION — de-emphasised ═══ */
+      .sh__tag--muted {
+        color: var(--w50);
+        background: var(--w08);
+        border-color: var(--border);
+      }
+      .sh--tools .sh__title {
+        font-size: clamp(22px, 3vw, 36px);
+        font-weight: 700;
+        letter-spacing: -1px;
+      }
+      .sh--tools .sh__sub {
+        font-size: 14px;
+        color: var(--w30);
+      }
+      .tools-context {
+        text-align: center;
+        font-size: 13px;
+        color: var(--w30);
+        margin-bottom: 32px;
+        padding: 10px 20px;
+        display: inline-block;
+        width: 100%;
+        border-top: 1px solid var(--border);
+        padding-top: 20px;
+      }
+
       /* ═══ RESPONSIVE ═══ */
       @media (max-width: 1024px) {
+        .svc-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .consult-cta {
+          flex-direction: column;
+          text-align: center;
+          padding: 36px 28px;
+        }
+        .consult-cta__text p {
+          margin: 0 auto;
+        }
         .tool-grid {
           grid-template-columns: 1fr 1fr;
         }
@@ -982,20 +1595,29 @@
           margin-left: auto;
           margin-right: auto;
         }
-        .hs::after {
+        .hs__connector {
           display: none;
         }
         .testi-grid {
           grid-template-columns: 1fr;
         }
-        .team-show__grid {
-          grid-template-columns: repeat(3, 1fr);
+        .sol-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .trust-grid {
+          grid-template-columns: repeat(2, 1fr);
         }
         .footer__grid {
           grid-template-columns: 1fr 1fr;
         }
       }
       @media (max-width: 768px) {
+        .for-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .svc-grid {
+          grid-template-columns: 1fr;
+        }
         .nav__links {
           display: none;
         }
@@ -1015,11 +1637,14 @@
         .agents-grid {
           grid-template-columns: 1fr;
         }
-        .team-show__grid {
-          grid-template-columns: repeat(2, 1fr);
+        .sol-grid {
+          grid-template-columns: 1fr;
+        }
+        .trust-grid {
+          grid-template-columns: 1fr 1fr;
         }
         .hero {
-          padding: 48px 0 40px;
+          padding: 56px 0 48px;
         }
         .sec {
           padding: 64px 0;
@@ -1047,9 +1672,15 @@
           align-items: center;
         }
       }
-
+      @media (max-width: 480px) {
+        .trust-grid {
+          grid-template-columns: 1fr;
+        }
+      }
       @media (prefers-reduced-motion: reduce) {
-        *, *::before, *::after {
+        *,
+        *::before,
+        *::after {
           animation-duration: 0.01ms !important;
           animation-iteration-count: 1 !important;
           transition-duration: 0.01ms !important;
@@ -1064,14 +1695,15 @@
       <div class="ctn nav__i">
         <div class="nav__logo">NXTGEN<span>AI</span></div>
         <div class="nav__links">
+          <a href="#solutions" class="nav__link">Solutions</a>
+          <a href="#how" class="nav__link">How It Works</a>
           <a href="#tools" class="nav__link">Tools</a>
-          <a href="#agents" class="nav__link">AI Agents</a>
-          <a href="#how" class="nav__link">How it works</a>
+          <a href="#agents" class="nav__link">AI Team</a>
           <a href="concept-3-pricing.html" class="nav__link">Pricing</a>
           <a href="#" class="btn btn--ghost" style="margin-left: 6px"
             >Sign in</a
           >
-          <a href="#" class="btn btn--glow">Get started</a>
+          <a href="#" class="btn btn--glow">Book a Call</a>
         </div>
       </div>
     </nav>
@@ -1079,16 +1711,33 @@
     <!-- ═══ HERO ═══ -->
     <section class="hero">
       <div class="ctn" style="position: relative; z-index: 1">
-        <h1 class="hero__title rv">
-          Your AI Team<br />That <em>Never Sleeps</em>
+        <div class="hero__eyebrow rv">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            width="13"
+            height="13"
+          >
+            <path
+              d="M12 2C8 2 5 5.5 5 9.5c0 5.2 5.3 10.1 6.2 10.9a1 1 0 0 0 1.5 0C13.7 19.6 19 14.7 19 9.5 19 5.5 16 2 12 2z"
+            />
+            <circle cx="12" cy="9.5" r="2.5" />
+          </svg>
+          Australian-Owned & Operated
+        </div>
+        <h1 class="hero__title rv d1">
+          Custom AI Systems<br /><em>Built for Your Business</em>
         </h1>
-        <p class="hero__sub rv d1">
-          23+ production-ready AI tools and 12 autonomous agents for content,
-          marketing, sales, and operations — deploy in seconds.
+        <p class="hero__sub rv d2">
+          Stop losing hours to manual work. We build custom AI systems that save
+          your team 20+ hours a week, cut operating costs, and scale your
+          business — without adding headcount.
         </p>
-        <div class="hero__ctas rv d2">
-          <a href="#" class="btn btn--glow btn--lg"
-            >Get started free
+        <div class="hero__ctas rv d3">
+          <a href="#" class="btn btn--glow btn--lg">
+            Subscribe & start using tools
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -1096,11 +1745,12 @@
               stroke-width="2"
             >
               <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" /></svg
-          ></a>
-          <a href="#tools" class="btn btn--ghost btn--lg">Explore tools</a>
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </a>
+          <a href="#how" class="btn btn--ghost btn--lg">See How It Works</a>
         </div>
-        <div class="hero__meta rv d3">
+        <div class="hero__meta rv d4">
           <div class="hero__meta-item">
             <svg
               viewBox="0 0 24 24"
@@ -1109,8 +1759,9 @@
               stroke-width="2"
             >
               <path d="m9 12 2 2 4-4" />
-              <circle cx="12" cy="12" r="10" /></svg
-            >No credit card
+              <circle cx="12" cy="12" r="10" />
+            </svg>
+            No-template solutions
           </div>
           <div class="hero__meta-item">
             <svg
@@ -1119,8 +1770,9 @@
               stroke="currentColor"
               stroke-width="2"
             >
-              <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" /></svg
-            >Results in seconds
+              <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
+            </svg>
+            Live in days, not months
           </div>
           <div class="hero__meta-item">
             <svg
@@ -1130,193 +1782,1099 @@
               stroke-width="2"
             >
               <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" /></svg
-            >5,000+ users
+              <circle cx="9" cy="7" r="4" />
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            Ongoing support included
           </div>
         </div>
-        <!-- Agent team showcase
-        <div class="team-show rv-s d4">
-          <div class="team-show__label">Meet Your AI Team</div>
-          <div class="team-show__grid">
-            <div class="team-card rv d4">
-              <div class="team-card__av"><img loading="lazy" decoding="async" width="56" height="56" src="https://randomuser.me/api/portraits/women/65.jpg" alt="Vizzy"/><div class="team-card__status"></div></div>
-              <div class="team-card__name">Virtual Assistant</div>
-              <div class="team-card__role">Vizzy</div>
-              <span class="team-card__skill">Scheduling</span>
-            </div>
-            <div class="team-card rv d5">
-              <div class="team-card__av"><img loading="lazy" decoding="async" width="56" height="56" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Seomi"/><div class="team-card__status"></div></div>
-              <div class="team-card__name">SEO Specialist</div>
-              <div class="team-card__role">Seomi</div>
-              <span class="team-card__skill">Rankings</span>
-            </div>
-            <div class="team-card rv d6">
-              <div class="team-card__av"><img loading="lazy" decoding="async" width="56" height="56" src="https://randomuser.me/api/portraits/men/75.jpg" alt="Milli"/><div class="team-card__status"></div></div>
-              <div class="team-card__name">Sales Strategist</div>
-              <div class="team-card__role">Milli</div>
-              <span class="team-card__skill">Closing</span>
-            </div>
-            <div class="team-card rv d7">
-              <div class="team-card__av"><img loading="lazy" decoding="async" width="56" height="56" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Emmie"/><div class="team-card__status"></div></div>
-              <div class="team-card__name">Email Marketer</div>
-              <div class="team-card__role">Emmie</div>
-              <span class="team-card__skill">Campaigns</span>
-            </div>
-            <div class="team-card rv d8">
-              <div class="team-card__av"><img loading="lazy" decoding="async" width="56" height="56" src="https://randomuser.me/api/portraits/men/86.jpg" alt="Penn"/><div class="team-card__status"></div></div>
-              <div class="team-card__name">Copywriter</div>
-              <div class="team-card__role">Penn</div>
-              <span class="team-card__skill">Copy</span>
-            </div>
-            <div class="team-card rv d8">
-              <div class="team-card__av"><img loading="lazy" decoding="async" width="56" height="56" src="https://randomuser.me/api/portraits/men/22.jpg" alt="Dexter"/><div class="team-card__status"></div></div>
-              <div class="team-card__name">Data Analyst</div>
-              <div class="team-card__role">Dexter</div>
-              <span class="team-card__skill">Analytics</span>
-            </div>
-          </div>
-        </div> -->
       </div>
     </section>
 
-    <!-- ═══ CONTENT CREATION TOOLS ═══ -->
-    <section class="sec" id="tools">
+    <!-- ═══ HOW IT WORKS ═══ -->
+    <section class="sec" id="how" style="background: var(--bg2)">
       <div class="ctn">
         <div class="sh rv">
-          <div class="sh__tag">Content Creation</div>
-          <h2 class="sh__title">Tools that create <em>for you</em></h2>
-          <p class="sh__sub">Generate captions, hashtags, calendars, and content ideas — all powered by AI.</p>
+          <div class="sh__tag">How It Works</div>
+          <h2 class="sh__title">Three steps to <em>full automation</em></h2>
+          <p class="sh__sub">
+            We handle everything — from understanding your business to deploying
+            a system that works around the clock.
+          </p>
+        </div>
+        <div class="how-steps">
+          <div class="hs rv d1">
+            <div class="hs__connector"></div>
+            <div class="hs__num">01</div>
+            <div class="hs__icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+              </svg>
+            </div>
+            <div class="hs__title">Analyse Your Business</div>
+            <div class="hs__desc">
+              We audit your current processes, identify bottlenecks, and map
+              every opportunity for AI to save you time and money.
+            </div>
+          </div>
+          <div class="hs rv d2">
+            <div class="hs__connector"></div>
+            <div class="hs__num">02</div>
+            <div class="hs__icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <path d="M3 9h18" />
+                <path d="M9 21V9" />
+              </svg>
+            </div>
+            <div class="hs__title">Build Custom AI Workflows</div>
+            <div class="hs__desc">
+              We engineer tailored AI agents and automation pipelines that
+              integrate directly into your existing tools and systems.
+            </div>
+          </div>
+          <div class="hs rv d3">
+            <div class="hs__num">03</div>
+            <div class="hs__icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="m9 12 2 2 4-4" />
+                <circle cx="12" cy="12" r="10" />
+              </svg>
+            </div>
+            <div class="hs__title">Deploy &amp; Optimise</div>
+            <div class="hs__desc">
+              Go live fast. We monitor performance, iterate on results, and
+              continuously improve your system as your business grows.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ WE BUILD AI INTO YOUR BUSINESS ═══ -->
+    <section class="sec" id="solutions">
+      <div class="ctn">
+        <div class="sh rv">
+          <div class="sh__tag">Our Services</div>
+          <h2 class="sh__title">We build AI into <em>your business</em></h2>
+          <p class="sh__sub">
+            From custom workflows to fully autonomous agents, we design and
+            deploy AI systems that work inside your business — not alongside it.
+          </p>
+        </div>
+        <div class="svc-grid">
+          <!-- Workflow Automation -->
+          <div class="svc-card svc-card--purple rv d1">
+            <div
+              class="svc-card__icon"
+              style="
+                background: rgba(168, 85, 247, 0.12);
+                color: var(--purple-light);
+              "
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M12 2 2 7l10 5 10-5-10-5z" />
+                <path d="m2 17 10 5 10-5" />
+                <path d="m2 12 10 5 10-5" />
+              </svg>
+            </div>
+            <div class="svc-card__title">Workflow Automation</div>
+            <div class="svc-card__desc">
+              Replace time-consuming manual processes with AI workflows that run
+              24/7 across sales, ops, HR, and finance.
+            </div>
+            <div class="svc-card__divider"></div>
+            <div class="svc-checks">
+              <div class="svc-check">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="m9 12 2 2 4-4" />
+                  <circle cx="12" cy="12" r="10" /></svg
+                >Process audit &amp; mapping
+              </div>
+              <div class="svc-check">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="m9 12 2 2 4-4" />
+                  <circle cx="12" cy="12" r="10" /></svg
+                >Multi-step automation
+              </div>
+              <div class="svc-check">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="m9 12 2 2 4-4" />
+                  <circle cx="12" cy="12" r="10" /></svg
+                >Cross-app integrations
+              </div>
+              <div class="svc-check">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="m9 12 2 2 4-4" />
+                  <circle cx="12" cy="12" r="10" /></svg
+                >Real-time monitoring
+              </div>
+            </div>
+          </div>
+          <!-- Custom AI Agents -->
+          <div class="svc-card svc-card--teal rv d2">
+            <div
+              class="svc-card__icon"
+              style="background: rgba(45, 212, 191, 0.12); color: var(--teal)"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                />
+              </svg>
+            </div>
+            <div class="svc-card__title">Custom AI Agents</div>
+            <div class="svc-card__desc">
+              Intelligent agents that qualify leads, handle support, and manage
+              tasks — deployed across web, email, and chat.
+            </div>
+            <div class="svc-card__divider"></div>
+            <div class="svc-checks">
+              <div class="svc-check">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="m9 12 2 2 4-4" />
+                  <circle cx="12" cy="12" r="10" /></svg
+                >Lead qualification bots
+              </div>
+              <div class="svc-check">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="m9 12 2 2 4-4" />
+                  <circle cx="12" cy="12" r="10" /></svg
+                >Customer support agents
+              </div>
+              <div class="svc-check">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="m9 12 2 2 4-4" />
+                  <circle cx="12" cy="12" r="10" /></svg
+                >Knowledge base training
+              </div>
+              <div class="svc-check">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="m9 12 2 2 4-4" />
+                  <circle cx="12" cy="12" r="10" /></svg
+                >Human handoff workflows
+              </div>
+            </div>
+          </div>
+          <!-- System Integration -->
+          <div class="svc-card svc-card--blue rv d3">
+            <div
+              class="svc-card__icon"
+              style="background: rgba(59, 130, 246, 0.12); color: var(--blue)"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M18 20V10" />
+                <path d="M12 20V4" />
+                <path d="M6 20v-6" />
+              </svg>
+            </div>
+            <div class="svc-card__title">System Integration</div>
+            <div class="svc-card__desc">
+              Connect your CRM, email, Slack, and APIs into one unified pipeline
+              — data flows automatically in real time.
+            </div>
+            <div class="svc-card__divider"></div>
+            <div class="svc-checks">
+              <div class="svc-check">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="m9 12 2 2 4-4" />
+                  <circle cx="12" cy="12" r="10" /></svg
+                >CRM &amp; database sync
+              </div>
+              <div class="svc-check">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="m9 12 2 2 4-4" />
+                  <circle cx="12" cy="12" r="10" /></svg
+                >API &amp; webhook setup
+              </div>
+              <div class="svc-check">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="m9 12 2 2 4-4" />
+                  <circle cx="12" cy="12" r="10" /></svg
+                >Email &amp; Slack pipelines
+              </div>
+              <div class="svc-check">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="m9 12 2 2 4-4" />
+                  <circle cx="12" cy="12" r="10" /></svg
+                >Real-time data flow
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ NOT SURE WHERE AI FITS? ═══ -->
+    <section style="padding: 0 0 96px; position: relative">
+      <div class="ctn">
+        <div class="consult-cta rv">
+          <div class="consult-cta__text">
+            <h3>Not sure where AI fits in your business?</h3>
+            <p>
+              That's exactly why we offer a free consultation. We'll audit your
+              current processes, identify bottlenecks, and show you exactly
+              where AI can save time, cut costs, and unlock growth — with a
+              clear roadmap you can act on.
+            </p>
+          </div>
+          <a href="#" class="btn btn--glow btn--lg" style="white-space: nowrap">
+            Book a Free Consultation
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ WHO THIS IS FOR ═══ -->
+    <section
+      class="for-sec"
+      style="
+        background: var(--bg2);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      "
+    >
+      <div class="ctn">
+        <p
+          class="rv"
+          style="
+            text-align: center;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--w30);
+            margin-bottom: 24px;
+          "
+        >
+          Built for businesses like
+        </p>
+        <div class="for-grid">
+          <div class="for-card rv d1">
+            <div class="for-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+            </div>
+            <div class="for-label">Startups</div>
+            <div class="for-note">
+              Move fast and automate early — scale without bloating your team.
+            </div>
+          </div>
+          <div class="for-card rv d2">
+            <div class="for-icon" style="color: var(--teal)">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="2" y="7" width="20" height="14" rx="2" />
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+              </svg>
+            </div>
+            <div class="for-label">SMBs</div>
+            <div class="for-note">
+              Do more with your existing team — AI handles the repetitive work.
+            </div>
+          </div>
+          <div class="for-card rv d3">
+            <div class="for-icon" style="color: var(--blue)">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+            <div class="for-label">Agencies</div>
+            <div class="for-note">
+              Deliver more for clients — automate delivery, reporting, and
+              fulfilment.
+            </div>
+          </div>
+          <div class="for-card rv d4">
+            <div class="for-icon" style="color: var(--amber)">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"
+                />
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+              </svg>
+            </div>
+            <div class="for-label">Service Businesses</div>
+            <div class="for-note">
+              Automate client intake, follow-ups, scheduling, and operations
+              end-to-end.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ EXPLORE OUR AI TOOLS ═══ -->
+    <section class="sec" id="tools" style="background: var(--bg2)">
+      <div class="ctn">
+        <div class="sh sh--tools rv">
+          <div class="sh__tag sh__tag--muted">Included Platform Tools</div>
+          <h2 class="sh__title">Explore Our <em>AI Tools</em></h2>
+          <p class="sh__sub">
+            Pre-built tools included with our platform — ready to use from day
+            one while your custom systems are deployed.
+          </p>
         </div>
         <div class="tool-grid">
           <!-- Caption Generator -->
           <div class="fc fc--purple rv d1">
-            <div class="fc__icon fc__icon--purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
+            <div class="fc__icon fc__icon--purple">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M12 20h9" />
+                <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+              </svg>
+            </div>
             <div class="fc__title">Caption Generator.</div>
-            <div class="fc__desc">Engaging captions for Instagram, Facebook, LinkedIn, and X — generated in seconds.</div>
-            <div class="fc__tags"><span class="fc__tag">Free</span><span class="fc__tag">2 credits</span><span class="fc__tag">2.4k users</span></div>
+            <div class="fc__desc">
+              Engaging captions for Instagram, Facebook, LinkedIn, and X —
+              generated in seconds.
+            </div>
+            <div class="fc__tags">
+              <span class="fc__tag">Free</span
+              ><span class="fc__tag">2 credits</span
+              ><span class="fc__tag">2.4k users</span>
+            </div>
             <div class="fc__preview">
-              <div class="fc__preview-bar"><div class="fc__preview-dot" style="background:var(--rose)"></div><div class="fc__preview-dot" style="background:var(--amber)"></div><div class="fc__preview-dot" style="background:var(--green)"></div></div>
+              <div class="fc__preview-bar">
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--rose)"
+                ></div>
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--amber)"
+                ></div>
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--green)"
+                ></div>
+              </div>
               <div class="fc__preview-line fc__preview-line--long"></div>
               <div class="fc__preview-line fc__preview-line--med"></div>
               <div class="fc__preview-line fc__preview-line--short"></div>
-              <div class="fc__snip" style="top:28px;right:16px"><div class="fc__snip-icon" style="background:rgba(168,85,247,.15);color:var(--purple-light)"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div><div><strong>Instagram Caption</strong><small>Ready to copy</small></div></div>
-              <div class="fc__snip" style="bottom:16px;left:12px"><div class="fc__snip-icon" style="background:rgba(59,130,246,.15);color:var(--blue)">in</div><div><strong>LinkedIn Post</strong><small>Professional tone</small></div></div>
+              <div class="fc__snip" style="top: 28px; right: 16px">
+                <div
+                  class="fc__snip-icon"
+                  style="
+                    background: rgba(168, 85, 247, 0.15);
+                    color: var(--purple-light);
+                  "
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="12"
+                    height="12"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 20h9" />
+                    <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+                  </svg>
+                </div>
+                <div>
+                  <strong>Instagram Caption</strong><small>Ready to copy</small>
+                </div>
+              </div>
+              <div class="fc__snip" style="bottom: 16px; left: 12px">
+                <div
+                  class="fc__snip-icon"
+                  style="
+                    background: rgba(59, 130, 246, 0.15);
+                    color: var(--blue);
+                  "
+                >
+                  in
+                </div>
+                <div>
+                  <strong>LinkedIn Post</strong><small>Professional tone</small>
+                </div>
+              </div>
             </div>
           </div>
           <!-- Hashtag Generator -->
           <div class="fc fc--teal rv d2">
-            <div class="fc__icon fc__icon--teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9h16"/><path d="M4 15h16"/><path d="M10 3 8 21"/><path d="M16 3l-2 18"/></svg></div>
+            <div class="fc__icon fc__icon--teal">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M4 9h16" />
+                <path d="M4 15h16" />
+                <path d="M10 3 8 21" />
+                <path d="M16 3l-2 18" />
+              </svg>
+            </div>
             <div class="fc__title">Hashtag Generator.</div>
-            <div class="fc__desc">Viral and niche hashtags for Instagram, TikTok, LinkedIn, and X — optimized for reach.</div>
-            <div class="fc__tags"><span class="fc__tag">Free</span><span class="fc__tag">2 credits</span><span class="fc__tag">1.6k users</span></div>
+            <div class="fc__desc">
+              Viral and niche hashtags for Instagram, TikTok, LinkedIn, and X —
+              optimized for reach.
+            </div>
+            <div class="fc__tags">
+              <span class="fc__tag">Free</span
+              ><span class="fc__tag">2 credits</span
+              ><span class="fc__tag">1.6k users</span>
+            </div>
             <div class="fc__preview">
-              <div class="fc__preview-bar"><div class="fc__preview-dot" style="background:var(--rose)"></div><div class="fc__preview-dot" style="background:var(--amber)"></div><div class="fc__preview-dot" style="background:var(--green)"></div></div>
+              <div class="fc__preview-bar">
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--rose)"
+                ></div>
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--amber)"
+                ></div>
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--green)"
+                ></div>
+              </div>
               <div class="fc__preview-line fc__preview-line--med"></div>
               <div class="fc__preview-line fc__preview-line--short"></div>
-              <div class="fc__snip" style="top:24px;right:14px"><div class="fc__snip-icon" style="background:rgba(45,212,191,.15);color:var(--teal)">#</div><div><strong>#trending #viral</strong><small>32 hashtags found</small></div></div>
-              <div class="fc__snip" style="bottom:18px;left:14px"><div class="fc__snip-icon" style="background:rgba(244,63,94,.15);color:var(--rose)"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div><strong>Niche tags</strong><small>High engagement</small></div></div>
+              <div class="fc__snip" style="top: 24px; right: 14px">
+                <div
+                  class="fc__snip-icon"
+                  style="
+                    background: rgba(45, 212, 191, 0.15);
+                    color: var(--teal);
+                  "
+                >
+                  #
+                </div>
+                <div>
+                  <strong>#trending #viral</strong
+                  ><small>32 hashtags found</small>
+                </div>
+              </div>
+              <div class="fc__snip" style="bottom: 18px; left: 14px">
+                <div
+                  class="fc__snip-icon"
+                  style="
+                    background: rgba(244, 63, 94, 0.15);
+                    color: var(--rose);
+                  "
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="12"
+                    height="12"
+                    fill="currentColor"
+                    stroke="none"
+                  >
+                    <path
+                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <strong>Niche tags</strong><small>High engagement</small>
+                </div>
+              </div>
             </div>
           </div>
           <!-- 30-Day Calendar -->
           <div class="fc fc--rose rv d3">
-            <div class="fc__icon fc__icon--rose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg></div>
+            <div class="fc__icon fc__icon--rose">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <path d="M16 2v4" />
+                <path d="M8 2v4" />
+                <path d="M3 10h18" />
+              </svg>
+            </div>
             <div class="fc__title">30-Day Content Calendar.</div>
-            <div class="fc__desc">Complete social calendar with tone, template, and platform options — plan an entire month.</div>
-            <div class="fc__tags"><span class="fc__tag">Premium</span><span class="fc__tag">3 credits</span><span class="fc__tag">1.1k users</span></div>
+            <div class="fc__desc">
+              Complete social calendar with tone, template, and platform options
+              — plan an entire month.
+            </div>
+            <div class="fc__tags">
+              <span class="fc__tag">Premium</span
+              ><span class="fc__tag">3 credits</span
+              ><span class="fc__tag">1.1k users</span>
+            </div>
             <div class="fc__preview">
-              <div class="fc__preview-bar"><div class="fc__preview-dot" style="background:var(--rose)"></div><div class="fc__preview-dot" style="background:var(--amber)"></div><div class="fc__preview-dot" style="background:var(--green)"></div></div>
-              <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px">
-                <div style="height:20px;border-radius:4px;background:var(--w08)"></div><div style="height:20px;border-radius:4px;background:rgba(244,63,94,.12)"></div><div style="height:20px;border-radius:4px;background:var(--w08)"></div><div style="height:20px;border-radius:4px;background:rgba(168,85,247,.12)"></div><div style="height:20px;border-radius:4px;background:var(--w08)"></div><div style="height:20px;border-radius:4px;background:rgba(45,212,191,.12)"></div><div style="height:20px;border-radius:4px;background:var(--w08)"></div>
-                <div style="height:20px;border-radius:4px;background:rgba(59,130,246,.12)"></div><div style="height:20px;border-radius:4px;background:var(--w08)"></div><div style="height:20px;border-radius:4px;background:rgba(245,158,11,.12)"></div><div style="height:20px;border-radius:4px;background:var(--w08)"></div><div style="height:20px;border-radius:4px;background:rgba(244,63,94,.12)"></div><div style="height:20px;border-radius:4px;background:var(--w08)"></div><div style="height:20px;border-radius:4px;background:rgba(168,85,247,.12)"></div>
+              <div class="fc__preview-bar">
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--rose)"
+                ></div>
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--amber)"
+                ></div>
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--green)"
+                ></div>
               </div>
-              <div class="fc__snip" style="bottom:12px;right:12px"><div class="fc__snip-icon" style="background:rgba(244,63,94,.15);color:var(--rose)"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg></div><div><strong>30 posts planned</strong><small>Export as CSV</small></div></div>
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: repeat(7, 1fr);
+                  gap: 4px;
+                "
+              >
+                <div
+                  style="
+                    height: 20px;
+                    border-radius: 4px;
+                    background: var(--w08);
+                  "
+                ></div>
+                <div
+                  style="
+                    height: 20px;
+                    border-radius: 4px;
+                    background: rgba(244, 63, 94, 0.12);
+                  "
+                ></div>
+                <div
+                  style="
+                    height: 20px;
+                    border-radius: 4px;
+                    background: var(--w08);
+                  "
+                ></div>
+                <div
+                  style="
+                    height: 20px;
+                    border-radius: 4px;
+                    background: rgba(168, 85, 247, 0.12);
+                  "
+                ></div>
+                <div
+                  style="
+                    height: 20px;
+                    border-radius: 4px;
+                    background: var(--w08);
+                  "
+                ></div>
+                <div
+                  style="
+                    height: 20px;
+                    border-radius: 4px;
+                    background: rgba(45, 212, 191, 0.12);
+                  "
+                ></div>
+                <div
+                  style="
+                    height: 20px;
+                    border-radius: 4px;
+                    background: var(--w08);
+                  "
+                ></div>
+                <div
+                  style="
+                    height: 20px;
+                    border-radius: 4px;
+                    background: rgba(59, 130, 246, 0.12);
+                  "
+                ></div>
+                <div
+                  style="
+                    height: 20px;
+                    border-radius: 4px;
+                    background: var(--w08);
+                  "
+                ></div>
+                <div
+                  style="
+                    height: 20px;
+                    border-radius: 4px;
+                    background: rgba(245, 158, 11, 0.12);
+                  "
+                ></div>
+                <div
+                  style="
+                    height: 20px;
+                    border-radius: 4px;
+                    background: var(--w08);
+                  "
+                ></div>
+                <div
+                  style="
+                    height: 20px;
+                    border-radius: 4px;
+                    background: rgba(244, 63, 94, 0.12);
+                  "
+                ></div>
+                <div
+                  style="
+                    height: 20px;
+                    border-radius: 4px;
+                    background: var(--w08);
+                  "
+                ></div>
+                <div
+                  style="
+                    height: 20px;
+                    border-radius: 4px;
+                    background: rgba(168, 85, 247, 0.12);
+                  "
+                ></div>
+              </div>
+              <div class="fc__snip" style="bottom: 12px; right: 12px">
+                <div
+                  class="fc__snip-icon"
+                  style="
+                    background: rgba(244, 63, 94, 0.15);
+                    color: var(--rose);
+                  "
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="12"
+                    height="12"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="3" y="4" width="18" height="18" rx="2" />
+                    <path d="M16 2v4" />
+                    <path d="M8 2v4" />
+                    <path d="M3 10h18" />
+                  </svg>
+                </div>
+                <div>
+                  <strong>30 posts planned</strong><small>Export as CSV</small>
+                </div>
+              </div>
             </div>
           </div>
           <!-- Content Ideas -->
           <div class="fc fc--blue rv d4">
-            <div class="fc__icon fc__icon--blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><path d="M9 21h6"/></svg></div>
+            <div class="fc__icon fc__icon--blue">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"
+                />
+                <path d="M9 21h6" />
+              </svg>
+            </div>
             <div class="fc__title">Content Ideas Engine.</div>
-            <div class="fc__desc">Never run out of ideas. Get trending topics, angles, and hooks tailored to your niche.</div>
-            <div class="fc__tags"><span class="fc__tag">Free</span><span class="fc__tag">1 credit</span><span class="fc__tag">980 users</span></div>
+            <div class="fc__desc">
+              Never run out of ideas. Get trending topics, angles, and hooks
+              tailored to your niche.
+            </div>
+            <div class="fc__tags">
+              <span class="fc__tag">Free</span
+              ><span class="fc__tag">1 credit</span
+              ><span class="fc__tag">980 users</span>
+            </div>
             <div class="fc__preview">
-              <div class="fc__preview-bar"><div class="fc__preview-dot" style="background:var(--rose)"></div><div class="fc__preview-dot" style="background:var(--amber)"></div><div class="fc__preview-dot" style="background:var(--green)"></div></div>
+              <div class="fc__preview-bar">
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--rose)"
+                ></div>
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--amber)"
+                ></div>
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--green)"
+                ></div>
+              </div>
               <div class="fc__preview-line fc__preview-line--long"></div>
               <div class="fc__preview-line fc__preview-line--short"></div>
               <div class="fc__preview-line fc__preview-line--med"></div>
-              <div class="fc__snip" style="top:26px;right:14px"><div class="fc__snip-icon" style="background:rgba(59,130,246,.15);color:var(--blue)"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><path d="M9 21h6"/></svg></div><div><strong>12 ideas generated</strong><small>Trending in your niche</small></div></div>
+              <div class="fc__snip" style="top: 26px; right: 14px">
+                <div
+                  class="fc__snip-icon"
+                  style="
+                    background: rgba(59, 130, 246, 0.15);
+                    color: var(--blue);
+                  "
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="12"
+                    height="12"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"
+                    />
+                    <path d="M9 21h6" />
+                  </svg>
+                </div>
+                <div>
+                  <strong>12 ideas generated</strong
+                  ><small>Trending in your niche</small>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ═══ BUSINESS TOOLS ═══ -->
-    <section class="sec" style="background:var(--bg2)">
-      <div class="ctn">
-        <div class="sh rv">
-          <div class="sh__tag">Business</div>
-          <h2 class="sh__title">Scale your <em>business</em></h2>
-          <p class="sh__sub">Market research, real estate listings, product descriptions, and email tools.</p>
-        </div>
-        <div class="tool-grid tool-grid--3">
-          <!-- Market Research -->
+        <!-- Business tools sub-row -->
+        <div class="tool-grid tool-grid--3" style="margin-top: 20px">
           <div class="fc fc--amber rv d1">
-            <div class="fc__icon fc__icon--amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
+            <div class="fc__icon fc__icon--amber">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M3 3v18h18" />
+                <path d="m19 9-5 5-4-4-3 3" />
+              </svg>
+            </div>
             <div class="fc__title">Market Research.</div>
-            <div class="fc__desc">In-depth competitive analysis, SWOT, personas, and market trends.</div>
-            <div class="fc__tags"><span class="fc__tag">Premium</span><span class="fc__tag">3 credits</span></div>
+            <div class="fc__desc">
+              In-depth competitive analysis, SWOT, personas, and market trends.
+            </div>
+            <div class="fc__tags">
+              <span class="fc__tag">Premium</span
+              ><span class="fc__tag">3 credits</span>
+            </div>
             <div class="fc__preview">
-              <div class="fc__preview-bar"><div class="fc__preview-dot" style="background:var(--rose)"></div><div class="fc__preview-dot" style="background:var(--amber)"></div><div class="fc__preview-dot" style="background:var(--green)"></div></div>
+              <div class="fc__preview-bar">
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--rose)"
+                ></div>
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--amber)"
+                ></div>
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--green)"
+                ></div>
+              </div>
               <div class="fc__preview-line fc__preview-line--long"></div>
               <div class="fc__preview-line fc__preview-line--med"></div>
-              <div class="fc__snip" style="top:24px;right:12px"><div class="fc__snip-icon" style="background:rgba(245,158,11,.15);color:var(--amber)"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div><div><strong>SWOT Analysis</strong><small>4 competitors found</small></div></div>
+              <div class="fc__snip" style="top: 24px; right: 12px">
+                <div
+                  class="fc__snip-icon"
+                  style="
+                    background: rgba(245, 158, 11, 0.15);
+                    color: var(--amber);
+                  "
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="12"
+                    height="12"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M3 3v18h18" />
+                    <path d="m19 9-5 5-4-4-3 3" />
+                  </svg>
+                </div>
+                <div>
+                  <strong>SWOT Analysis</strong
+                  ><small>4 competitors found</small>
+                </div>
+              </div>
             </div>
           </div>
-          <!-- Real Estate -->
           <div class="fc fc--green rv d2">
-            <div class="fc__icon fc__icon--green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <div class="fc__icon fc__icon--green">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </svg>
+            </div>
             <div class="fc__title">Real Estate Listings.</div>
-            <div class="fc__desc">Stunning property listings that sell. Professional and persuasive copy.</div>
-            <div class="fc__tags"><span class="fc__tag">Premium</span><span class="fc__tag">3 credits</span></div>
+            <div class="fc__desc">
+              Stunning property listings that sell. Professional and persuasive
+              copy.
+            </div>
+            <div class="fc__tags">
+              <span class="fc__tag">Premium</span
+              ><span class="fc__tag">3 credits</span>
+            </div>
             <div class="fc__preview">
-              <div class="fc__preview-bar"><div class="fc__preview-dot" style="background:var(--rose)"></div><div class="fc__preview-dot" style="background:var(--amber)"></div><div class="fc__preview-dot" style="background:var(--green)"></div></div>
+              <div class="fc__preview-bar">
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--rose)"
+                ></div>
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--amber)"
+                ></div>
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--green)"
+                ></div>
+              </div>
               <div class="fc__preview-line fc__preview-line--med"></div>
               <div class="fc__preview-line fc__preview-line--long"></div>
-              <div class="fc__snip" style="top:22px;right:12px"><div class="fc__snip-icon" style="background:rgba(34,197,94,.15);color:var(--green)"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div><strong>Listing ready</strong><small>MLS-formatted</small></div></div>
+              <div class="fc__snip" style="top: 22px; right: 12px">
+                <div
+                  class="fc__snip-icon"
+                  style="
+                    background: rgba(34, 197, 94, 0.15);
+                    color: var(--green);
+                  "
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="12"
+                    height="12"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                  </svg>
+                </div>
+                <div>
+                  <strong>Listing ready</strong><small>MLS-formatted</small>
+                </div>
+              </div>
             </div>
           </div>
-          <!-- Email Reply -->
           <div class="fc fc--blue rv d3">
-            <div class="fc__icon fc__icon--blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+            <div class="fc__icon fc__icon--blue">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
+            </div>
             <div class="fc__title">Email Reply Assistant.</div>
-            <div class="fc__desc">Transform drafts into professional emails with tone customization.</div>
-            <div class="fc__tags"><span class="fc__tag">Free</span><span class="fc__tag">2 credits</span></div>
+            <div class="fc__desc">
+              Transform drafts into professional emails with tone customization.
+            </div>
+            <div class="fc__tags">
+              <span class="fc__tag">Free</span
+              ><span class="fc__tag">2 credits</span>
+            </div>
             <div class="fc__preview">
-              <div class="fc__preview-bar"><div class="fc__preview-dot" style="background:var(--rose)"></div><div class="fc__preview-dot" style="background:var(--amber)"></div><div class="fc__preview-dot" style="background:var(--green)"></div></div>
+              <div class="fc__preview-bar">
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--rose)"
+                ></div>
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--amber)"
+                ></div>
+                <div
+                  class="fc__preview-dot"
+                  style="background: var(--green)"
+                ></div>
+              </div>
               <div class="fc__preview-line fc__preview-line--long"></div>
               <div class="fc__preview-line fc__preview-line--short"></div>
               <div class="fc__preview-line fc__preview-line--med"></div>
-              <div class="fc__snip" style="top:24px;right:12px"><div class="fc__snip-icon" style="background:rgba(59,130,246,.15);color:var(--blue)"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div><div><strong>Professional tone</strong><small>Reply drafted</small></div></div>
+              <div class="fc__snip" style="top: 24px; right: 12px">
+                <div
+                  class="fc__snip-icon"
+                  style="
+                    background: rgba(59, 130, 246, 0.15);
+                    color: var(--blue);
+                  "
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="12"
+                    height="12"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg>
+                </div>
+                <div>
+                  <strong>Professional tone</strong><small>Reply drafted</small>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ═══ AI AGENTS ═══ -->
+    <!-- ═══ YOUR AI TEAM ═══ -->
     <section class="sec" id="agents">
       <div class="ctn">
         <div class="sh rv">
           <div class="sh__tag">AI Employees</div>
-          <h2 class="sh__title">Hire your <em>AI team</em></h2>
+          <h2 class="sh__title">Your dedicated <em>AI team</em></h2>
           <p class="sh__sub">
-            12 autonomous agents working 24/7 across every business function.
+            Hiring costs money. AI doesn't. Each specialist is designed to own a
+            specific business function — running autonomously, never calling in
+            sick, never needing a brief twice.
           </p>
         </div>
         <div class="agents-grid">
           <div class="ag rv d1">
             <div class="ag__top">
-              <div class="ag__avatar"><img loading="lazy" decoding="async" width="80" height="80" src="https://randomuser.me/api/portraits/women/65.jpg" alt="Vizzy"/></div>
+              <div class="ag__avatar">
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  width="80"
+                  height="80"
+                  src="https://randomuser.me/api/portraits/women/65.jpg"
+                  alt="Vizzy"
+                />
+              </div>
               <div class="ag__name">Virtual Assistant</div>
               <div class="ag__role">Vizzy</div>
               <div class="ag__skills">
@@ -1343,7 +2901,16 @@
           </div>
           <div class="ag rv d2">
             <div class="ag__top">
-              <div class="ag__avatar"><img loading="lazy" decoding="async" width="80" height="80" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Seomi"/></div>
+              <div class="ag__avatar">
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  width="80"
+                  height="80"
+                  src="https://randomuser.me/api/portraits/men/32.jpg"
+                  alt="Seomi"
+                />
+              </div>
               <div class="ag__name">SEO Specialist</div>
               <div class="ag__role">Seomi</div>
               <div class="ag__skills">
@@ -1370,7 +2937,16 @@
           </div>
           <div class="ag rv d3">
             <div class="ag__top">
-              <div class="ag__avatar"><img loading="lazy" decoding="async" width="80" height="80" src="https://randomuser.me/api/portraits/men/75.jpg" alt="Milli"/></div>
+              <div class="ag__avatar">
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  width="80"
+                  height="80"
+                  src="https://randomuser.me/api/portraits/men/75.jpg"
+                  alt="Milli"
+                />
+              </div>
               <div class="ag__name">Sales Strategist</div>
               <div class="ag__role">Milli</div>
               <div class="ag__skills">
@@ -1397,7 +2973,16 @@
           </div>
           <div class="ag rv d4">
             <div class="ag__top">
-              <div class="ag__avatar"><img loading="lazy" decoding="async" width="80" height="80" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Emmie"/></div>
+              <div class="ag__avatar">
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  width="80"
+                  height="80"
+                  src="https://randomuser.me/api/portraits/women/44.jpg"
+                  alt="Emmie"
+                />
+              </div>
               <div class="ag__name">Email Marketer</div>
               <div class="ag__role">Emmie</div>
               <div class="ag__skills">
@@ -1426,54 +3011,39 @@
       </div>
     </section>
 
-    <!-- ═══ HOW IT WORKS ═══ -->
-    <section class="sec" id="how" style="background: var(--bg2)">
+    <!-- ═══ WHY BUSINESSES TRUST US ═══ -->
+    <section class="sec" style="background: var(--bg2)">
       <div class="ctn">
         <div class="sh rv">
-          <div class="sh__tag">How it works</div>
-          <h2 class="sh__title">Three steps. <em>That's it.</em></h2>
+          <div class="sh__tag">Your Trusted AI Partner</div>
+          <h2 class="sh__title">Why Businesses <em>Trust Us</em></h2>
+          <p class="sh__sub">
+            No off-the-shelf software. No offshore teams. Just proven AI
+            systems, fast setup, and a dedicated partner accountable for your
+            results.
+          </p>
         </div>
-        <div class="how-steps">
-          <div class="hs rv d1">
-            <div class="hs__num">01</div>
-            <div class="hs__icon">
+        <div class="trust-grid">
+          <div class="trust-card rv d1">
+            <div class="trust-icon">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2"
               >
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.3-4.3" />
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                <circle cx="12" cy="10" r="3" />
               </svg>
             </div>
-            <div class="hs__title">Pick a tool or agent</div>
-            <div class="hs__desc">
-              Browse 23+ tools and 12 agents. Filter by category or search by
-              use case.
+            <div class="trust-card__title">100% Australian Owned</div>
+            <div class="trust-card__desc">
+              We're an Australian company building AI systems for Australian and
+              global businesses. Local team, local support, real accountability.
             </div>
           </div>
-          <div class="hs rv d2">
-            <div class="hs__num">02</div>
-            <div class="hs__icon">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
-              </svg>
-            </div>
-            <div class="hs__title">Run it instantly</div>
-            <div class="hs__desc">
-              No setup required. Enter your input and get AI-powered output in
-              seconds.
-            </div>
-          </div>
-          <div class="hs rv d3">
-            <div class="hs__num">03</div>
-            <div class="hs__icon">
+          <div class="trust-card rv d2">
+            <div class="trust-icon" style="color: var(--teal)">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -1484,10 +3054,50 @@
                 <circle cx="12" cy="12" r="10" />
               </svg>
             </div>
-            <div class="hs__title">Ship & repeat</div>
-            <div class="hs__desc">
-              Export as CSV, JSON, or PDF. Save favorites and come back for
-              more.
+            <div class="trust-card__title">Proven in Production</div>
+            <div class="trust-card__desc">
+              23+ AI tools and agents already live across real businesses —
+              tested in content, sales, ops, and finance. Not theory. Measurable
+              results.
+            </div>
+          </div>
+          <div class="trust-card rv d3">
+            <div class="trust-icon" style="color: var(--amber)">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+            </div>
+            <div class="trust-card__title">Live in 7–14 Days</div>
+            <div class="trust-card__desc">
+              Most clients go live within 2 weeks. We scope fast, build fast,
+              and iterate faster — because every day of delay costs your
+              business money.
+            </div>
+          </div>
+          <div class="trust-card rv d4">
+            <div class="trust-icon" style="color: var(--green)">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+            <div class="trust-card__title">Dedicated Account Manager</div>
+            <div class="trust-card__desc">
+              A named contact, not a ticket queue. Your dedicated manager
+              handles weekly check-ins, performance reviews, and ongoing system
+              optimisation.
             </div>
           </div>
         </div>
@@ -1499,7 +3109,7 @@
       <div class="ctn">
         <div class="sh rv">
           <div class="sh__tag">Testimonials</div>
-          <h2 class="sh__title">Loved by <em>5,000+</em> businesses</h2>
+          <h2 class="sh__title">Real results from <em>real businesses</em></h2>
         </div>
         <div class="testi-grid">
           <div class="tcard rv d1">
@@ -1507,35 +3117,48 @@
               <svg viewBox="0 0 24 24">
                 <polygon
                   points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg viewBox="0 0 24 24">
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
                 <polygon
                   points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg viewBox="0 0 24 24">
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
                 <polygon
                   points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg viewBox="0 0 24 24">
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
                 <polygon
                   points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg viewBox="0 0 24 24">
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
                 <polygon
                   points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
                 />
               </svg>
             </div>
             <p class="tcard__q">
-              "NxtGenAI has completely transformed our content workflow. We
-              produce 5x more content with half the team. It's like having a
-              full marketing department on call."
+              "NxtGenAI completely transformed our operations workflow. We
+              produce 5x more output with half the team. It's like having a full
+              AI department on call."
             </p>
             <div class="tcard__a">
-              <div class="tcard__av"><img loading="lazy" decoding="async" width="40" height="40" src="https://randomuser.me/api/portraits/women/79.jpg" alt="Sarah Chen"/></div>
+              <div class="tcard__av">
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  width="40"
+                  height="40"
+                  src="https://randomuser.me/api/portraits/women/79.jpg"
+                  alt="Sarah Chen"
+                />
+              </div>
               <div>
                 <div class="tcard__name">Sarah Chen</div>
-                <div class="tcard__role">Content Manager, TechFlow</div>
+                <div class="tcard__role">Operations Manager, TechFlow</div>
               </div>
             </div>
           </div>
@@ -1544,31 +3167,45 @@
               <svg viewBox="0 0 24 24">
                 <polygon
                   points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg viewBox="0 0 24 24">
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
                 <polygon
                   points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg viewBox="0 0 24 24">
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
                 <polygon
                   points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg viewBox="0 0 24 24">
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
                 <polygon
                   points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg viewBox="0 0 24 24">
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
                 <polygon
                   points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
                 />
               </svg>
             </div>
             <p class="tcard__q">
-              "The AI agents are like having an entire marketing department. The
-              ROI is incredible — we saved thousands in consultant fees."
+              "The AI automation system paid for itself in the first month. We
+              saved thousands in consultant and admin fees, and our team focuses
+              on what actually matters now."
             </p>
             <div class="tcard__a">
-              <div class="tcard__av"><img loading="lazy" decoding="async" width="40" height="40" src="https://randomuser.me/api/portraits/men/46.jpg" alt="Marcus Rivera"/></div>
+              <div class="tcard__av">
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  width="40"
+                  height="40"
+                  src="https://randomuser.me/api/portraits/men/46.jpg"
+                  alt="Marcus Rivera"
+                />
+              </div>
               <div>
                 <div class="tcard__name">Marcus Rivera</div>
                 <div class="tcard__role">Founder, GrowthScale</div>
@@ -1580,34 +3217,48 @@
               <svg viewBox="0 0 24 24">
                 <polygon
                   points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg viewBox="0 0 24 24">
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
                 <polygon
                   points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg viewBox="0 0 24 24">
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
                 <polygon
                   points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg viewBox="0 0 24 24">
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
                 <polygon
                   points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg viewBox="0 0 24 24">
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
                 <polygon
                   points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
                 />
               </svg>
             </div>
             <p class="tcard__q">
-              "The listing generator saves me hours every week. More views and
-              inquiries than ever before. I recommend it to every agent I know."
+              "The custom AI workflow they built for our business saves us 20+
+              hours a week. More enquiries, faster response, better results. I
+              recommend it to every business I know."
             </p>
             <div class="tcard__a">
-              <div class="tcard__av"><img loading="lazy" decoding="async" width="40" height="40" src="https://randomuser.me/api/portraits/women/90.jpg" alt="Emily Park"/></div>
+              <div class="tcard__av">
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  width="40"
+                  height="40"
+                  src="https://randomuser.me/api/portraits/women/90.jpg"
+                  alt="Emily Park"
+                />
+              </div>
               <div>
                 <div class="tcard__name">Emily Park</div>
-                <div class="tcard__role">Real Estate Agent</div>
+                <div class="tcard__role">Director, Park Advisory Group</div>
               </div>
             </div>
           </div>
@@ -1615,18 +3266,49 @@
       </div>
     </section>
 
-    <!-- ═══ CTA BANNER ═══ -->
+    <!-- ═══ FINAL CTA ═══ -->
     <section class="cta-banner">
       <div class="ctn">
-        <h2 class="cta-banner__title rv">
-          Your AI team is<br />ready to <em>start.</em>
+        <div class="rv" style="margin-bottom: 20px">
+          <span
+            style="
+              display: inline-flex;
+              align-items: center;
+              gap: 7px;
+              padding: 6px 16px;
+              border-radius: 100px;
+              font-size: 11px;
+              font-weight: 700;
+              letter-spacing: 1px;
+              text-transform: uppercase;
+              background: rgba(34, 197, 94, 0.12);
+              border: 1px solid rgba(34, 197, 94, 0.25);
+              color: #22c55e;
+            "
+          >
+            <span
+              style="
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: #22c55e;
+                display: inline-block;
+              "
+            ></span>
+            Onboarding spots available this month
+          </span>
+        </div>
+        <h2 class="cta-banner__title rv d1">
+          Your competitors are<br /><em>already using AI.</em>
         </h2>
-        <p class="cta-banner__sub rv d1">
-          Free to start. No credit card. Deploy in under 60 seconds.
+        <p class="cta-banner__sub rv d2">
+          Don't get left behind. AI automation is no longer a nice-to-have —
+          it's how winning businesses operate. Let us show you what's possible
+          with a free 30-minute automation audit.
         </p>
-        <div class="cta-banner__btns rv d2">
-          <a href="#" class="btn btn--white btn--lg"
-            >Get started free
+        <div class="cta-banner__btns rv d3">
+          <a href="#" class="btn btn--white btn--lg">
+            Get Your Free Automation Plan
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -1634,10 +3316,17 @@
               stroke-width="2"
             >
               <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" /></svg
-          ></a>
-          <a href="#" class="btn btn--ghost btn--lg">Talk to sales</a>
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </a>
+          <a href="#" class="btn btn--ghost btn--lg">Talk to Our Team</a>
         </div>
+        <p
+          class="rv d4"
+          style="margin-top: 20px; font-size: 12px; color: var(--w30)"
+        >
+          No commitment. No sales pitch. Just a clear plan for your business.
+        </p>
       </div>
     </section>
 
@@ -1648,99 +3337,138 @@
           <div>
             <div class="footer__brand">NXTGEN<span>AI</span></div>
             <p class="footer__desc">
-              AI tools and agents built to help founders create content, ship
-              faster, and grow revenue.
+              Custom AI automation systems built for businesses that want to
+              move faster, operate smarter, and scale without limits.
             </p>
           </div>
           <div>
-            <div class="footer__col-title">Product</div>
-            <a href="#" class="footer__link">Content Tools</a
-            ><a href="#" class="footer__link">Business Tools</a
-            ><a href="#" class="footer__link">AI Agents</a
-            ><a href="#" class="footer__link">AI Studio</a
-            ><a href="#" class="footer__link">Pricing</a>
+            <div class="footer__col-title">Solutions</div>
+            <a href="#" class="footer__link">Workflow Automation</a>
+            <a href="#" class="footer__link">AI Agents</a>
+            <a href="#" class="footer__link">CRM Integrations</a>
+            <a href="#" class="footer__link">Content Systems</a>
+            <a href="#" class="footer__link">Pricing</a>
           </div>
           <div>
-            <div class="footer__col-title">Developers</div>
-            <a href="#" class="footer__link">Documentation</a
-            ><a href="#" class="footer__link">API Reference</a
-            ><a href="#" class="footer__link">Integrations</a
-            ><a href="#" class="footer__link">Status</a>
+            <div class="footer__col-title">Tools</div>
+            <a href="#" class="footer__link">Caption Generator</a>
+            <a href="#" class="footer__link">Content Calendar</a>
+            <a href="#" class="footer__link">Email Assistant</a>
+            <a href="#" class="footer__link">Market Research</a>
           </div>
           <div>
             <div class="footer__col-title">Company</div>
-            <a href="#" class="footer__link">About</a
-            ><a href="#" class="footer__link">Blog</a
-            ><a href="#" class="footer__link">Careers</a
-            ><a href="#" class="footer__link">Contact</a>
+            <a href="#" class="footer__link">About</a>
+            <a href="#" class="footer__link">Blog</a>
+            <a href="#" class="footer__link">Careers</a>
+            <a href="#" class="footer__link">Contact</a>
           </div>
           <div>
             <div class="footer__col-title">Legal</div>
-            <a href="#" class="footer__link">Privacy</a
-            ><a href="#" class="footer__link">Terms</a
-            ><a href="#" class="footer__link">Cookies</a
-            ><a href="#" class="footer__link">Security</a>
+            <a href="#" class="footer__link">Privacy</a>
+            <a href="#" class="footer__link">Terms</a>
+            <a href="#" class="footer__link">Cookies</a>
+            <a href="#" class="footer__link">Security</a>
           </div>
         </div>
         <div class="footer__bottom">
-          <span>&copy; 2026 NXTGENAI. All rights reserved.</span
-          ><span>Built in Australia</span>
+          <span>&copy; 2026 NXTGENAI. All rights reserved.</span>
+          <span>Built in Australia</span>
         </div>
       </div>
     </footer>
 
     <script>
-      document.addEventListener('DOMContentLoaded',function(){
-      const obs = new IntersectionObserver(
-        (e) =>
-          e.forEach((x) => {
-            if (x.isIntersecting) x.target.classList.add("vis");
-          }),
-        { threshold: 0.06, rootMargin: "0px 0px -20px 0px" },
-      );
-      document
-        .querySelectorAll(".rv,.rv-l,.rv-r,.rv-s")
-        .forEach((el) => obs.observe(el));
-      document.querySelectorAll('a[href^="#"]').forEach((a) =>
-        a.addEventListener("click", function (e) {
-          const t = document.querySelector(this.getAttribute("href"));
-          if (t) {
-            e.preventDefault();
-            t.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        }),
-      );
+      document.addEventListener("DOMContentLoaded", function () {
+        /* ── Alternate section content: odd slides from left, even from right ── */
+        var secs = document.querySelectorAll(".sec, .for-sec, .cta-banner");
+        secs.forEach(function (sec, i) {
+          /* Find the main content container (grid/list) inside each section — skip the header */
+          var content = sec.querySelector(
+            ".how-steps, .svc-grid, .sol-grid, .tool-grid, .agents-grid, " +
+              ".trust-grid, .testi-grid, .for-grid, .consult-cta, .cta-banner__btns",
+          );
+          if (!content) return;
+          /* Remove existing rv/rv-l/rv-r so we can reassign */
+          content.classList.remove("rv", "rv-l", "rv-r");
+          /* Odd sections slide from left, even from right */
+          content.classList.add(i % 2 === 0 ? "rv-l" : "rv-r");
+        });
 
-      const nav = document.querySelector(".nav");
-      const navLinks = document.querySelectorAll(".nav__link[href^='#']");
-      const sections = [];
-      navLinks.forEach((link) => {
-        const id = link.getAttribute("href").slice(1);
-        const sec = document.getElementById(id);
-        if (sec) sections.push({ el: sec, link });
-      });
-
-      let ticking = false;
-      window.addEventListener("scroll", () => {
-        if (!ticking) {
-          requestAnimationFrame(() => {
-            const y = window.scrollY;
-            nav.classList.toggle("scrolled", y > 60);
-
-            let current = null;
-            for (const s of sections) {
-              const top = s.el.offsetTop - 120;
-              const bottom = top + s.el.offsetHeight;
-              if (y >= top && y < bottom) { current = s.link; break; }
-            }
-            navLinks.forEach((l) => l.classList.remove("active"));
-            if (current) current.classList.add("active");
-
-            ticking = false;
+        /* ── Reveal observer: one-shot, unobserve + free GPU after animation ── */
+        var obs = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add("vis");
+                obs.unobserve(e.target);
+                e.target.addEventListener(
+                  "transitionend",
+                  function h() {
+                    e.target.classList.add("done");
+                    e.target.removeEventListener("transitionend", h);
+                  },
+                  { once: true },
+                );
+              }
+            });
+          },
+          { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
+        );
+        document
+          .querySelectorAll(".rv,.rv-l,.rv-r,.rv-s")
+          .forEach(function (el) {
+            obs.observe(el);
           });
-          ticking = true;
-        }
-      }, { passive: true });
+
+        /* ── Smooth anchor scrolling ── */
+        document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+          a.addEventListener("click", function (e) {
+            var t = document.querySelector(this.getAttribute("href"));
+            if (t) {
+              e.preventDefault();
+              t.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          });
+        });
+
+        /* ── Nav scroll state + active section ── */
+        var nav = document.querySelector(".nav");
+        var navLinks = document.querySelectorAll('.nav__link[href^="#"]');
+        var navSections = [];
+        navLinks.forEach(function (link) {
+          var id = link.getAttribute("href").slice(1);
+          var sec = document.getElementById(id);
+          if (sec) navSections.push({ el: sec, link: link });
+        });
+
+        var ticking = false;
+        window.addEventListener(
+          "scroll",
+          function () {
+            if (!ticking) {
+              requestAnimationFrame(function () {
+                var y = window.scrollY;
+                nav.classList.toggle("scrolled", y > 60);
+                var current = null;
+                for (var s = 0; s < navSections.length; s++) {
+                  var top = navSections[s].el.offsetTop - 120;
+                  if (y >= top && y < top + navSections[s].el.offsetHeight) {
+                    current = navSections[s].link;
+                    break;
+                  }
+                }
+                navLinks.forEach(function (l) {
+                  l.classList.remove("active");
+                });
+                if (current) current.classList.add("active");
+                ticking = false;
+              });
+              ticking = true;
+            }
+          },
+          { passive: true },
+        );
       });
     </script>
   </body>

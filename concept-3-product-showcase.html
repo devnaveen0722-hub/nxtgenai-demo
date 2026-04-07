@@ -5,25 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://randomuser.me" />
-    <link rel="preconnect" href="https://images.unsplash.com" />
-    <title>NXTGENAI — AI Automation for Business</title>
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
-    />
+    <title>NXTGENAI — Custom AI Systems Built to Automate Your Business</title>
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
-      media="print"
-      onload="this.media = 'all'"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
     />
-    <noscript
-      ><link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
-    /></noscript>
     <style>
       *,
       *::before,
@@ -34,49 +20,33 @@
       }
       :root {
         --bg: #07070e;
-        --bg2: #0d0d18;
-        --bg3: #141422;
-        --bg4: #1a1a2e;
-        --surface: #161625;
-        --surface2: #1e1e32;
-        --surface3: #262640;
-        --border: rgba(255, 255, 255, 0.06);
-        --border2: rgba(255, 255, 255, 0.1);
-        --w: #fff;
-        --w90: rgba(255, 255, 255, 0.9);
+        --bg2: #0c0c16;
+        --bg3: #11111d;
+        --surface: #14142200;
+        --surface-card: #16162580;
+        --border: rgba(255, 255, 255, 0.07);
+        --border2: rgba(255, 255, 255, 0.12);
+        --w: #ffffff;
+        --w90: rgba(255, 255, 255, 0.92);
         --w70: rgba(255, 255, 255, 0.7);
         --w50: rgba(255, 255, 255, 0.5);
         --w30: rgba(255, 255, 255, 0.3);
-        --w15: rgba(255, 255, 255, 0.15);
         --w08: rgba(255, 255, 255, 0.06);
         --purple: #a855f7;
         --purple-light: #c084fc;
-        --purple-dark: #7c3aed;
-        --purple-glow: rgba(168, 85, 247, 0.15);
         --teal: #2dd4bf;
-        --teal-dark: #14b8a6;
         --teal-glow: rgba(45, 212, 191, 0.12);
-        --rose: #f43f5e;
-        --amber: #f59e0b;
-        --green: #22c55e;
-        --blue: #3b82f6;
+        --purple-glow: rgba(168, 85, 247, 0.15);
         --grad1: linear-gradient(135deg, #a855f7, #ec4899, #f97316);
         --grad2: linear-gradient(135deg, #2dd4bf, #a855f7);
-        --grad3: linear-gradient(135deg, #7c3aed, #2dd4bf);
-        --r: 12px;
-        --rl: 16px;
-        --r2: 24px;
-        --r3: 32px;
+        --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.04) inset,
+          0 30px 60px -30px rgba(0, 0, 0, 0.5);
       }
       html {
         scroll-behavior: smooth;
       }
       body {
-        font-family:
-          "Inter",
-          -apple-system,
-          BlinkMacSystemFont,
-          sans-serif;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
         color: var(--w70);
         line-height: 1.6;
         -webkit-font-smoothing: antialiased;
@@ -92,286 +62,134 @@
         display: block;
       }
 
-      /* GPU-composited reveal animations — only opacity + transform for 60fps */
-      .rv,
-      .rv-l,
-      .rv-r,
-      .rv-s {
-        will-change: transform, opacity;
-        backface-visibility: hidden;
-      }
+      /* ─── Reveal animations ─── */
       .rv {
         opacity: 0;
-        transform: translateY(28px) translateZ(0);
+        transform: translateY(24px);
         transition:
           opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
           transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: transform, opacity;
       }
       .rv.vis {
         opacity: 1;
-        transform: translateZ(0);
+        transform: none;
       }
-      .rv-l {
-        opacity: 0;
-        transform: translateX(-48px) translateZ(0);
-        transition:
-          opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-          transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      .rv-l.vis {
-        opacity: 1;
-        transform: translateZ(0);
-      }
-      .rv-r {
-        opacity: 0;
-        transform: translateX(48px) translateZ(0);
-        transition:
-          opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-          transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      .rv-r.vis {
-        opacity: 1;
-        transform: translateZ(0);
-      }
-      .rv-s {
-        opacity: 0;
-        transform: scale(0.94) translateZ(0);
-        transition:
-          opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-          transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      .rv-s.vis {
-        opacity: 1;
-        transform: translateZ(0);
-      }
-      /* Remove will-change after animation to free GPU memory */
-      .rv.done,
-      .rv-l.done,
-      .rv-r.done,
-      .rv-s.done {
-        will-change: auto;
-      }
-      .d1 {
-        transition-delay: 0.07s;
-      }
-      .d2 {
-        transition-delay: 0.14s;
-      }
-      .d3 {
-        transition-delay: 0.21s;
-      }
-      .d4 {
-        transition-delay: 0.28s;
-      }
-      .d5 {
-        transition-delay: 0.35s;
-      }
-      .d6 {
-        transition-delay: 0.42s;
-      }
-      .d7 {
-        transition-delay: 0.49s;
-      }
-      .d8 {
-        transition-delay: 0.56s;
-      }
+      .d1 { transition-delay: 0.06s; }
+      .d2 { transition-delay: 0.12s; }
+      .d3 { transition-delay: 0.18s; }
+      .d4 { transition-delay: 0.24s; }
 
+      /* ─── Layout ─── */
       .ctn {
-        max-width: 1180px;
+        max-width: 1140px;
         margin: 0 auto;
         padding: 0 24px;
       }
       .sec {
-        padding: 96px 0;
+        padding: 120px 0;
         position: relative;
-        content-visibility: auto;
-        contain-intrinsic-size: auto 600px;
+      }
+      .sec--tight {
+        padding: 96px 0;
       }
 
-      /* ═══ NAV ═══ */
-      .nav {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        background: transparent;
-        border-bottom: 1px solid transparent;
-        padding: 14px 0;
-        transition:
-          top 0.4s ease-out,
-          padding 0.4s ease-out;
-      }
-      .nav.scrolled {
-        top: 12px;
-        padding: 0;
-        background: transparent;
-        border-bottom: none;
-      }
-      .nav__i {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        transition:
-          border-radius 0.4s ease-out,
-          padding 0.4s ease-out,
-          border-color 0.4s ease-out,
-          background 0.4s ease-out,
-          max-width 0.4s ease-out,
-          margin 0.4s ease-out;
-        border-radius: 0;
-        padding: 0;
-        border: 1px solid transparent;
-      }
-      .nav.scrolled .nav__i {
-        background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(20px) saturate(1.3);
-        -webkit-backdrop-filter: blur(20px) saturate(1.3);
-        border-radius: 100px;
-        padding: 8px 8px 8px 24px;
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        box-shadow:
-          0 8px 32px rgba(0, 0, 0, 0.3),
-          0 0 0 1px rgba(255, 255, 255, 0.06) inset,
-          0 1px 0 rgba(255, 255, 255, 0.05) inset;
-        max-width: 920px;
-        margin: 0 auto;
-      }
-      .nav__logo {
-        display: flex;
-        align-items: center;
-        height: 52px;
-      }
-      .nav__logo img {
-        height: 212px;
-        width: auto;
-        display: block;
-      }
-      .nav__links {
-        display: flex;
-        gap: 4px;
-        align-items: center;
-      }
-      .nav__link {
-        font-size: 14px;
-        color: var(--w50);
-        font-weight: 500;
-        padding: 7px 14px;
-        border-radius: 8px;
-        transition:
-          color 0.3s,
-          background 0.3s;
-      }
-      .nav__link:hover {
-        color: var(--w90);
-        background: var(--w08);
-      }
-      .nav__link.active {
-        color: var(--w);
-        background: rgba(255, 255, 255, 0.1);
-      }
-      .nav.scrolled .nav__link {
-        font-size: 13px;
-        padding: 6px 12px;
-      }
-      .nav.scrolled .btn {
-        padding: 8px 18px;
-        font-size: 13px;
-      }
-      .nav.scrolled .btn--lg {
-        padding: 8px 18px;
-        font-size: 13px;
-      }
+      /* ─── Buttons ─── */
       .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 7px;
-        padding: 10px 22px;
-        border-radius: 10px;
-        font-size: 14px;
+        gap: 8px;
+        padding: 14px 28px;
+        border-radius: 12px;
+        font-size: 15px;
         font-weight: 600;
         cursor: pointer;
         border: none;
         font-family: inherit;
         transition:
-          color 0.3s,
+          transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+          box-shadow 0.3s,
           background 0.3s,
           border-color 0.3s,
-          box-shadow 0.3s,
-          transform 0.3s;
+          color 0.3s;
       }
       .btn svg {
-        width: 15px;
-        height: 15px;
+        width: 16px;
+        height: 16px;
       }
-      .btn--glow {
+      .btn--primary {
         background: linear-gradient(135deg, #a855f7, #ec4899);
         color: #fff;
-        box-shadow: 0 4px 20px rgba(168, 85, 247, 0.25), 0 0 0 1px rgba(255,255,255,0.06) inset;
-        background-size: 200% 200%;
-        background-position: 0% 50%;
-        transition: background-position 0.4s ease-out, transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease-out;
+        box-shadow:
+          0 8px 24px rgba(168, 85, 247, 0.28),
+          0 0 0 1px rgba(255, 255, 255, 0.08) inset;
       }
-      .btn--glow:hover {
-        background-position: 100% 50%;
-        box-shadow: 0 8px 32px rgba(236, 72, 153, 0.35), 0 0 0 1px rgba(255,255,255,0.1) inset;
+      .btn--primary:hover {
         transform: translateY(-2px);
+        box-shadow:
+          0 14px 36px rgba(236, 72, 153, 0.36),
+          0 0 0 1px rgba(255, 255, 255, 0.12) inset;
       }
       .btn--ghost {
         background: transparent;
-        color: var(--w70);
+        color: var(--w90);
         border: 1px solid var(--border2);
-        position: relative;
       }
       .btn--ghost:hover {
-        border-color: rgba(168, 85, 247, 0.4);
-        color: var(--w);
-        background: linear-gradient(135deg, rgba(168,85,247,0.08), rgba(45,212,191,0.05));
+        border-color: rgba(168, 85, 247, 0.45);
+        background: linear-gradient(
+          135deg,
+          rgba(168, 85, 247, 0.08),
+          rgba(45, 212, 191, 0.05)
+        );
       }
       .btn--white {
-        background: linear-gradient(135deg, #fff, #e8e0f0);
-        color: var(--bg);
-        box-shadow: 0 4px 16px rgba(255,255,255,0.12);
-        background-size: 200% 200%;
-        background-position: 0% 50%;
-        transition: background-position 0.4s ease-out, transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease-out;
+        background: #fff;
+        color: #07070e;
+        box-shadow: 0 8px 28px rgba(255, 255, 255, 0.16);
       }
       .btn--white:hover {
-        background-position: 100% 50%;
         transform: translateY(-2px);
-        box-shadow: 0 8px 28px rgba(255, 255, 255, 0.18);
-      }
-      .btn--lg {
-        padding: 13px 30px;
-        font-size: 15px;
-        border-radius: 12px;
+        box-shadow: 0 14px 38px rgba(255, 255, 255, 0.22);
       }
 
-      /* Section header */
-      .sh {
-        text-align: center;
-        margin-bottom: 48px;
-      }
-      .sh__tag {
+      /* ─── Eyebrow tag ─── */
+      .tag {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        padding: 6px 18px;
+        padding: 7px 16px;
         border-radius: 100px;
         font-size: 11px;
         font-weight: 700;
-        letter-spacing: 1.5px;
+        letter-spacing: 1.4px;
         text-transform: uppercase;
         border: 1px solid var(--border2);
         color: var(--purple-light);
-        margin-bottom: 16px;
         background: var(--purple-glow);
       }
+      .tag--teal {
+        color: var(--teal);
+        background: var(--teal-glow);
+      }
+      .tag svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      /* ─── Section header ─── */
+      .sh {
+        text-align: center;
+        margin-bottom: 64px;
+      }
       .sh__title {
-        font-size: clamp(28px, 4vw, 48px);
+        font-size: clamp(30px, 4.4vw, 50px);
         font-weight: 800;
         color: var(--w);
-        letter-spacing: -1.5px;
+        letter-spacing: -1.6px;
         line-height: 1.1;
+        margin-top: 18px;
       }
       .sh__title em {
         font-style: normal;
@@ -381,18 +199,98 @@
         background-clip: text;
       }
       .sh__sub {
-        font-size: 15px;
+        font-size: 16px;
         color: var(--w50);
-        margin-top: 14px;
-        max-width: 520px;
-        margin-left: auto;
-        margin-right: auto;
-        line-height: 1.75;
+        margin: 18px auto 0;
+        max-width: 580px;
+        line-height: 1.7;
+      }
+
+      /* ═══ NAV ═══ */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        padding: 18px 0;
+        transition: padding 0.4s ease-out;
+      }
+      .nav.scrolled {
+        padding: 12px 0;
+      }
+      .nav__i {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 0 24px;
+        transition:
+          background 0.4s,
+          border-color 0.4s,
+          backdrop-filter 0.4s,
+          border-radius 0.4s,
+          padding 0.4s,
+          max-width 0.4s;
+        border: 1px solid transparent;
+      }
+      .nav.scrolled .nav__i {
+        max-width: 880px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px) saturate(1.4);
+        -webkit-backdrop-filter: blur(20px) saturate(1.4);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 100px;
+        padding: 8px 8px 8px 24px;
+      }
+      .nav__logo {
+        display: flex;
+        align-items: center;
+        height: 56px;
+      }
+      .nav__logo img {
+        height: 140px;
+        width: auto;
+      }
+      .nav.scrolled .nav__logo img {
+        height: 110px;
+      }
+      .nav__links {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .nav__link {
+        font-size: 14px;
+        color: var(--w50);
+        font-weight: 500;
+        padding: 8px 14px;
+        border-radius: 8px;
+        transition:
+          color 0.3s,
+          background 0.3s;
+      }
+      .nav__link:hover {
+        color: var(--w);
+        background: var(--w08);
+      }
+      .nav__cta {
+        padding: 10px 20px;
+        border-radius: 100px;
+        font-size: 13px;
+        font-weight: 600;
+        background: linear-gradient(135deg, #a855f7, #ec4899);
+        color: #fff;
+        margin-left: 4px;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .nav__cta:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 24px rgba(168, 85, 247, 0.35);
       }
 
       /* ═══ HERO ═══ */
       .hero {
-        padding: 90px 0 70px;
+        padding: 80px 0 120px;
         text-align: center;
         position: relative;
         overflow: hidden;
@@ -400,44 +298,33 @@
       .hero::before {
         content: "";
         position: absolute;
-        top: -200px;
+        top: -300px;
         left: 50%;
         transform: translateX(-50%);
-        width: 900px;
-        height: 900px;
+        width: 1000px;
+        height: 1000px;
         border-radius: 50%;
         background: radial-gradient(
           circle,
-          rgba(168, 85, 247, 0.14) 0%,
-          rgba(45, 212, 191, 0.07) 40%,
-          transparent 70%
+          rgba(168, 85, 247, 0.16) 0%,
+          rgba(45, 212, 191, 0.06) 35%,
+          transparent 65%
         );
         pointer-events: none;
+        z-index: 0;
       }
-      .hero__eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 6px 18px;
-        border-radius: 100px;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        border: 1px solid var(--border2);
-        color: var(--teal);
-        margin-bottom: 24px;
-        background: var(--teal-glow);
+      .hero__inner {
+        position: relative;
+        z-index: 1;
       }
       .hero__title {
-        font-size: clamp(40px, 6vw, 76px);
+        font-size: clamp(40px, 6.4vw, 78px);
         font-weight: 900;
         color: var(--w);
-        letter-spacing: -2.5px;
+        letter-spacing: -2.6px;
         line-height: 1.04;
-        max-width: 860px;
-        margin: 0 auto 22px;
-        position: relative;
+        max-width: 920px;
+        margin: 26px auto 24px;
       }
       .hero__title em {
         font-style: normal;
@@ -447,2980 +334,694 @@
         background-clip: text;
       }
       .hero__sub {
-        font-size: 17px;
+        font-size: 18px;
         color: var(--w50);
-        max-width: 560px;
-        margin: 0 auto 36px;
-        line-height: 1.75;
+        max-width: 620px;
+        margin: 0 auto 40px;
+        line-height: 1.7;
       }
-      .hero__ctas {
-        display: flex;
-        gap: 12px;
-        justify-content: center;
-        margin-bottom: 52px;
-      }
-      .hero__meta {
-        display: flex;
-        justify-content: center;
-        gap: 32px;
-        margin-bottom: 0;
-      }
-      .hero__meta-item {
-        display: flex;
-        align-items: center;
-        gap: 6px;
+      .hero__support {
+        margin-top: 22px;
         font-size: 13px;
         color: var(--w30);
-        font-weight: 500;
-      }
-      .hero__meta-item svg {
-        width: 14px;
-        height: 14px;
-        color: var(--teal);
+        letter-spacing: 0.2px;
       }
 
-      /* ═══ HOW IT WORKS ═══ */
-      .how-steps {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-        margin-top: 0;
-      }
-      .hs {
+      /* ═══ WHAT WE DO ═══ */
+      .what {
         text-align: center;
         position: relative;
-        padding: 36px 24px;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--r2);
-        contain: content;
-        transition:
-          border-color 0.3s ease-out,
-          box-shadow 0.3s;
       }
-      .hs:hover {
-        border-color: var(--border2);
-        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
+      .what__quote {
+        font-size: clamp(24px, 3vw, 34px);
+        font-weight: 600;
+        color: var(--w90);
+        max-width: 880px;
+        margin: 24px auto 0;
+        line-height: 1.45;
+        letter-spacing: -0.5px;
       }
-      .hs__num {
-        font-size: 56px;
-        font-weight: 900;
+      .what__quote em {
+        font-style: normal;
         background: var(--grad2);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        line-height: 1;
-        margin-bottom: 20px;
-        opacity: 0.35;
       }
-      .hs__icon {
-        width: 56px;
-        height: 56px;
-        border-radius: 16px;
-        background: var(--surface2);
-        border: 1px solid var(--border2);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 16px;
+
+      /* ═══ PROCESS ═══ */
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+      .step {
+        position: relative;
+        padding: 36px 28px;
+        background: rgba(255, 255, 255, 0.025);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        transition:
+          border-color 0.3s,
+          transform 0.3s,
+          background 0.3s;
+      }
+      .step:hover {
+        border-color: rgba(168, 85, 247, 0.35);
+        transform: translateY(-4px);
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .step__num {
+        font-size: 13px;
+        font-weight: 700;
         color: var(--purple-light);
+        letter-spacing: 1.6px;
+        margin-bottom: 18px;
+        display: block;
       }
-      .hs__icon svg {
-        width: 24px;
-        height: 24px;
-      }
-      .hs__title {
+      .step__title {
         font-size: 18px;
         font-weight: 700;
         color: var(--w);
-        margin-bottom: 8px;
-      }
-      .hs__desc {
-        font-size: 13px;
-        color: var(--w50);
-        line-height: 1.65;
-        max-width: 260px;
-        margin: 0 auto;
-      }
-      .hs__connector {
-        position: absolute;
-        right: -13px;
-        top: 50%;
-        width: 26px;
-        height: 2px;
-        background: var(--grad2);
-        opacity: 0.25;
-        z-index: 2;
-      }
-
-      /* ═══ TOOL CARDS — (sol-* kept for compat) ═══ */
-      .sol-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-      }
-      .sol-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--r2);
-        padding: 32px 28px;
-        cursor: default;
-        transition:
-          transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-          border-color 0.35s,
-          box-shadow 0.35s;
-        position: relative;
-        overflow: hidden;
-      }
-      .sol-card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        opacity: 0;
-        transition: opacity 0.35s;
-        pointer-events: none;
-      }
-      .sol-card:hover {
-        border-color: var(--border2);
-        transform: translateY(-5px);
-      }
-      .sol-card:hover::before {
-        opacity: 1;
-      }
-      .sol-card--purple::before {
-        background: radial-gradient(
-          ellipse at 50% 0%,
-          rgba(168, 85, 247, 0.09),
-          transparent 65%
-        );
-      }
-      .sol-card--purple:hover {
-        box-shadow: 0 20px 56px rgba(168, 85, 247, 0.1);
-      }
-      .sol-card--teal::before {
-        background: radial-gradient(
-          ellipse at 50% 0%,
-          rgba(45, 212, 191, 0.09),
-          transparent 65%
-        );
-      }
-      .sol-card--teal:hover {
-        box-shadow: 0 20px 56px rgba(45, 212, 191, 0.1);
-      }
-      .sol-card--blue::before {
-        background: radial-gradient(
-          ellipse at 50% 0%,
-          rgba(59, 130, 246, 0.09),
-          transparent 65%
-        );
-      }
-      .sol-card--blue:hover {
-        box-shadow: 0 20px 56px rgba(59, 130, 246, 0.1);
-      }
-      .sol-card--rose::before {
-        background: radial-gradient(
-          ellipse at 50% 0%,
-          rgba(244, 63, 94, 0.09),
-          transparent 65%
-        );
-      }
-      .sol-card--rose:hover {
-        box-shadow: 0 20px 56px rgba(244, 63, 94, 0.1);
-      }
-      .sol-card--amber::before {
-        background: radial-gradient(
-          ellipse at 50% 0%,
-          rgba(245, 158, 11, 0.09),
-          transparent 65%
-        );
-      }
-      .sol-card--amber:hover {
-        box-shadow: 0 20px 56px rgba(245, 158, 11, 0.1);
-      }
-      .sol-card--green::before {
-        background: radial-gradient(
-          ellipse at 50% 0%,
-          rgba(34, 197, 94, 0.09),
-          transparent 65%
-        );
-      }
-      .sol-card--green:hover {
-        box-shadow: 0 20px 56px rgba(34, 197, 94, 0.1);
-      }
-      .sol-icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 14px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 20px;
-        font-size: 20px;
-      }
-      .sol-icon svg {
-        width: 22px;
-        height: 22px;
-      }
-      .sol-icon--purple {
-        background: rgba(168, 85, 247, 0.12);
-        color: var(--purple-light);
-      }
-      .sol-icon--teal {
-        background: rgba(45, 212, 191, 0.12);
-        color: var(--teal);
-      }
-      .sol-icon--blue {
-        background: rgba(59, 130, 246, 0.12);
-        color: var(--blue);
-      }
-      .sol-icon--rose {
-        background: rgba(244, 63, 94, 0.12);
-        color: var(--rose);
-      }
-      .sol-icon--amber {
-        background: rgba(245, 158, 11, 0.12);
-        color: var(--amber);
-      }
-      .sol-icon--green {
-        background: rgba(34, 197, 94, 0.12);
-        color: var(--green);
-      }
-      .sol-title {
-        font-size: 17px;
-        font-weight: 700;
-        color: var(--w);
-        margin-bottom: 8px;
+        margin-bottom: 10px;
         letter-spacing: -0.3px;
       }
-      .sol-desc {
-        font-size: 13px;
+      .step__desc {
+        font-size: 14px;
         color: var(--w50);
         line-height: 1.65;
       }
 
-      /* ═══ TOOL CARDS ═══ */
-      .tool-grid {
+      /* ═══ USE CASES ═══ */
+      .uses {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
-        margin-top: 0;
-        contain: layout style;
       }
-      .tool-grid--3 {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      .fc {
-        background: var(--surface);
+      .use {
+        display: flex;
+        gap: 22px;
+        padding: 32px;
+        background: rgba(255, 255, 255, 0.025);
         border: 1px solid var(--border);
-        border-radius: var(--r2);
-        padding: 36px 32px 0;
-        cursor: pointer;
+        border-radius: 20px;
         transition:
-          transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-          border-color 0.3s ease-out;
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        contain: content;
-      }
-      .fc::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        opacity: 0;
-        transition: opacity 0.4s;
-        pointer-events: none;
-      }
-      .fc:hover {
-        border-color: var(--border2);
-        transform: translateY(-6px);
-      }
-      .fc:hover::before {
-        opacity: 1;
-      }
-      .fc--purple::before {
-        background: radial-gradient(
-          ellipse at 50% 0%,
-          rgba(168, 85, 247, 0.08),
-          transparent 60%
-        );
-      }
-      .fc--purple:hover {
-        box-shadow: 0 20px 60px rgba(168, 85, 247, 0.1);
-      }
-      .fc--teal::before {
-        background: radial-gradient(
-          ellipse at 50% 0%,
-          rgba(45, 212, 191, 0.08),
-          transparent 60%
-        );
-      }
-      .fc--teal:hover {
-        box-shadow: 0 20px 60px rgba(45, 212, 191, 0.1);
-      }
-      .fc--rose::before {
-        background: radial-gradient(
-          ellipse at 50% 0%,
-          rgba(244, 63, 94, 0.08),
-          transparent 60%
-        );
-      }
-      .fc--rose:hover {
-        box-shadow: 0 20px 60px rgba(244, 63, 94, 0.1);
-      }
-      .fc--blue::before {
-        background: radial-gradient(
-          ellipse at 50% 0%,
-          rgba(59, 130, 246, 0.08),
-          transparent 60%
-        );
-      }
-      .fc--blue:hover {
-        box-shadow: 0 20px 60px rgba(59, 130, 246, 0.1);
-      }
-      .fc--amber::before {
-        background: radial-gradient(
-          ellipse at 50% 0%,
-          rgba(245, 158, 11, 0.08),
-          transparent 60%
-        );
-      }
-      .fc--amber:hover {
-        box-shadow: 0 20px 60px rgba(245, 158, 11, 0.1);
-      }
-      .fc--green::before {
-        background: radial-gradient(
-          ellipse at 50% 0%,
-          rgba(34, 197, 94, 0.08),
-          transparent 60%
-        );
-      }
-      .fc--green:hover {
-        box-shadow: 0 20px 60px rgba(34, 197, 94, 0.1);
-      }
-      .fc__icon {
-        width: 44px;
-        height: 44px;
-        border-radius: 14px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 20px;
-        font-size: 20px;
-      }
-      .fc__icon svg {
-        width: 22px;
-        height: 22px;
-      }
-      .fc__icon--purple {
-        background: rgba(168, 85, 247, 0.12);
-        color: var(--purple-light);
-      }
-      .fc__icon--teal {
-        background: rgba(45, 212, 191, 0.12);
-        color: var(--teal);
-      }
-      .fc__icon--rose {
-        background: rgba(244, 63, 94, 0.12);
-        color: var(--rose);
-      }
-      .fc__icon--blue {
-        background: rgba(59, 130, 246, 0.12);
-        color: var(--blue);
-      }
-      .fc__icon--amber {
-        background: rgba(245, 158, 11, 0.12);
-        color: var(--amber);
-      }
-      .fc__icon--green {
-        background: rgba(34, 197, 94, 0.12);
-        color: var(--green);
-      }
-      .fc__title {
-        font-size: clamp(22px, 2.5vw, 28px);
-        font-weight: 800;
-        color: var(--w);
-        letter-spacing: -0.5px;
-        line-height: 1.2;
-        margin-bottom: 10px;
-      }
-      .fc__desc {
-        font-size: 14px;
-        color: var(--w50);
-        line-height: 1.7;
-        max-width: 360px;
-        margin-bottom: 24px;
-      }
-      .fc__tags {
-        display: flex;
-        gap: 6px;
-        flex-wrap: wrap;
-        margin-bottom: 24px;
-      }
-      .fc__tag {
-        padding: 4px 12px;
-        border-radius: 100px;
-        font-size: 10px;
-        font-weight: 600;
-        background: var(--w08);
-        border: 1px solid var(--border);
-        color: var(--w30);
-      }
-      .fc__preview {
-        flex: 1;
-        min-height: 160px;
-        border-radius: var(--rl) var(--rl) 0 0;
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-bottom: none;
-        padding: 20px;
-        position: relative;
-        overflow: hidden;
-        margin: 0 -32px;
-      }
-      .fc__preview-bar {
-        display: flex;
-        gap: 5px;
-        margin-bottom: 14px;
-      }
-      .fc__preview-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-      }
-      .fc__snip {
-        background: var(--surface3);
-        border: 1px solid var(--border2);
-        border-radius: 10px;
-        padding: 8px 12px;
-        font-size: 11px;
-        color: var(--w70);
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        position: absolute;
-        backdrop-filter: blur(8px);
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        white-space: nowrap;
-      }
-      .fc:hover .fc__snip {
-        transform: translateY(-4px);
-      }
-      .fc__snip-icon {
-        width: 18px;
-        height: 18px;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 10px;
-        flex-shrink: 0;
-      }
-      .fc__snip strong {
-        color: var(--w90);
-        font-weight: 600;
-      }
-      .fc__snip small {
-        color: var(--w30);
-        font-size: 9px;
-        display: block;
-        margin-top: 1px;
-      }
-      .fc__preview-line {
-        height: 8px;
-        border-radius: 4px;
-        background: var(--w08);
-        margin-bottom: 8px;
-      }
-      .fc__preview-line--short {
-        width: 60%;
-      }
-      .fc__preview-line--med {
-        width: 80%;
-      }
-      .fc__preview-line--long {
-        width: 95%;
-      }
-
-      /* ═══ AI AGENTS ═══ */
-      .agents-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 16px;
-        margin-top: 0;
-        contain: layout style;
-      }
-      .ag {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--r2);
-        overflow: hidden;
-        transition:
-          transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-          border-color 0.3s ease-out;
-        cursor: pointer;
-        contain: content;
-        position: relative;
-      }
-      .ag:hover {
-        border-color: var(--purple);
-        box-shadow: 0 0 40px var(--purple-glow);
-        transform: translateY(-6px);
-      }
-      .ag__top {
-        padding: 28px 20px 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        position: relative;
-      }
-      .ag__avatar {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        overflow: hidden;
-        margin-bottom: 16px;
-        position: relative;
-        border: 3px solid var(--surface3);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-      }
-      .ag__avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .ag__avatar::after {
-        content: "";
-        position: absolute;
-        bottom: 2px;
-        right: 2px;
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        background: var(--teal);
-        border: 3px solid var(--surface);
-        box-shadow: 0 0 10px rgba(45, 212, 191, 0.5);
-        animation: agPulse 2s ease-in-out infinite;
-      }
-      @keyframes agPulse {
-        0%,
-        100% {
-          box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.4);
-        }
-        50% {
-          box-shadow: 0 0 0 6px rgba(45, 212, 191, 0);
-        }
-      }
-      .ag__name {
-        font-size: 16px;
-        font-weight: 700;
-        color: var(--w);
-        margin-bottom: 2px;
-      }
-      .ag__role {
-        font-size: 12px;
-        color: var(--w30);
-        margin-bottom: 14px;
-      }
-      .ag__skills {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 5px;
-        justify-content: center;
-      }
-      .ag__skill {
-        padding: 4px 12px;
-        border-radius: 100px;
-        font-size: 10px;
-        font-weight: 600;
-        background: var(--w08);
-        border: 1px solid var(--border);
-        color: var(--w50);
-        transition:
-          border-color 0.2s,
-          color 0.2s;
-      }
-      .ag:hover .ag__skill {
-        border-color: var(--border2);
-        color: var(--w70);
-      }
-      .ag__foot {
-        padding: 14px 20px;
-        border-top: 1px solid var(--border);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .ag__credits {
-        font-size: 11px;
-        color: var(--w30);
-        font-weight: 500;
-      }
-      .ag__action {
-        font-size: 12px;
-        font-weight: 600;
-        color: var(--teal);
-        display: flex;
-        align-items: center;
-        gap: 4px;
-      }
-      .ag__action svg {
-        width: 12px;
-        height: 12px;
-        transition: transform 0.2s;
-      }
-      .ag:hover .ag__action svg {
-        transform: translateX(3px);
-      }
-
-      /* ═══ TRUST SECTION ═══ */
-      .trust-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 16px;
-      }
-      .trust-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--r2);
-        padding: 32px 24px;
-        text-align: center;
-        contain: content;
-        transition:
-          transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-          border-color 0.3s ease-out,
+          border-color 0.3s,
+          background 0.3s,
           transform 0.3s;
       }
-      .trust-card:hover {
-        border-color: var(--border2);
-        transform: translateY(-4px);
-        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
+      .use:hover {
+        border-color: rgba(45, 212, 191, 0.3);
+        background: rgba(255, 255, 255, 0.04);
+        transform: translateY(-3px);
       }
-      .trust-icon {
-        width: 52px;
-        height: 52px;
-        border-radius: 16px;
-        background: var(--surface2);
+      .use__icon {
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: linear-gradient(
+          135deg,
+          rgba(168, 85, 247, 0.18),
+          rgba(45, 212, 191, 0.12)
+        );
         border: 1px solid var(--border2);
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto 18px;
-        color: var(--purple-light);
+        color: var(--teal);
       }
-      .trust-icon svg {
+      .use__icon svg {
         width: 22px;
         height: 22px;
       }
-      .trust-card__title {
-        font-size: 16px;
+      .use__title {
+        font-size: 17px;
         font-weight: 700;
         color: var(--w);
-        margin-bottom: 8px;
+        margin-bottom: 6px;
+        letter-spacing: -0.2px;
       }
-      .trust-card__desc {
-        font-size: 13px;
+      .use__desc {
+        font-size: 14px;
         color: var(--w50);
         line-height: 1.65;
       }
 
-      /* ═══ TESTIMONIALS ═══ */
-      .testi-grid {
+      /* ═══ MARKETPLACE ═══ */
+      .market {
+        background: var(--bg2);
+      }
+      .tools {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-        margin-top: 0;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+        margin-bottom: 40px;
       }
-      .tcard {
-        background: var(--surface);
+      .tool {
+        padding: 28px 24px;
+        background: rgba(255, 255, 255, 0.025);
         border: 1px solid var(--border);
-        border-radius: var(--rl);
-        padding: 28px;
-        contain: content;
+        border-radius: 18px;
         transition:
-          transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-          border-color 0.3s ease-out;
+          border-color 0.3s,
+          transform 0.3s;
       }
-      .tcard:hover {
+      .tool:hover {
         border-color: var(--border2);
         transform: translateY(-3px);
-        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
       }
-      .tcard__stars {
-        display: flex;
-        gap: 2px;
-        margin-bottom: 14px;
-      }
-      .tcard__stars svg {
-        width: 14px;
-        height: 14px;
-        fill: #fbbf24;
-        color: #fbbf24;
-      }
-      .tcard__q {
-        font-size: 14px;
-        color: var(--w70);
-        line-height: 1.75;
-        margin-bottom: 20px;
-      }
-      .tcard__a {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      .tcard__av {
+      .tool__icon {
         width: 40px;
         height: 40px;
-        border-radius: 50%;
-        overflow: hidden;
-        border: 2px solid var(--border2);
-        flex-shrink: 0;
+        border-radius: 10px;
+        background: var(--purple-glow);
+        border: 1px solid var(--border2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--purple-light);
+        margin-bottom: 18px;
       }
-      .tcard__av img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+      .tool__icon svg {
+        width: 20px;
+        height: 20px;
       }
-      .tcard__name {
-        font-size: 13px;
+      .tool__title {
+        font-size: 15px;
         font-weight: 700;
         color: var(--w);
+        margin-bottom: 6px;
       }
-      .tcard__role {
-        font-size: 11px;
-        color: var(--w30);
+      .tool__desc {
+        font-size: 13px;
+        color: var(--w50);
+        line-height: 1.6;
+      }
+      .market__cta {
+        text-align: center;
       }
 
-      /* ═══ CTA BANNER ═══ */
-      .cta-banner {
-        padding: 100px 0;
+      /* ═══ FINAL CTA ═══ */
+      .final {
         text-align: center;
         position: relative;
         overflow: hidden;
       }
-      .cta-banner::before {
+      .final::before {
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(
-          135deg,
-          rgba(168, 85, 247, 0.15),
-          rgba(236, 72, 153, 0.1),
-          rgba(45, 212, 191, 0.08)
-        );
-        pointer-events: none;
-      }
-      .cta-banner::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 600px;
-        height: 600px;
-        transform: translate(-50%, -50%);
-        border-radius: 50%;
         background: radial-gradient(
-          circle,
-          rgba(168, 85, 247, 0.1),
-          transparent 70%
+          ellipse at center,
+          rgba(168, 85, 247, 0.14),
+          transparent 60%
         );
         pointer-events: none;
       }
-      .cta-banner__title {
-        font-size: clamp(32px, 5vw, 58px);
-        font-weight: 900;
-        color: var(--w);
-        letter-spacing: -2px;
-        line-height: 1.07;
-        margin-bottom: 16px;
+      .final__inner {
         position: relative;
         z-index: 1;
       }
-      .cta-banner__title em {
+      .final__title {
+        font-size: clamp(34px, 5vw, 58px);
+        font-weight: 800;
+        color: var(--w);
+        letter-spacing: -1.8px;
+        line-height: 1.08;
+        margin-bottom: 22px;
+      }
+      .final__title em {
         font-style: normal;
         background: var(--grad1);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
-      .cta-banner__sub {
-        font-size: 16px;
+      .final__sub {
+        font-size: 15px;
         color: var(--w50);
-        margin-bottom: 36px;
-        position: relative;
-        z-index: 1;
-        max-width: 480px;
-        margin-left: auto;
-        margin-right: auto;
-        line-height: 1.7;
+        margin: 24px auto 0;
+        max-width: 460px;
       }
-      .cta-banner__btns {
-        display: flex;
-        gap: 12px;
-        justify-content: center;
+
+      /* ═══ URGENCY ═══ */
+      .urgency {
+        background: var(--bg2);
+        padding: 110px 0;
+        text-align: center;
         position: relative;
-        z-index: 1;
+      }
+      .urgency__line {
+        font-size: clamp(22px, 2.8vw, 30px);
+        font-weight: 600;
+        color: var(--w90);
+        max-width: 880px;
+        margin: 0 auto;
+        line-height: 1.5;
+        letter-spacing: -0.4px;
+      }
+      .urgency__line em {
+        font-style: normal;
+        background: var(--grad2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .urgency__savings {
+        margin-top: 32px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 22px;
+        border-radius: 100px;
+        background: rgba(34, 197, 94, 0.1);
+        border: 1px solid rgba(34, 197, 94, 0.25);
+        color: #4ade80;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+      }
+      .urgency__savings svg {
+        width: 14px;
+        height: 14px;
       }
 
       /* ═══ FOOTER ═══ */
       .footer {
+        padding: 56px 0 36px;
         border-top: 1px solid var(--border);
-        padding: 56px 0 28px;
+        background: var(--bg);
       }
-      .footer__grid {
-        display: grid;
-        grid-template-columns: 2fr repeat(4, 1fr);
-        gap: 40px;
-        margin-bottom: 40px;
+      .footer__row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 24px;
       }
       .footer__brand {
-        margin-bottom: 10px;
         display: flex;
         align-items: center;
-        height: 18px;
+        height: 56px;
       }
       .footer__brand img {
-        height: 128px;
-        margin-left: -40px;
+        height: 120px;
         width: auto;
-        display: block;
       }
-      .footer__desc {
-        font-size: 13px;
-        color: var(--w30);
-        line-height: 1.6;
-        max-width: 240px;
-      }
-      .footer__col-title {
-        font-size: 12px;
-        font-weight: 700;
-        color: var(--w30);
-        text-transform: uppercase;
-        letter-spacing: 0.8px;
-        margin-bottom: 12px;
-      }
-      .footer__link {
-        display: block;
-        font-size: 13px;
-        color: var(--w30);
-        padding: 4px 0;
-        transition: color 0.15s;
-      }
-      .footer__link:hover {
-        color: var(--w70);
-      }
-      .footer__bottom {
+      .footer__nav {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 20px;
-        border-top: 1px solid var(--border);
-        font-size: 12px;
-        color: var(--w15);
+        gap: 28px;
       }
-
-      /* ═══ SERVICE CARDS — premium 3-col ═══ */
-      .svc-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-      }
-      .svc-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--r2);
-        padding: 36px 30px;
-        position: relative;
-        overflow: hidden;
-        contain: content;
-        transition:
-          transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-          border-color 0.3s ease-out;
-      }
-      .svc-card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        opacity: 0;
-        transition: opacity 0.35s;
-        pointer-events: none;
-      }
-      .svc-card:hover {
-        border-color: var(--border2);
-        transform: translateY(-6px);
-      }
-      .svc-card:hover::before {
-        opacity: 1;
-      }
-      .svc-card--purple::before {
-        background: radial-gradient(
-          ellipse at 50% 0%,
-          rgba(168, 85, 247, 0.1),
-          transparent 65%
-        );
-      }
-      .svc-card--purple:hover {
-        box-shadow: 0 20px 56px rgba(168, 85, 247, 0.12);
-      }
-      .svc-card--teal::before {
-        background: radial-gradient(
-          ellipse at 50% 0%,
-          rgba(45, 212, 191, 0.1),
-          transparent 65%
-        );
-      }
-      .svc-card--teal:hover {
-        box-shadow: 0 20px 56px rgba(45, 212, 191, 0.12);
-      }
-      .svc-card--blue::before {
-        background: radial-gradient(
-          ellipse at 50% 0%,
-          rgba(59, 130, 246, 0.1),
-          transparent 65%
-        );
-      }
-      .svc-card--blue:hover {
-        box-shadow: 0 20px 56px rgba(59, 130, 246, 0.12);
-      }
-      .svc-card__icon {
-        width: 50px;
-        height: 50px;
-        border-radius: 14px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 22px;
-      }
-      .svc-card__icon svg {
-        width: 22px;
-        height: 22px;
-      }
-      .svc-card__title {
-        font-size: 19px;
-        font-weight: 800;
-        color: var(--w);
-        margin-bottom: 10px;
-        letter-spacing: -0.4px;
-      }
-      .svc-card__desc {
-        font-size: 13.5px;
+      .footer__nav a {
+        font-size: 13px;
         color: var(--w50);
-        line-height: 1.7;
-        margin-bottom: 22px;
+        transition: color 0.3s;
       }
-      .svc-card__divider {
-        height: 1px;
-        background: var(--border);
-        margin-bottom: 18px;
-      }
-      .svc-checks {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .svc-check {
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
-        font-size: 13px;
-        color: var(--w70);
-        line-height: 1.45;
-      }
-      .svc-check svg {
-        width: 15px;
-        height: 15px;
-        color: var(--teal);
-        flex-shrink: 0;
-        margin-top: 1px;
-      }
-
-      /* ═══ CONSULT CTA ═══ */
-      .consult-cta {
-        background: var(--surface);
-        border: 1px solid var(--border2);
-        border-radius: var(--r2);
-        padding: 48px 52px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 40px;
-        position: relative;
-        overflow: hidden;
-      }
-      .consult-cta::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          135deg,
-          rgba(168, 85, 247, 0.06),
-          rgba(45, 212, 191, 0.04)
-        );
-        pointer-events: none;
-        border-radius: var(--r2);
-      }
-      .consult-cta__text {
-        position: relative;
-        z-index: 1;
-      }
-      .consult-cta__text h3 {
-        font-size: 22px;
-        font-weight: 800;
+      .footer__nav a:hover {
         color: var(--w);
-        margin-bottom: 10px;
-        letter-spacing: -0.5px;
       }
-      .consult-cta__text p {
-        font-size: 14px;
-        color: var(--w50);
-        line-height: 1.7;
-        max-width: 480px;
-      }
-      .consult-cta .btn {
-        position: relative;
-        z-index: 1;
-        flex-shrink: 0;
-      }
-
-      /* ═══ WHO THIS IS FOR ═══ */
-      .for-sec {
-        padding: 64px 0;
-      }
-      .for-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 12px;
-      }
-      .for-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--r2);
-        padding: 28px 20px;
-        text-align: center;
-        transition:
-          border-color 0.3s,
-          box-shadow 0.3s,
-          transform 0.3s;
-      }
-      .for-card:hover {
-        border-color: var(--border2);
-        transform: translateY(-3px);
-        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
-      }
-      .for-icon {
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-        background: var(--surface2);
-        border: 1px solid var(--border2);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 14px;
-        color: var(--purple-light);
-      }
-      .for-icon svg {
-        width: 20px;
-        height: 20px;
-      }
-      .for-label {
-        font-size: 15px;
-        font-weight: 700;
-        color: var(--w);
-        margin-bottom: 6px;
-        letter-spacing: -0.2px;
-      }
-      .for-note {
+      .footer__copy {
         font-size: 12px;
         color: var(--w30);
-        line-height: 1.55;
-      }
-
-      /* ═══ TOOLS SECTION — de-emphasised ═══ */
-      .sh__tag--muted {
-        color: var(--w50);
-        background: var(--w08);
-        border-color: var(--border);
-      }
-      .sh--tools .sh__title {
-        font-size: clamp(22px, 3vw, 36px);
-        font-weight: 700;
-        letter-spacing: -1px;
-      }
-      .sh--tools .sh__sub {
-        font-size: 14px;
-        color: var(--w30);
-      }
-      .tools-context {
-        text-align: center;
-        font-size: 13px;
-        color: var(--w30);
-        margin-bottom: 32px;
-        padding: 10px 20px;
-        display: inline-block;
-        width: 100%;
-        border-top: 1px solid var(--border);
-        padding-top: 20px;
       }
 
       /* ═══ RESPONSIVE ═══ */
-      @media (max-width: 1024px) {
-        .svc-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-        .consult-cta {
-          flex-direction: column;
-          text-align: center;
-          padding: 36px 28px;
-        }
-        .consult-cta__text p {
-          margin: 0 auto;
-        }
-        .tool-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-        .tool-grid--3 {
-          grid-template-columns: 1fr 1fr;
-        }
-        .agents-grid {
+      @media (max-width: 980px) {
+        .steps {
           grid-template-columns: repeat(2, 1fr);
         }
-        .how-steps {
-          grid-template-columns: 1fr;
-          max-width: 400px;
-          margin-left: auto;
-          margin-right: auto;
-        }
-        .hs__connector {
-          display: none;
-        }
-        .testi-grid {
+        .uses {
           grid-template-columns: 1fr;
         }
-        .sol-grid {
+        .tools {
           grid-template-columns: repeat(2, 1fr);
-        }
-        .trust-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-        .footer__grid {
-          grid-template-columns: 1fr 1fr;
         }
       }
-      @media (max-width: 768px) {
-        .for-grid {
-          grid-template-columns: repeat(2, 1fr);
+      @media (max-width: 640px) {
+        .sec {
+          padding: 80px 0;
         }
-        .svc-grid {
-          grid-template-columns: 1fr;
-        }
-        .nav__links {
+        .nav__links a:not(.nav__cta) {
           display: none;
-        }
-        .tool-grid,
-        .tool-grid--3 {
-          grid-template-columns: 1fr;
-        }
-        .fc {
-          padding: 28px 20px 0;
-        }
-        .fc__preview {
-          margin: 0 -20px;
-        }
-        .fc__title {
-          font-size: 20px;
-        }
-        .agents-grid {
-          grid-template-columns: 1fr;
-        }
-        .sol-grid {
-          grid-template-columns: 1fr;
-        }
-        .trust-grid {
-          grid-template-columns: 1fr 1fr;
         }
         .hero {
-          padding: 56px 0 48px;
+          padding: 50px 0 90px;
         }
-        .sec {
-          padding: 64px 0;
-        }
-        .hero__ctas {
+        .footer__row {
           flex-direction: column;
-          align-items: center;
-        }
-        .hero__meta {
-          flex-direction: column;
-          align-items: center;
-          gap: 8px;
-        }
-        .footer__grid {
-          grid-template-columns: 1fr;
-          gap: 24px;
-        }
-        .footer__bottom {
-          flex-direction: column;
-          gap: 8px;
           text-align: center;
         }
-        .cta-banner__btns {
-          flex-direction: column;
-          align-items: center;
+        .footer__nav {
+          gap: 18px;
+          flex-wrap: wrap;
+          justify-content: center;
         }
-      }
-      @media (max-width: 480px) {
-        .trust-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-          scroll-behavior: auto !important;
+        .step,
+        .use,
+        .tool {
+          padding: 26px 22px;
         }
       }
     </style>
   </head>
   <body>
-    <!-- NAV -->
+    <!-- ═══ NAV ═══ -->
     <nav class="nav">
-      <div class="ctn nav__i">
-        <a href="/" class="nav__logo"><img src="./NextGenAI-Logo.png" alt="NxtGenAI" width="120" height="32" /></a>
+      <div class="nav__i">
+        <a href="/" class="nav__logo"
+          ><img src="./NextGenAI-Logo.png" alt="NXTGENAI"
+        /></a>
         <div class="nav__links">
-          <a href="#solutions" class="nav__link">Solutions</a>
-          <a href="#how" class="nav__link">How It Works</a>
+          <a href="#what" class="nav__link">What We Do</a>
+          <a href="#process" class="nav__link">Process</a>
+          <a href="#use-cases" class="nav__link">Use Cases</a>
           <a href="#tools" class="nav__link">Tools</a>
-          <a href="#agents" class="nav__link">AI Team</a>
-          <a href="concept-3-pricing.html" class="nav__link">Pricing</a>
-          <a href="#" class="btn btn--ghost" style="margin-left: 6px"
-            >Sign in</a
-          >
-          <a href="#" class="btn btn--glow">Book a Call</a>
+          <a href="#start" class="nav__cta">Start Custom Integration</a>
         </div>
       </div>
     </nav>
 
-    <!-- ═══ HERO ═══ -->
+    <!-- ═══ 1. HERO ═══ -->
     <section class="hero">
-      <div class="ctn" style="position: relative; z-index: 1">
-        <div class="hero__eyebrow rv">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            width="13"
-            height="13"
-          >
-            <path
-              d="M12 2C8 2 5 5.5 5 9.5c0 5.2 5.3 10.1 6.2 10.9a1 1 0 0 0 1.5 0C13.7 19.6 19 14.7 19 9.5 19 5.5 16 2 12 2z"
-            />
-            <circle cx="12" cy="9.5" r="2.5" />
+      <div class="ctn hero__inner">
+        <span class="tag tag--teal rv">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
           </svg>
-          Australian-Owned & Operated
-        </div>
+          Custom AI Engineering
+        </span>
         <h1 class="hero__title rv d1">
-          Custom AI Systems<br /><em>Built for Your Business</em>
+          Custom AI Systems Built to<br /><em>Automate Your Business</em>
         </h1>
         <p class="hero__sub rv d2">
-          Stop losing hours to manual work. We build custom AI systems that save
-          your team 20+ hours a week, cut operating costs, and scale your
-          business — without adding headcount.
+          We design and deploy tailored AI agents and workflows that handle
+          operations, capture leads, and streamline your business.
         </p>
-        <div class="hero__ctas rv d3">
-          <a href="#" class="btn btn--glow btn--lg">
-            Subscribe & start using tools
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
+        <div class="rv d3">
+          <a href="#start" class="btn btn--primary">
+            Start Custom Integration
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
               <path d="M5 12h14" />
               <path d="m12 5 7 7-7 7" />
             </svg>
           </a>
-          <a href="#how" class="btn btn--ghost btn--lg">See How It Works</a>
         </div>
-        <div class="hero__meta rv d4">
-          <div class="hero__meta-item">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="m9 12 2 2 4-4" />
-              <circle cx="12" cy="12" r="10" />
-            </svg>
-            No-template solutions
-          </div>
-          <div class="hero__meta-item">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
-            </svg>
-            Live in days, not months
-          </div>
-          <div class="hero__meta-item">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-            Ongoing support included
-          </div>
-        </div>
+        <p class="hero__support rv d4">
+          Complete a short onboarding to receive a tailored system plan
+        </p>
       </div>
     </section>
 
-    <!-- ═══ HOW IT WORKS ═══ -->
-    <section class="sec" id="how" style="background: var(--bg2)">
+    <!-- ═══ 2. WHAT WE DO ═══ -->
+    <section class="sec what" id="what">
       <div class="ctn">
-        <div class="sh rv">
-          <div class="sh__tag">How It Works</div>
-          <h2 class="sh__title">Three steps to <em>full automation</em></h2>
-          <p class="sh__sub">
-            We handle everything — from understanding your business to deploying
-            a system that works around the clock.
+        <span class="tag rv">What We Do</span>
+        <p class="what__quote rv d1">
+          We build <em>custom AI systems</em> for businesses — including lead
+          handling, automation, internal workflows, and integrations.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══ 3. PROCESS ═══ -->
+    <section class="sec" id="process" style="background: var(--bg2)">
+      <div class="ctn">
+        <div class="sh">
+          <span class="tag rv">Our Process</span>
+          <h2 class="sh__title rv d1">Four steps to your <em>tailored system</em></h2>
+          <p class="sh__sub rv d2">
+            From discovery to deployment — we guide you through every stage of
+            building your AI system.
           </p>
         </div>
-        <div class="how-steps">
-          <div class="hs rv d1">
-            <div class="hs__connector"></div>
-            <div class="hs__num">01</div>
-            <div class="hs__icon">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.3-4.3" />
-              </svg>
-            </div>
-            <div class="hs__title">Analyse Your Business</div>
-            <div class="hs__desc">
-              We audit your current processes, identify bottlenecks, and map
-              every opportunity for AI to save you time and money.
-            </div>
-          </div>
-          <div class="hs rv d2">
-            <div class="hs__connector"></div>
-            <div class="hs__num">02</div>
-            <div class="hs__icon">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18" />
-                <path d="M9 21V9" />
-              </svg>
-            </div>
-            <div class="hs__title">Build Custom AI Workflows</div>
-            <div class="hs__desc">
-              We engineer tailored AI agents and automation pipelines that
-              integrate directly into your existing tools and systems.
-            </div>
-          </div>
-          <div class="hs rv d3">
-            <div class="hs__num">03</div>
-            <div class="hs__icon">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="m9 12 2 2 4-4" />
-                <circle cx="12" cy="12" r="10" />
-              </svg>
-            </div>
-            <div class="hs__title">Deploy &amp; Optimise</div>
-            <div class="hs__desc">
-              Go live fast. We monitor performance, iterate on results, and
-              continuously improve your system as your business grows.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ WE BUILD AI INTO YOUR BUSINESS ═══ -->
-    <section class="sec" id="solutions">
-      <div class="ctn">
-        <div class="sh rv">
-          <div class="sh__tag">Our Services</div>
-          <h2 class="sh__title">We build AI into <em>your business</em></h2>
-          <p class="sh__sub">
-            From custom workflows to fully autonomous agents, we design and
-            deploy AI systems that work inside your business — not alongside it.
-          </p>
-        </div>
-        <div class="svc-grid">
-          <!-- Workflow Automation -->
-          <div class="svc-card svc-card--purple rv d1">
-            <div
-              class="svc-card__icon"
-              style="
-                background: rgba(168, 85, 247, 0.12);
-                color: var(--purple-light);
-              "
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M12 2 2 7l10 5 10-5-10-5z" />
-                <path d="m2 17 10 5 10-5" />
-                <path d="m2 12 10 5 10-5" />
-              </svg>
-            </div>
-            <div class="svc-card__title">Workflow Automation</div>
-            <div class="svc-card__desc">
-              Replace time-consuming manual processes with AI workflows that run
-              24/7 across sales, ops, HR, and finance.
-            </div>
-            <div class="svc-card__divider"></div>
-            <div class="svc-checks">
-              <div class="svc-check">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="m9 12 2 2 4-4" />
-                  <circle cx="12" cy="12" r="10" /></svg
-                >Process audit &amp; mapping
-              </div>
-              <div class="svc-check">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="m9 12 2 2 4-4" />
-                  <circle cx="12" cy="12" r="10" /></svg
-                >Multi-step automation
-              </div>
-              <div class="svc-check">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="m9 12 2 2 4-4" />
-                  <circle cx="12" cy="12" r="10" /></svg
-                >Cross-app integrations
-              </div>
-              <div class="svc-check">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="m9 12 2 2 4-4" />
-                  <circle cx="12" cy="12" r="10" /></svg
-                >Real-time monitoring
-              </div>
-            </div>
-          </div>
-          <!-- Custom AI Agents -->
-          <div class="svc-card svc-card--teal rv d2">
-            <div
-              class="svc-card__icon"
-              style="background: rgba(45, 212, 191, 0.12); color: var(--teal)"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                />
-              </svg>
-            </div>
-            <div class="svc-card__title">Custom AI Agents</div>
-            <div class="svc-card__desc">
-              Intelligent agents that qualify leads, handle support, and manage
-              tasks — deployed across web, email, and chat.
-            </div>
-            <div class="svc-card__divider"></div>
-            <div class="svc-checks">
-              <div class="svc-check">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="m9 12 2 2 4-4" />
-                  <circle cx="12" cy="12" r="10" /></svg
-                >Lead qualification bots
-              </div>
-              <div class="svc-check">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="m9 12 2 2 4-4" />
-                  <circle cx="12" cy="12" r="10" /></svg
-                >Customer support agents
-              </div>
-              <div class="svc-check">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="m9 12 2 2 4-4" />
-                  <circle cx="12" cy="12" r="10" /></svg
-                >Knowledge base training
-              </div>
-              <div class="svc-check">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="m9 12 2 2 4-4" />
-                  <circle cx="12" cy="12" r="10" /></svg
-                >Human handoff workflows
-              </div>
-            </div>
-          </div>
-          <!-- System Integration -->
-          <div class="svc-card svc-card--blue rv d3">
-            <div
-              class="svc-card__icon"
-              style="background: rgba(59, 130, 246, 0.12); color: var(--blue)"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M18 20V10" />
-                <path d="M12 20V4" />
-                <path d="M6 20v-6" />
-              </svg>
-            </div>
-            <div class="svc-card__title">System Integration</div>
-            <div class="svc-card__desc">
-              Connect your CRM, email, Slack, and APIs into one unified pipeline
-              — data flows automatically in real time.
-            </div>
-            <div class="svc-card__divider"></div>
-            <div class="svc-checks">
-              <div class="svc-check">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="m9 12 2 2 4-4" />
-                  <circle cx="12" cy="12" r="10" /></svg
-                >CRM &amp; database sync
-              </div>
-              <div class="svc-check">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="m9 12 2 2 4-4" />
-                  <circle cx="12" cy="12" r="10" /></svg
-                >API &amp; webhook setup
-              </div>
-              <div class="svc-check">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="m9 12 2 2 4-4" />
-                  <circle cx="12" cy="12" r="10" /></svg
-                >Email &amp; Slack pipelines
-              </div>
-              <div class="svc-check">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="m9 12 2 2 4-4" />
-                  <circle cx="12" cy="12" r="10" /></svg
-                >Real-time data flow
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ NOT SURE WHERE AI FITS? ═══ -->
-    <section style="padding: 0 0 96px; position: relative">
-      <div class="ctn">
-        <div class="consult-cta rv">
-          <div class="consult-cta__text">
-            <h3>Not sure where AI fits in your business?</h3>
-            <p>
-              That's exactly why we offer a free consultation. We'll audit your
-              current processes, identify bottlenecks, and show you exactly
-              where AI can save time, cut costs, and unlock growth — with a
-              clear roadmap you can act on.
+        <div class="steps">
+          <div class="step rv d1">
+            <span class="step__num">STEP 01</span>
+            <h3 class="step__title">Submit Your Business Details</h3>
+            <p class="step__desc">
+              Share your operations, goals, and the tasks you'd like AI to
+              handle.
             </p>
           </div>
-          <a href="#" class="btn btn--glow btn--lg" style="white-space: nowrap">
-            Book a Free Consultation
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ WHO THIS IS FOR ═══ -->
-    <section
-      class="for-sec"
-      style="
-        background: var(--bg2);
-        border-top: 1px solid var(--border);
-        border-bottom: 1px solid var(--border);
-      "
-    >
-      <div class="ctn">
-        <p
-          class="rv"
-          style="
-            text-align: center;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--w30);
-            margin-bottom: 24px;
-          "
-        >
-          Built for businesses like
-        </p>
-        <div class="for-grid">
-          <div class="for-card rv d1">
-            <div class="for-icon">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
-              </svg>
-            </div>
-            <div class="for-label">Startups</div>
-            <div class="for-note">
-              Move fast and automate early — scale without bloating your team.
-            </div>
+          <div class="step rv d2">
+            <span class="step__num">STEP 02</span>
+            <h3 class="step__title">We Analyse Your Requirements</h3>
+            <p class="step__desc">
+              Our team reviews your workflows and identifies high-impact
+              automation opportunities.
+            </p>
           </div>
-          <div class="for-card rv d2">
-            <div class="for-icon" style="color: var(--teal)">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <rect x="2" y="7" width="20" height="14" rx="2" />
-                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-              </svg>
-            </div>
-            <div class="for-label">SMBs</div>
-            <div class="for-note">
-              Do more with your existing team — AI handles the repetitive work.
-            </div>
+          <div class="step rv d3">
+            <span class="step__num">STEP 03</span>
+            <h3 class="step__title">Custom System Design</h3>
+            <p class="step__desc">
+              We architect a tailored AI system — agents, workflows, and
+              integrations mapped to your stack.
+            </p>
           </div>
-          <div class="for-card rv d3">
-            <div class="for-icon" style="color: var(--blue)">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-            </div>
-            <div class="for-label">Agencies</div>
-            <div class="for-note">
-              Deliver more for clients — automate delivery, reporting, and
-              fulfilment.
-            </div>
-          </div>
-          <div class="for-card rv d4">
-            <div class="for-icon" style="color: var(--amber)">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"
-                />
-                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-              </svg>
-            </div>
-            <div class="for-label">Service Businesses</div>
-            <div class="for-note">
-              Automate client intake, follow-ups, scheduling, and operations
-              end-to-end.
-            </div>
+          <div class="step rv d4">
+            <span class="step__num">STEP 04</span>
+            <h3 class="step__title">Build & Deploy</h3>
+            <p class="step__desc">
+              We build, test, and deploy your system — then support it as your
+              business grows.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ═══ EXPLORE OUR AI TOOLS ═══ -->
-    <section class="sec" id="tools" style="background: var(--bg2)">
+    <!-- ═══ 4. USE CASES ═══ -->
+    <section class="sec" id="use-cases">
       <div class="ctn">
-        <div class="sh sh--tools rv">
-          <div class="sh__tag sh__tag--muted">Included Platform Tools</div>
-          <h2 class="sh__title">Explore Our <em>AI Tools</em></h2>
-          <p class="sh__sub">
-            Pre-built tools included with our platform — ready to use from day
-            one while your custom systems are deployed.
+        <div class="sh">
+          <span class="tag rv">Use Cases</span>
+          <h2 class="sh__title rv d1">What we <em>typically build</em></h2>
+          <p class="sh__sub rv d2">
+            Real systems we deploy for businesses across industries.
           </p>
         </div>
-        <div class="tool-grid">
-          <!-- Caption Generator -->
-          <div class="fc fc--purple rv d1">
-            <div class="fc__icon fc__icon--purple">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M12 20h9" />
-                <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+        <div class="uses">
+          <div class="use rv d1">
+            <div class="use__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg>
             </div>
-            <div class="fc__title">Caption Generator.</div>
-            <div class="fc__desc">
-              Engaging captions for Instagram, Facebook, LinkedIn, and X —
-              generated in seconds.
-            </div>
-            <div class="fc__tags">
-              <span class="fc__tag">Free</span
-              ><span class="fc__tag">2 credits</span
-              ><span class="fc__tag">2.4k users</span>
-            </div>
-            <div class="fc__preview">
-              <div class="fc__preview-bar">
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--rose)"
-                ></div>
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--amber)"
-                ></div>
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--green)"
-                ></div>
-              </div>
-              <div class="fc__preview-line fc__preview-line--long"></div>
-              <div class="fc__preview-line fc__preview-line--med"></div>
-              <div class="fc__preview-line fc__preview-line--short"></div>
-              <div class="fc__snip" style="top: 28px; right: 16px">
-                <div
-                  class="fc__snip-icon"
-                  style="
-                    background: rgba(168, 85, 247, 0.15);
-                    color: var(--purple-light);
-                  "
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="12"
-                    height="12"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <path d="M12 20h9" />
-                    <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
-                  </svg>
-                </div>
-                <div>
-                  <strong>Instagram Caption</strong><small>Ready to copy</small>
-                </div>
-              </div>
-              <div class="fc__snip" style="bottom: 16px; left: 12px">
-                <div
-                  class="fc__snip-icon"
-                  style="
-                    background: rgba(59, 130, 246, 0.15);
-                    color: var(--blue);
-                  "
-                >
-                  in
-                </div>
-                <div>
-                  <strong>LinkedIn Post</strong><small>Professional tone</small>
-                </div>
-              </div>
+            <div>
+              <h3 class="use__title">AI handling calls and qualifying leads</h3>
+              <p class="use__desc">
+                Voice agents that answer, qualify, and route prospects 24/7 —
+                so no opportunity slips through.
+              </p>
             </div>
           </div>
-          <!-- Hashtag Generator -->
-          <div class="fc fc--teal rv d2">
-            <div class="fc__icon fc__icon--teal">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M4 9h16" />
-                <path d="M4 15h16" />
-                <path d="M10 3 8 21" />
-                <path d="M16 3l-2 18" />
+          <div class="use rv d2">
+            <div class="use__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+                <path d="m9 16 2 2 4-4" />
               </svg>
             </div>
-            <div class="fc__title">Hashtag Generator.</div>
-            <div class="fc__desc">
-              Viral and niche hashtags for Instagram, TikTok, LinkedIn, and X —
-              optimized for reach.
-            </div>
-            <div class="fc__tags">
-              <span class="fc__tag">Free</span
-              ><span class="fc__tag">2 credits</span
-              ><span class="fc__tag">1.6k users</span>
-            </div>
-            <div class="fc__preview">
-              <div class="fc__preview-bar">
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--rose)"
-                ></div>
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--amber)"
-                ></div>
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--green)"
-                ></div>
-              </div>
-              <div class="fc__preview-line fc__preview-line--med"></div>
-              <div class="fc__preview-line fc__preview-line--short"></div>
-              <div class="fc__snip" style="top: 24px; right: 14px">
-                <div
-                  class="fc__snip-icon"
-                  style="
-                    background: rgba(45, 212, 191, 0.15);
-                    color: var(--teal);
-                  "
-                >
-                  #
-                </div>
-                <div>
-                  <strong>#trending #viral</strong
-                  ><small>32 hashtags found</small>
-                </div>
-              </div>
-              <div class="fc__snip" style="bottom: 18px; left: 14px">
-                <div
-                  class="fc__snip-icon"
-                  style="
-                    background: rgba(244, 63, 94, 0.15);
-                    color: var(--rose);
-                  "
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="12"
-                    height="12"
-                    fill="currentColor"
-                    stroke="none"
-                  >
-                    <path
-                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <strong>Niche tags</strong><small>High engagement</small>
-                </div>
-              </div>
+            <div>
+              <h3 class="use__title">Automated scheduling and follow-ups</h3>
+              <p class="use__desc">
+                Bookings, reminders, and personalised follow-up sequences that
+                run themselves without your team lifting a finger.
+              </p>
             </div>
           </div>
-          <!-- 30-Day Calendar -->
-          <div class="fc fc--rose rv d3">
-            <div class="fc__icon fc__icon--rose">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <rect x="3" y="4" width="18" height="18" rx="2" />
-                <path d="M16 2v4" />
-                <path d="M8 2v4" />
-                <path d="M3 10h18" />
+          <div class="use rv d3">
+            <div class="use__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
               </svg>
             </div>
-            <div class="fc__title">30-Day Content Calendar.</div>
-            <div class="fc__desc">
-              Complete social calendar with tone, template, and platform options
-              — plan an entire month.
-            </div>
-            <div class="fc__tags">
-              <span class="fc__tag">Premium</span
-              ><span class="fc__tag">3 credits</span
-              ><span class="fc__tag">1.1k users</span>
-            </div>
-            <div class="fc__preview">
-              <div class="fc__preview-bar">
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--rose)"
-                ></div>
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--amber)"
-                ></div>
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--green)"
-                ></div>
-              </div>
-              <div
-                style="
-                  display: grid;
-                  grid-template-columns: repeat(7, 1fr);
-                  gap: 4px;
-                "
-              >
-                <div
-                  style="
-                    height: 20px;
-                    border-radius: 4px;
-                    background: var(--w08);
-                  "
-                ></div>
-                <div
-                  style="
-                    height: 20px;
-                    border-radius: 4px;
-                    background: rgba(244, 63, 94, 0.12);
-                  "
-                ></div>
-                <div
-                  style="
-                    height: 20px;
-                    border-radius: 4px;
-                    background: var(--w08);
-                  "
-                ></div>
-                <div
-                  style="
-                    height: 20px;
-                    border-radius: 4px;
-                    background: rgba(168, 85, 247, 0.12);
-                  "
-                ></div>
-                <div
-                  style="
-                    height: 20px;
-                    border-radius: 4px;
-                    background: var(--w08);
-                  "
-                ></div>
-                <div
-                  style="
-                    height: 20px;
-                    border-radius: 4px;
-                    background: rgba(45, 212, 191, 0.12);
-                  "
-                ></div>
-                <div
-                  style="
-                    height: 20px;
-                    border-radius: 4px;
-                    background: var(--w08);
-                  "
-                ></div>
-                <div
-                  style="
-                    height: 20px;
-                    border-radius: 4px;
-                    background: rgba(59, 130, 246, 0.12);
-                  "
-                ></div>
-                <div
-                  style="
-                    height: 20px;
-                    border-radius: 4px;
-                    background: var(--w08);
-                  "
-                ></div>
-                <div
-                  style="
-                    height: 20px;
-                    border-radius: 4px;
-                    background: rgba(245, 158, 11, 0.12);
-                  "
-                ></div>
-                <div
-                  style="
-                    height: 20px;
-                    border-radius: 4px;
-                    background: var(--w08);
-                  "
-                ></div>
-                <div
-                  style="
-                    height: 20px;
-                    border-radius: 4px;
-                    background: rgba(244, 63, 94, 0.12);
-                  "
-                ></div>
-                <div
-                  style="
-                    height: 20px;
-                    border-radius: 4px;
-                    background: var(--w08);
-                  "
-                ></div>
-                <div
-                  style="
-                    height: 20px;
-                    border-radius: 4px;
-                    background: rgba(168, 85, 247, 0.12);
-                  "
-                ></div>
-              </div>
-              <div class="fc__snip" style="bottom: 12px; right: 12px">
-                <div
-                  class="fc__snip-icon"
-                  style="
-                    background: rgba(244, 63, 94, 0.15);
-                    color: var(--rose);
-                  "
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="12"
-                    height="12"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <rect x="3" y="4" width="18" height="18" rx="2" />
-                    <path d="M16 2v4" />
-                    <path d="M8 2v4" />
-                    <path d="M3 10h18" />
-                  </svg>
-                </div>
-                <div>
-                  <strong>30 posts planned</strong><small>Export as CSV</small>
-                </div>
-              </div>
+            <div>
+              <h3 class="use__title">Real-time alerts for opportunities</h3>
+              <p class="use__desc">
+                Instant signals from your data, inbox, or pipeline — so your
+                team acts on what matters the moment it happens.
+              </p>
             </div>
           </div>
-          <!-- Content Ideas -->
-          <div class="fc fc--blue rv d4">
-            <div class="fc__icon fc__icon--blue">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"
-                />
-                <path d="M9 21h6" />
+          <div class="use rv d4">
+            <div class="use__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3" />
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
               </svg>
             </div>
-            <div class="fc__title">Content Ideas Engine.</div>
-            <div class="fc__desc">
-              Never run out of ideas. Get trending topics, angles, and hooks
-              tailored to your niche.
-            </div>
-            <div class="fc__tags">
-              <span class="fc__tag">Free</span
-              ><span class="fc__tag">1 credit</span
-              ><span class="fc__tag">980 users</span>
-            </div>
-            <div class="fc__preview">
-              <div class="fc__preview-bar">
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--rose)"
-                ></div>
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--amber)"
-                ></div>
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--green)"
-                ></div>
-              </div>
-              <div class="fc__preview-line fc__preview-line--long"></div>
-              <div class="fc__preview-line fc__preview-line--short"></div>
-              <div class="fc__preview-line fc__preview-line--med"></div>
-              <div class="fc__snip" style="top: 26px; right: 14px">
-                <div
-                  class="fc__snip-icon"
-                  style="
-                    background: rgba(59, 130, 246, 0.15);
-                    color: var(--blue);
-                  "
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="12"
-                    height="12"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <path
-                      d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"
-                    />
-                    <path d="M9 21h6" />
-                  </svg>
-                </div>
-                <div>
-                  <strong>12 ideas generated</strong
-                  ><small>Trending in your niche</small>
-                </div>
-              </div>
+            <div>
+              <h3 class="use__title">Internal workflow automation</h3>
+              <p class="use__desc">
+                Connect your tools, automate repetitive tasks, and replace
+                hours of manual work with a single intelligent system.
+              </p>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- Business tools sub-row -->
-        <div class="tool-grid tool-grid--3" style="margin-top: 20px">
-          <div class="fc fc--amber rv d1">
-            <div class="fc__icon fc__icon--amber">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
+    <!-- ═══ 5. MARKETPLACE (LIGHT) ═══ -->
+    <section class="sec sec--tight market" id="tools">
+      <div class="ctn">
+        <div class="sh">
+          <span class="tag rv">Marketplace</span>
+          <h2 class="sh__title rv d1">A few of our <em>ready-made tools</em></h2>
+          <p class="sh__sub rv d2">
+            Production tools we've built — proof of what we ship.
+          </p>
+        </div>
+        <div class="tools">
+          <div class="tool rv d1">
+            <div class="tool__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="23 7 16 12 23 17 23 7" />
+                <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+              </svg>
+            </div>
+            <div class="tool__title">Video Generator</div>
+            <p class="tool__desc">Generate short-form videos from a single prompt.</p>
+          </div>
+          <div class="tool rv d2">
+            <div class="tool__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <polyline points="21 15 16 10 5 21" />
+              </svg>
+            </div>
+            <div class="tool__title">Image Generator</div>
+            <p class="tool__desc">High-quality on-brand visuals in seconds.</p>
+          </div>
+          <div class="tool rv d3">
+            <div class="tool__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+              </svg>
+            </div>
+            <div class="tool__title">Copy Assistant</div>
+            <p class="tool__desc">On-brand long and short-form copy in one click.</p>
+          </div>
+          <div class="tool rv d4">
+            <div class="tool__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M3 3v18h18" />
                 <path d="m19 9-5 5-4-4-3 3" />
               </svg>
             </div>
-            <div class="fc__title">Market Research.</div>
-            <div class="fc__desc">
-              In-depth competitive analysis, SWOT, personas, and market trends.
-            </div>
-            <div class="fc__tags">
-              <span class="fc__tag">Premium</span
-              ><span class="fc__tag">3 credits</span>
-            </div>
-            <div class="fc__preview">
-              <div class="fc__preview-bar">
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--rose)"
-                ></div>
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--amber)"
-                ></div>
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--green)"
-                ></div>
-              </div>
-              <div class="fc__preview-line fc__preview-line--long"></div>
-              <div class="fc__preview-line fc__preview-line--med"></div>
-              <div class="fc__snip" style="top: 24px; right: 12px">
-                <div
-                  class="fc__snip-icon"
-                  style="
-                    background: rgba(245, 158, 11, 0.15);
-                    color: var(--amber);
-                  "
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="12"
-                    height="12"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <path d="M3 3v18h18" />
-                    <path d="m19 9-5 5-4-4-3 3" />
-                  </svg>
-                </div>
-                <div>
-                  <strong>SWOT Analysis</strong
-                  ><small>4 competitors found</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="fc fc--green rv d2">
-            <div class="fc__icon fc__icon--green">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                <polyline points="9 22 9 12 15 12 15 22" />
-              </svg>
-            </div>
-            <div class="fc__title">Real Estate Listings.</div>
-            <div class="fc__desc">
-              Stunning property listings that sell. Professional and persuasive
-              copy.
-            </div>
-            <div class="fc__tags">
-              <span class="fc__tag">Premium</span
-              ><span class="fc__tag">3 credits</span>
-            </div>
-            <div class="fc__preview">
-              <div class="fc__preview-bar">
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--rose)"
-                ></div>
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--amber)"
-                ></div>
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--green)"
-                ></div>
-              </div>
-              <div class="fc__preview-line fc__preview-line--med"></div>
-              <div class="fc__preview-line fc__preview-line--long"></div>
-              <div class="fc__snip" style="top: 22px; right: 12px">
-                <div
-                  class="fc__snip-icon"
-                  style="
-                    background: rgba(34, 197, 94, 0.15);
-                    color: var(--green);
-                  "
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="12"
-                    height="12"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                    <polyline points="9 22 9 12 15 12 15 22" />
-                  </svg>
-                </div>
-                <div>
-                  <strong>Listing ready</strong><small>MLS-formatted</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="fc fc--blue rv d3">
-            <div class="fc__icon fc__icon--blue">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <rect x="2" y="4" width="20" height="16" rx="2" />
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-              </svg>
-            </div>
-            <div class="fc__title">Email Reply Assistant.</div>
-            <div class="fc__desc">
-              Transform drafts into professional emails with tone customization.
-            </div>
-            <div class="fc__tags">
-              <span class="fc__tag">Free</span
-              ><span class="fc__tag">2 credits</span>
-            </div>
-            <div class="fc__preview">
-              <div class="fc__preview-bar">
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--rose)"
-                ></div>
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--amber)"
-                ></div>
-                <div
-                  class="fc__preview-dot"
-                  style="background: var(--green)"
-                ></div>
-              </div>
-              <div class="fc__preview-line fc__preview-line--long"></div>
-              <div class="fc__preview-line fc__preview-line--short"></div>
-              <div class="fc__preview-line fc__preview-line--med"></div>
-              <div class="fc__snip" style="top: 24px; right: 12px">
-                <div
-                  class="fc__snip-icon"
-                  style="
-                    background: rgba(59, 130, 246, 0.15);
-                    color: var(--blue);
-                  "
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="12"
-                    height="12"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <rect x="2" y="4" width="20" height="16" rx="2" />
-                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                  </svg>
-                </div>
-                <div>
-                  <strong>Professional tone</strong><small>Reply drafted</small>
-                </div>
-              </div>
-            </div>
+            <div class="tool__title">Insights Engine</div>
+            <p class="tool__desc">Surface trends and signals from your business data.</p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ═══ YOUR AI TEAM ═══ -->
-    <section class="sec" id="agents">
-      <div class="ctn">
-        <div class="sh rv">
-          <div class="sh__tag">AI Employees</div>
-          <h2 class="sh__title">Your dedicated <em>AI team</em></h2>
-          <p class="sh__sub">
-            Hiring costs money. AI doesn't. Each specialist is designed to own a
-            specific business function — running autonomously, never calling in
-            sick, never needing a brief twice.
-          </p>
-        </div>
-        <div class="agents-grid">
-          <div class="ag rv d1">
-            <div class="ag__top">
-              <div class="ag__avatar">
-                <img
-                  loading="lazy"
-                  decoding="async"
-                  width="80"
-                  height="80"
-                  src="https://randomuser.me/api/portraits/women/65.jpg"
-                  alt="Vizzy"
-                />
-              </div>
-              <div class="ag__name">Virtual Assistant</div>
-              <div class="ag__role">Vizzy</div>
-              <div class="ag__skills">
-                <span class="ag__skill">Tasks</span
-                ><span class="ag__skill">Scheduling</span
-                ><span class="ag__skill">Workflow</span>
-              </div>
-            </div>
-            <div class="ag__foot">
-              <span class="ag__credits">5 credits / chat</span>
-              <div class="ag__action">
-                Chat now
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="ag rv d2">
-            <div class="ag__top">
-              <div class="ag__avatar">
-                <img
-                  loading="lazy"
-                  decoding="async"
-                  width="80"
-                  height="80"
-                  src="https://randomuser.me/api/portraits/men/32.jpg"
-                  alt="Seomi"
-                />
-              </div>
-              <div class="ag__name">SEO Specialist</div>
-              <div class="ag__role">Seomi</div>
-              <div class="ag__skills">
-                <span class="ag__skill">Keywords</span
-                ><span class="ag__skill">Meta</span
-                ><span class="ag__skill">Rankings</span>
-              </div>
-            </div>
-            <div class="ag__foot">
-              <span class="ag__credits">5 credits / chat</span>
-              <div class="ag__action">
-                Chat now
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="ag rv d3">
-            <div class="ag__top">
-              <div class="ag__avatar">
-                <img
-                  loading="lazy"
-                  decoding="async"
-                  width="80"
-                  height="80"
-                  src="https://randomuser.me/api/portraits/men/75.jpg"
-                  alt="Milli"
-                />
-              </div>
-              <div class="ag__name">Sales Strategist</div>
-              <div class="ag__role">Milli</div>
-              <div class="ag__skills">
-                <span class="ag__skill">Pitches</span
-                ><span class="ag__skill">Cold Email</span
-                ><span class="ag__skill">Closing</span>
-              </div>
-            </div>
-            <div class="ag__foot">
-              <span class="ag__credits">5 credits / chat</span>
-              <div class="ag__action">
-                Chat now
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="ag rv d4">
-            <div class="ag__top">
-              <div class="ag__avatar">
-                <img
-                  loading="lazy"
-                  decoding="async"
-                  width="80"
-                  height="80"
-                  src="https://randomuser.me/api/portraits/women/44.jpg"
-                  alt="Emmie"
-                />
-              </div>
-              <div class="ag__name">Email Marketer</div>
-              <div class="ag__role">Emmie</div>
-              <div class="ag__skills">
-                <span class="ag__skill">Campaigns</span
-                ><span class="ag__skill">A/B Test</span
-                ><span class="ag__skill">Copy</span>
-              </div>
-            </div>
-            <div class="ag__foot">
-              <span class="ag__credits">5 credits / chat</span>
-              <div class="ag__action">
-                Chat now
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ WHY BUSINESSES TRUST US ═══ -->
-    <section class="sec" style="background: var(--bg2)">
-      <div class="ctn">
-        <div class="sh rv">
-          <div class="sh__tag">Your Trusted AI Partner</div>
-          <h2 class="sh__title">Why Businesses <em>Trust Us</em></h2>
-          <p class="sh__sub">
-            No off-the-shelf software. No offshore teams. Just proven AI
-            systems, fast setup, and a dedicated partner accountable for your
-            results.
-          </p>
-        </div>
-        <div class="trust-grid">
-          <div class="trust-card rv d1">
-            <div class="trust-icon">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-            </div>
-            <div class="trust-card__title">100% Australian Owned</div>
-            <div class="trust-card__desc">
-              We're an Australian company building AI systems for Australian and
-              global businesses. Local team, local support, real accountability.
-            </div>
-          </div>
-          <div class="trust-card rv d2">
-            <div class="trust-icon" style="color: var(--teal)">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="m9 12 2 2 4-4" />
-                <circle cx="12" cy="12" r="10" />
-              </svg>
-            </div>
-            <div class="trust-card__title">Proven in Production</div>
-            <div class="trust-card__desc">
-              23+ AI tools and agents already live across real businesses —
-              tested in content, sales, ops, and finance. Not theory. Measurable
-              results.
-            </div>
-          </div>
-          <div class="trust-card rv d3">
-            <div class="trust-icon" style="color: var(--amber)">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
-              </svg>
-            </div>
-            <div class="trust-card__title">Live in 7–14 Days</div>
-            <div class="trust-card__desc">
-              Most clients go live within 2 weeks. We scope fast, build fast,
-              and iterate faster — because every day of delay costs your
-              business money.
-            </div>
-          </div>
-          <div class="trust-card rv d4">
-            <div class="trust-icon" style="color: var(--green)">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-            </div>
-            <div class="trust-card__title">Dedicated Account Manager</div>
-            <div class="trust-card__desc">
-              A named contact, not a ticket queue. Your dedicated manager
-              handles weekly check-ins, performance reviews, and ongoing system
-              optimisation.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ TESTIMONIALS ═══ -->
-    <section class="sec">
-      <div class="ctn">
-        <div class="sh rv">
-          <div class="sh__tag">Testimonials</div>
-          <h2 class="sh__title">Real results from <em>real businesses</em></h2>
-        </div>
-        <div class="testi-grid">
-          <div class="tcard rv d1">
-            <div class="tcard__stars">
-              <svg viewBox="0 0 24 24">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-              <svg viewBox="0 0 24 24">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-              <svg viewBox="0 0 24 24">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-              <svg viewBox="0 0 24 24">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-              <svg viewBox="0 0 24 24">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-            </div>
-            <p class="tcard__q">
-              "NxtGenAI completely transformed our operations workflow. We
-              produce 5x more output with half the team. It's like having a full
-              AI department on call."
-            </p>
-            <div class="tcard__a">
-              <div class="tcard__av">
-                <img
-                  loading="lazy"
-                  decoding="async"
-                  width="40"
-                  height="40"
-                  src="https://randomuser.me/api/portraits/women/79.jpg"
-                  alt="Sarah Chen"
-                />
-              </div>
-              <div>
-                <div class="tcard__name">Sarah Chen</div>
-                <div class="tcard__role">Operations Manager, TechFlow</div>
-              </div>
-            </div>
-          </div>
-          <div class="tcard rv d2">
-            <div class="tcard__stars">
-              <svg viewBox="0 0 24 24">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-              <svg viewBox="0 0 24 24">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-              <svg viewBox="0 0 24 24">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-              <svg viewBox="0 0 24 24">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-              <svg viewBox="0 0 24 24">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-            </div>
-            <p class="tcard__q">
-              "The AI automation system paid for itself in the first month. We
-              saved thousands in consultant and admin fees, and our team focuses
-              on what actually matters now."
-            </p>
-            <div class="tcard__a">
-              <div class="tcard__av">
-                <img
-                  loading="lazy"
-                  decoding="async"
-                  width="40"
-                  height="40"
-                  src="https://randomuser.me/api/portraits/men/46.jpg"
-                  alt="Marcus Rivera"
-                />
-              </div>
-              <div>
-                <div class="tcard__name">Marcus Rivera</div>
-                <div class="tcard__role">Founder, GrowthScale</div>
-              </div>
-            </div>
-          </div>
-          <div class="tcard rv d3">
-            <div class="tcard__stars">
-              <svg viewBox="0 0 24 24">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-              <svg viewBox="0 0 24 24">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-              <svg viewBox="0 0 24 24">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-              <svg viewBox="0 0 24 24">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-              <svg viewBox="0 0 24 24">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-            </div>
-            <p class="tcard__q">
-              "The custom AI workflow they built for our business saves us 20+
-              hours a week. More enquiries, faster response, better results. I
-              recommend it to every business I know."
-            </p>
-            <div class="tcard__a">
-              <div class="tcard__av">
-                <img
-                  loading="lazy"
-                  decoding="async"
-                  width="40"
-                  height="40"
-                  src="https://randomuser.me/api/portraits/women/90.jpg"
-                  alt="Emily Park"
-                />
-              </div>
-              <div>
-                <div class="tcard__name">Emily Park</div>
-                <div class="tcard__role">Director, Park Advisory Group</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ FINAL CTA ═══ -->
-    <section class="cta-banner">
-      <div class="ctn">
-        <div class="rv" style="margin-bottom: 20px">
-          <span
-            style="
-              display: inline-flex;
-              align-items: center;
-              gap: 7px;
-              padding: 6px 16px;
-              border-radius: 100px;
-              font-size: 11px;
-              font-weight: 700;
-              letter-spacing: 1px;
-              text-transform: uppercase;
-              background: rgba(34, 197, 94, 0.12);
-              border: 1px solid rgba(34, 197, 94, 0.25);
-              color: #22c55e;
-            "
-          >
-            <span
-              style="
-                width: 6px;
-                height: 6px;
-                border-radius: 50%;
-                background: #22c55e;
-                display: inline-block;
-              "
-            ></span>
-            Onboarding spots available this month
-          </span>
-        </div>
-        <h2 class="cta-banner__title rv d1">
-          Your competitors are<br /><em>already using AI.</em>
-        </h2>
-        <p class="cta-banner__sub rv d2">
-          Don't get left behind. AI automation is no longer a nice-to-have —
-          it's how winning businesses operate. Let us show you what's possible
-          with a free 30-minute automation audit.
-        </p>
-        <div class="cta-banner__btns rv d3">
-          <a href="#" class="btn btn--white btn--lg">
-            Get Your Free Automation Plan
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
+        <div class="market__cta rv">
+          <a href="#" class="btn btn--ghost">
+            Explore Tools
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
               <path d="M5 12h14" />
               <path d="m12 5 7 7-7 7" />
             </svg>
           </a>
-          <a href="#" class="btn btn--ghost btn--lg">Talk to Our Team</a>
         </div>
-        <p
-          class="rv d4"
-          style="margin-top: 20px; font-size: 12px; color: var(--w30)"
-        >
-          No commitment. No sales pitch. Just a clear plan for your business.
+      </div>
+    </section>
+
+    <!-- ═══ 6. FINAL CTA ═══ -->
+    <section class="sec final" id="start">
+      <div class="ctn final__inner">
+        <span class="tag rv">Get Started</span>
+        <h2 class="final__title rv d1" style="margin-top: 22px">
+          Build Your <em>Custom AI System</em>
+        </h2>
+        <div class="rv d2">
+          <a href="#" class="btn btn--primary">
+            Start Custom Integration
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+        <p class="final__sub rv d3">
+          Applications are reviewed before system design and quoting
         </p>
+      </div>
+    </section>
+
+    <!-- ═══ 7. URGENCY / VALUE ═══ -->
+    <section class="urgency">
+      <div class="ctn">
+        <p class="urgency__line rv">
+          One well-implemented automation can replace
+          <em>hours of manual work every week</em> — the question is whether
+          your business adopts it first, or your competitors do.
+        </p>
+        <div class="rv d2">
+          <span class="urgency__savings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+              <path d="m9 12 2 2 4-4" />
+              <circle cx="12" cy="12" r="10" />
+            </svg>
+            Potential savings: $5,000–$20,000+ annually depending on workflow
+            complexity
+          </span>
+        </div>
       </div>
     </section>
 
     <!-- ═══ FOOTER ═══ -->
     <footer class="footer">
-      <div class="ctn">
-        <div class="footer__grid">
-          <div>
-            <div class="footer__brand"><img src="./NextGenAI-Logo.png" alt="NxtGenAI" width="100" height="58" /></div>
-            <p class="footer__desc">
-              Custom AI automation systems built for businesses that want to
-              move faster, operate smarter, and scale without limits.
-            </p>
-          </div>
-          <div>
-            <div class="footer__col-title">Solutions</div>
-            <a href="#" class="footer__link">Workflow Automation</a>
-            <a href="#" class="footer__link">AI Agents</a>
-            <a href="#" class="footer__link">CRM Integrations</a>
-            <a href="#" class="footer__link">Content Systems</a>
-            <a href="#" class="footer__link">Pricing</a>
-          </div>
-          <div>
-            <div class="footer__col-title">Tools</div>
-            <a href="#" class="footer__link">Caption Generator</a>
-            <a href="#" class="footer__link">Content Calendar</a>
-            <a href="#" class="footer__link">Email Assistant</a>
-            <a href="#" class="footer__link">Market Research</a>
-          </div>
-          <div>
-            <div class="footer__col-title">Company</div>
-            <a href="#" class="footer__link">About</a>
-            <a href="#" class="footer__link">Blog</a>
-            <a href="#" class="footer__link">Careers</a>
-            <a href="#" class="footer__link">Contact</a>
-          </div>
-          <div>
-            <div class="footer__col-title">Legal</div>
-            <a href="#" class="footer__link">Privacy</a>
-            <a href="#" class="footer__link">Terms</a>
-            <a href="#" class="footer__link">Cookies</a>
-            <a href="#" class="footer__link">Security</a>
-          </div>
+      <div class="ctn footer__row">
+        <a href="/" class="footer__brand"
+          ><img src="./NextGenAI-Logo.png" alt="NXTGENAI"
+        /></a>
+        <div class="footer__nav">
+          <a href="#what">What We Do</a>
+          <a href="#process">Process</a>
+          <a href="#use-cases">Use Cases</a>
+          <a href="#tools">Tools</a>
+          <a href="#start">Start</a>
         </div>
-        <div class="footer__bottom">
-          <span>&copy; 2026 NXTGENAI. All rights reserved.</span>
-          <span>Built in Australia</span>
-        </div>
+        <div class="footer__copy">© 2026 NXTGENAI. All rights reserved.</div>
       </div>
     </footer>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        /* ── Alternate section content: odd slides from left, even from right ── */
-        var secs = document.querySelectorAll(".sec, .for-sec, .cta-banner");
-        secs.forEach(function (sec, i) {
-          /* Find the main content container (grid/list) inside each section — skip the header */
-          var content = sec.querySelector(
-            ".how-steps, .svc-grid, .sol-grid, .tool-grid, .agents-grid, " +
-              ".trust-grid, .testi-grid, .for-grid, .consult-cta, .cta-banner__btns",
-          );
-          if (!content) return;
-          /* Remove existing rv/rv-l/rv-r so we can reassign */
-          content.classList.remove("rv", "rv-l", "rv-r");
-          /* Odd sections slide from left, even from right */
-          content.classList.add(i % 2 === 0 ? "rv-l" : "rv-r");
-        });
-
-        /* ── Reveal observer: one-shot, unobserve + free GPU after animation ── */
         var obs = new IntersectionObserver(
           function (entries) {
             entries.forEach(function (e) {
               if (e.isIntersecting) {
                 e.target.classList.add("vis");
                 obs.unobserve(e.target);
-                e.target.addEventListener(
-                  "transitionend",
-                  function h() {
-                    e.target.classList.add("done");
-                    e.target.removeEventListener("transitionend", h);
-                  },
-                  { once: true },
-                );
               }
             });
           },
-          { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
+          { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
         );
-        document
-          .querySelectorAll(".rv,.rv-l,.rv-r,.rv-s")
-          .forEach(function (el) {
-            obs.observe(el);
-          });
+        document.querySelectorAll(".rv").forEach(function (el) {
+          obs.observe(el);
+        });
 
-        /* ── Smooth anchor scrolling ── */
+        var nav = document.querySelector(".nav");
+        window.addEventListener(
+          "scroll",
+          function () {
+            nav.classList.toggle("scrolled", window.scrollY > 40);
+          },
+          { passive: true }
+        );
+
         document.querySelectorAll('a[href^="#"]').forEach(function (a) {
           a.addEventListener("click", function (e) {
             var t = document.querySelector(this.getAttribute("href"));
@@ -3430,44 +1031,6 @@
             }
           });
         });
-
-        /* ── Nav scroll state + active section ── */
-        var nav = document.querySelector(".nav");
-        var navLinks = document.querySelectorAll('.nav__link[href^="#"]');
-        var navSections = [];
-        navLinks.forEach(function (link) {
-          var id = link.getAttribute("href").slice(1);
-          var sec = document.getElementById(id);
-          if (sec) navSections.push({ el: sec, link: link });
-        });
-
-        var ticking = false;
-        window.addEventListener(
-          "scroll",
-          function () {
-            if (!ticking) {
-              requestAnimationFrame(function () {
-                var y = window.scrollY;
-                nav.classList.toggle("scrolled", y > 60);
-                var current = null;
-                for (var s = 0; s < navSections.length; s++) {
-                  var top = navSections[s].el.offsetTop - 120;
-                  if (y >= top && y < top + navSections[s].el.offsetHeight) {
-                    current = navSections[s].link;
-                    break;
-                  }
-                }
-                navLinks.forEach(function (l) {
-                  l.classList.remove("active");
-                });
-                if (current) current.classList.add("active");
-                ticking = false;
-              });
-              ticking = true;
-            }
-          },
-          { passive: true },
-        );
       });
     </script>
   </body>

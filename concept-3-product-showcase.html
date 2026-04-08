@@ -23,9 +23,9 @@
         --bg2: #0c0c16;
         --bg3: #11111d;
         --surface: #14142200;
-        --surface-card: #16162580;
+        --surface-card: rgba(22, 22, 37, 0.6);
         --border: rgba(255, 255, 255, 0.07);
-        --border2: rgba(255, 255, 255, 0.12);
+        --border2: rgba(255, 255, 255, 0.14);
         --w: #ffffff;
         --w90: rgba(255, 255, 255, 0.92);
         --w70: rgba(255, 255, 255, 0.7);
@@ -34,13 +34,15 @@
         --w08: rgba(255, 255, 255, 0.06);
         --purple: #a855f7;
         --purple-light: #c084fc;
+        --pink: #ec4899;
         --teal: #2dd4bf;
         --teal-glow: rgba(45, 212, 191, 0.12);
         --purple-glow: rgba(168, 85, 247, 0.15);
         --grad1: linear-gradient(135deg, #a855f7, #ec4899, #f97316);
         --grad2: linear-gradient(135deg, #2dd4bf, #a855f7);
-        --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.04) inset,
-          0 30px 60px -30px rgba(0, 0, 0, 0.5);
+        --shadow-card:
+          0 1px 0 rgba(255, 255, 255, 0.04) inset,
+          0 30px 60px -30px rgba(0, 0, 0, 0.6);
       }
       html {
         scroll-behavior: smooth;
@@ -122,13 +124,13 @@
         background: linear-gradient(135deg, #a855f7, #ec4899);
         color: #fff;
         box-shadow:
-          0 8px 24px rgba(168, 85, 247, 0.28),
+          0 8px 24px rgba(168, 85, 247, 0.32),
           0 0 0 1px rgba(255, 255, 255, 0.08) inset;
       }
       .btn--primary:hover {
         transform: translateY(-2px);
         box-shadow:
-          0 14px 36px rgba(236, 72, 153, 0.36),
+          0 14px 36px rgba(236, 72, 153, 0.4),
           0 0 0 1px rgba(255, 255, 255, 0.12) inset;
       }
       .btn--ghost {
@@ -137,21 +139,12 @@
         border: 1px solid var(--border2);
       }
       .btn--ghost:hover {
-        border-color: rgba(168, 85, 247, 0.45);
+        border-color: rgba(168, 85, 247, 0.5);
         background: linear-gradient(
           135deg,
-          rgba(168, 85, 247, 0.08),
-          rgba(45, 212, 191, 0.05)
+          rgba(168, 85, 247, 0.1),
+          rgba(45, 212, 191, 0.06)
         );
-      }
-      .btn--white {
-        background: #fff;
-        color: #07070e;
-        box-shadow: 0 8px 28px rgba(255, 255, 255, 0.16);
-      }
-      .btn--white:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 14px 38px rgba(255, 255, 255, 0.22);
       }
 
       /* ─── Eyebrow tag ─── */
@@ -285,7 +278,7 @@
       }
       .nav__cta:hover {
         transform: translateY(-1px);
-        box-shadow: 0 8px 24px rgba(168, 85, 247, 0.35);
+        box-shadow: 0 8px 24px rgba(168, 85, 247, 0.4);
       }
 
       /* ═══ HERO ═══ */
@@ -306,8 +299,8 @@
         border-radius: 50%;
         background: radial-gradient(
           circle,
-          rgba(168, 85, 247, 0.16) 0%,
-          rgba(45, 212, 191, 0.06) 35%,
+          rgba(168, 85, 247, 0.18) 0%,
+          rgba(45, 212, 191, 0.07) 35%,
           transparent 65%
         );
         pointer-events: none;
@@ -346,70 +339,473 @@
         color: var(--w30);
         letter-spacing: 0.2px;
       }
+      .hero__ctas {
+        display: inline-flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
 
-      /* ═══ WHAT WE DO ═══ */
-      .what {
-        text-align: center;
+      /* ═══ PROCESS (scroll-pinned) ═══ */
+      .process-section {
+        background:
+          radial-gradient(
+            ellipse 1100px 600px at 50% 0%,
+            rgba(168, 85, 247, 0.1),
+            transparent 60%
+          ),
+          var(--bg2);
         position: relative;
       }
-      .what__quote {
-        font-size: clamp(24px, 3vw, 34px);
-        font-weight: 600;
-        color: var(--w90);
-        max-width: 880px;
-        margin: 24px auto 0;
-        line-height: 1.45;
-        letter-spacing: -0.5px;
+      .process-sticky-outer {
+        position: relative;
+        height: 480vh;
       }
-      .what__quote em {
-        font-style: normal;
-        background: var(--grad2);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+      .process-sticky-inner {
+        position: sticky;
+        top: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 100px 0;
+        will-change: transform;
+      }
+      .process-sticky-inner .sh {
+        margin-bottom: 56px;
       }
 
-      /* ═══ PROCESS ═══ */
-      .steps {
+      /* ─── Stepper ─── */
+      .stepper {
+        position: relative;
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
+        max-width: 880px;
+        margin: 0 auto 64px;
+        padding: 0 24px;
+      }
+      .stepper__track {
+        position: absolute;
+        top: 19px;
+        left: calc(10% + 24px);
+        right: calc(10% + 24px);
+        height: 2px;
+        border-radius: 100px;
+        background: rgba(255, 255, 255, 0.08);
+        z-index: 0;
+        overflow: hidden;
+      }
+      .stepper__fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 100px;
+        background: linear-gradient(
+          90deg,
+          #7c3aed 0%,
+          #a855f7 25%,
+          #ec4899 55%,
+          #f472b6 80%,
+          #2dd4bf 100%
+        );
+        transform: scaleX(var(--p, 0));
+        transform-origin: left center;
+        transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: transform;
+        box-shadow: 0 0 18px rgba(168, 85, 247, 0.45);
+      }
+      .stepper__pin {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 12px;
+        height: 12px;
+        margin-left: -6px;
+        border-radius: 50%;
+        background: #fff;
+        border: 2.5px solid #a855f7;
+        box-shadow:
+          0 0 0 4px rgba(168, 85, 247, 0.2),
+          0 6px 16px -4px rgba(168, 85, 247, 0.55);
+        transform: translate(calc(var(--track-w, 0) * var(--p, 0)), -50%);
+        transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        z-index: 2;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .stepper.is-engaged .stepper__pin {
+        opacity: 1;
+      }
+      .stepper__node {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .stepper__dot {
+        position: relative;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: #14142a;
+        border: 1.5px solid rgba(255, 255, 255, 0.16);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--w50);
+        letter-spacing: 0.4px;
+        font-variant-numeric: tabular-nums;
+        transition:
+          transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+          background 0.45s ease,
+          border-color 0.45s ease,
+          color 0.45s ease,
+          box-shadow 0.55s ease;
+        will-change: transform;
+      }
+      .stepper__dot::after {
+        content: "";
+        position: absolute;
+        inset: -5px;
+        border-radius: 50%;
+        border: 1.5px solid transparent;
+        transition:
+          border-color 0.5s ease,
+          inset 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 0.5s ease;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .stepper__node.is-done .stepper__dot {
+        background: #a855f7;
+        border-color: #a855f7;
+        color: #fff;
+      }
+      .stepper__node.is-done .stepper__dot::before {
+        content: "";
+        width: 13px;
+        height: 7px;
+        border-left: 1.8px solid #fff;
+        border-bottom: 1.8px solid #fff;
+        transform: rotate(-45deg) translate(1px, -1px);
+      }
+      .stepper__node.is-done .stepper__dot span { display: none; }
+      .stepper__node.is-active .stepper__dot {
+        background: linear-gradient(135deg, #a855f7, #ec4899, #f472b6);
+        border-color: transparent;
+        color: #fff;
+        transform: scale(1.14);
+        box-shadow:
+          0 14px 32px -10px rgba(168, 85, 247, 0.65),
+          0 0 0 1px rgba(168, 85, 247, 0.2);
+      }
+      .stepper__node.is-active .stepper__dot::after {
+        opacity: 1;
+        border-color: rgba(236, 72, 153, 0.55);
+        inset: -7px;
+      }
+      .stepper__label {
+        margin-top: 16px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: var(--w50);
+        text-align: center;
+        max-width: 120px;
+        line-height: 1.4;
+        transition: color 0.4s;
+      }
+      .stepper__node.is-done .stepper__label { color: var(--w70); }
+      .stepper__node.is-active .stepper__label { color: var(--w); }
+
+      /* ─── Showcase card ─── */
+      .showcase {
+        position: relative;
+        max-width: 1020px;
+        margin: 0 auto;
+        background: linear-gradient(
+          180deg,
+          rgba(22, 22, 37, 0.85) 0%,
+          rgba(15, 15, 28, 0.9) 100%
+        );
+        border: 1px solid var(--border2);
+        border-radius: 32px;
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.05) inset,
+          0 50px 100px -32px rgba(0, 0, 0, 0.7),
+          0 0 0 1px rgba(168, 85, 247, 0.05);
+        overflow: hidden;
+        min-height: 460px;
+        transform: translateZ(0);
+      }
+      .showcase__panel {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-template-columns: 1.05fr 1fr;
+        opacity: 0;
+        transform: translateY(0) scale(0.985);
+        transition:
+          opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+        pointer-events: none;
+        will-change: opacity, transform;
+      }
+      .showcase__panel .showcase__content,
+      .showcase__panel .showcase__visual {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.95s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .showcase__panel .showcase__visual {
+        transform: translateY(20px);
+        transition-delay: 0.06s;
+      }
+      .showcase__panel.is-active {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+      }
+      .showcase__panel.is-active .showcase__content,
+      .showcase__panel.is-active .showcase__visual {
+        opacity: 1;
+        transform: none;
+      }
+      .showcase__content {
+        padding: 60px 56px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .showcase__num {
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 1.8px;
+        color: var(--purple-light);
+        padding: 6px 14px;
+        border-radius: 100px;
+        background: var(--purple-glow);
+        border: 1px solid rgba(168, 85, 247, 0.28);
+        align-self: flex-start;
+        text-transform: uppercase;
+      }
+      .showcase__title {
+        font-size: clamp(26px, 3vw, 38px);
+        font-weight: 800;
+        color: var(--w);
+        letter-spacing: -1.2px;
+        line-height: 1.12;
+        margin: 22px 0 16px;
+      }
+      .showcase__desc {
+        font-size: 16px;
+        line-height: 1.7;
+        color: var(--w50);
+        max-width: 440px;
+      }
+      .showcase__visual {
+        position: relative;
+        background:
+          radial-gradient(
+            circle at 70% 30%,
+            rgba(168, 85, 247, 0.18),
+            transparent 55%
+          ),
+          linear-gradient(
+            135deg,
+            rgba(168, 85, 247, 0.1),
+            rgba(236, 72, 153, 0.06)
+          );
+        border-left: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .showcase__visual::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size: 36px 36px;
+        mask-image: radial-gradient(ellipse at center, #000 35%, transparent 75%);
+        -webkit-mask-image: radial-gradient(ellipse at center, #000 35%, transparent 75%);
+      }
+      .showcase__visual::after {
+        content: "";
+        position: absolute;
+        inset: -20%;
+        background:
+          radial-gradient(
+            circle at 35% 40%,
+            rgba(168, 85, 247, 0.22),
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 70% 60%,
+            rgba(236, 72, 153, 0.16),
+            transparent 50%
+          );
+        animation: ambientDrift 14s ease-in-out infinite;
+        pointer-events: none;
+        will-change: transform;
+      }
+      @keyframes ambientDrift {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        33%      { transform: translate(14px, -10px) scale(1.04); }
+        66%      { transform: translate(-10px, 8px) scale(0.98); }
+      }
+      .showcase__icon {
+        position: relative;
+        width: 148px;
+        height: 148px;
+        border-radius: 36px;
+        background: linear-gradient(135deg, #7c3aed, #a855f7, #ec4899);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        box-shadow:
+          0 30px 70px -18px rgba(168, 85, 247, 0.65),
+          0 0 0 1px rgba(255, 255, 255, 0.18) inset;
+        animation: iconFloat 5s ease-in-out infinite;
+      }
+      .showcase__icon::after {
+        content: "";
+        position: absolute;
+        inset: -16px;
+        border-radius: 48px;
+        border: 1.5px solid rgba(168, 85, 247, 0.3);
+        animation: iconRing 4s ease-in-out infinite;
+      }
+      .showcase__icon svg {
+        width: 64px;
+        height: 64px;
+      }
+      .showcase__panel[data-step="2"] .showcase__icon {
+        background: linear-gradient(135deg, #a855f7, #c084fc, #ec4899);
+        box-shadow:
+          0 30px 70px -18px rgba(192, 132, 252, 0.6),
+          0 0 0 1px rgba(255, 255, 255, 0.18) inset;
+      }
+      .showcase__panel[data-step="3"] .showcase__icon {
+        background: linear-gradient(135deg, #7c3aed, #ec4899, #f472b6);
+        box-shadow:
+          0 30px 70px -18px rgba(236, 72, 153, 0.6),
+          0 0 0 1px rgba(255, 255, 255, 0.18) inset;
+      }
+      .showcase__panel[data-step="4"] .showcase__icon {
+        background: linear-gradient(135deg, #a855f7, #ec4899, #f97316);
+        box-shadow:
+          0 30px 70px -18px rgba(249, 115, 22, 0.55),
+          0 0 0 1px rgba(255, 255, 255, 0.18) inset;
+      }
+      .showcase__panel[data-step="5"] .showcase__icon {
+        background: linear-gradient(135deg, #2dd4bf, #a855f7, #ec4899);
+        box-shadow:
+          0 30px 70px -18px rgba(45, 212, 191, 0.6),
+          0 0 0 1px rgba(255, 255, 255, 0.18) inset;
+        animation: iconFloat 5s ease-in-out infinite,
+          livePulse 2.4s ease-in-out infinite;
+      }
+      .showcase__panel[data-step="5"] .showcase__num {
+        color: var(--teal);
+        background: var(--teal-glow);
+        border-color: rgba(45, 212, 191, 0.32);
+      }
+      .showcase__panel[data-step="5"] .showcase__num::before {
+        content: "";
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--teal);
+        margin-right: 8px;
+        vertical-align: middle;
+        animation: blink 1.4s ease-in-out infinite;
+      }
+      @keyframes iconFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+      @keyframes iconRing {
+        0%, 100% { transform: scale(1); opacity: 0.6; }
+        50% { transform: scale(1.08); opacity: 0.25; }
+      }
+      @keyframes livePulse {
+        0%, 100% {
+          box-shadow:
+            0 30px 70px -18px rgba(45, 212, 191, 0.6),
+            0 0 0 1px rgba(255, 255, 255, 0.18) inset;
+        }
+        50% {
+          box-shadow:
+            0 30px 70px -18px rgba(45, 212, 191, 0.78),
+            0 0 0 14px rgba(45, 212, 191, 0.07),
+            0 0 0 1px rgba(255, 255, 255, 0.18) inset;
+        }
+      }
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
+      }
+
+      /* ═══ IMPACT STATS ═══ */
+      .impact {
+        background: var(--bg2);
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         gap: 20px;
       }
-      .step {
-        position: relative;
-        padding: 36px 28px;
+      .stat {
+        padding: 40px 32px;
         background: rgba(255, 255, 255, 0.025);
         border: 1px solid var(--border);
         border-radius: 20px;
+        box-shadow: var(--shadow-card);
+        text-align: center;
         transition:
           border-color 0.3s,
-          transform 0.3s,
-          background 0.3s;
+          background 0.3s,
+          transform 0.3s;
       }
-      .step:hover {
+      .stat:hover {
         border-color: rgba(168, 85, 247, 0.35);
-        transform: translateY(-4px);
         background: rgba(255, 255, 255, 0.04);
+        transform: translateY(-3px);
       }
-      .step__num {
-        font-size: 13px;
-        font-weight: 700;
-        color: var(--purple-light);
-        letter-spacing: 1.6px;
-        margin-bottom: 18px;
-        display: block;
+      .stat__num {
+        font-size: clamp(40px, 4.4vw, 56px);
+        font-weight: 800;
+        letter-spacing: -2px;
+        background: var(--grad1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+        margin-bottom: 14px;
       }
-      .step__title {
-        font-size: 18px;
+      .stat__title {
+        font-size: 16px;
         font-weight: 700;
         color: var(--w);
-        margin-bottom: 10px;
-        letter-spacing: -0.3px;
+        margin-bottom: 8px;
       }
-      .step__desc {
-        font-size: 14px;
+      .stat__desc {
+        font-size: 13px;
         color: var(--w50);
-        line-height: 1.65;
+        line-height: 1.6;
       }
 
       /* ═══ USE CASES ═══ */
@@ -431,7 +827,7 @@
           transform 0.3s;
       }
       .use:hover {
-        border-color: rgba(45, 212, 191, 0.3);
+        border-color: rgba(45, 212, 191, 0.32);
         background: rgba(255, 255, 255, 0.04);
         transform: translateY(-3px);
       }
@@ -468,56 +864,226 @@
         line-height: 1.65;
       }
 
-      /* ═══ MARKETPLACE ═══ */
+      /* ═══ AI AGENT PORTFOLIO ═══ */
       .market {
         background: var(--bg2);
       }
-      .tools {
+      .agents {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 18px;
-        margin-bottom: 40px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+        margin-bottom: 48px;
       }
-      .tool {
-        padding: 28px 24px;
-        background: rgba(255, 255, 255, 0.025);
+      .agent {
+        position: relative;
+        padding: 26px 24px 22px;
+        background: linear-gradient(
+          180deg,
+          rgba(22, 22, 37, 0.85) 0%,
+          rgba(15, 15, 28, 0.9) 100%
+        );
         border: 1px solid var(--border);
-        border-radius: 18px;
+        border-radius: 22px;
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.04) inset,
+          0 22px 50px -28px rgba(0, 0, 0, 0.7);
         transition:
-          border-color 0.3s,
-          transform 0.3s;
+          border-color 0.4s,
+          transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+          box-shadow 0.4s;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
       }
-      .tool:hover {
-        border-color: var(--border2);
-        transform: translateY(-3px);
+      .agent::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 110px;
+        background:
+          radial-gradient(
+            ellipse at top right,
+            rgba(168, 85, 247, 0.22),
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse at top left,
+            rgba(236, 72, 153, 0.14),
+            transparent 60%
+          );
+        pointer-events: none;
+        opacity: 0.85;
+        transition: opacity 0.4s;
       }
-      .tool__icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-        background: var(--purple-glow);
-        border: 1px solid var(--border2);
+      .agent:hover {
+        transform: translateY(-6px);
+        border-color: rgba(168, 85, 247, 0.4);
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.05) inset,
+          0 32px 70px -22px rgba(168, 85, 247, 0.35);
+      }
+      .agent:hover::before {
+        opacity: 1;
+      }
+
+      .agent__head {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+      .agent__avatar {
+        position: relative;
+        flex-shrink: 0;
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #7c3aed, #a855f7, #ec4899);
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--purple-light);
-        margin-bottom: 18px;
+        color: #fff;
+        box-shadow:
+          0 12px 26px -10px rgba(168, 85, 247, 0.6),
+          0 0 0 1px rgba(255, 255, 255, 0.15) inset;
       }
-      .tool__icon svg {
-        width: 20px;
-        height: 20px;
+      .agent__avatar svg {
+        width: 26px;
+        height: 26px;
       }
-      .tool__title {
+      .agent:nth-child(2) .agent__avatar {
+        background: linear-gradient(135deg, #a855f7, #c084fc, #f472b6);
+      }
+      .agent:nth-child(3) .agent__avatar {
+        background: linear-gradient(135deg, #7c3aed, #ec4899, #f97316);
+      }
+      .agent:nth-child(4) .agent__avatar {
+        background: linear-gradient(135deg, #a855f7, #ec4899, #f472b6);
+      }
+      .agent:nth-child(5) .agent__avatar {
+        background: linear-gradient(135deg, #2dd4bf, #a855f7, #ec4899);
+      }
+      .agent__avatar::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        right: -2px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #22c55e;
+        border: 2.5px solid #0c0c16;
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+        animation: agentPing 2.2s ease-in-out infinite;
+      }
+      @keyframes agentPing {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+        50%      { box-shadow: 0 0 0 5px rgba(34, 197, 94, 0); }
+      }
+      .agent__heading {
+        flex: 1;
+        min-width: 0;
+        position: relative;
+      }
+      .agent__name {
         font-size: 15px;
         font-weight: 700;
         color: var(--w);
-        margin-bottom: 6px;
+        letter-spacing: -0.2px;
+        line-height: 1.3;
+        margin-bottom: 4px;
       }
-      .tool__desc {
+      .agent__type {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+        color: var(--purple-light);
+      }
+
+      .agent__desc {
+        position: relative;
         font-size: 13px;
+        line-height: 1.65;
         color: var(--w50);
-        line-height: 1.6;
+        margin-bottom: 18px;
+        flex: 1;
       }
+
+      .agent__skills {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 18px;
+      }
+      .agent__skill {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 10px;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--purple-light);
+        background: rgba(168, 85, 247, 0.12);
+        border: 1px solid rgba(168, 85, 247, 0.28);
+        border-radius: 100px;
+      }
+
+      .agent__foot {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+      }
+      .agent__meta {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--w50);
+      }
+      .agent__meta svg {
+        width: 12px;
+        height: 12px;
+        color: var(--purple-light);
+      }
+      .agent__deploy {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 14px;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--purple-light);
+        background: rgba(168, 85, 247, 0.12);
+        border: 1px solid rgba(168, 85, 247, 0.32);
+        border-radius: 100px;
+        transition:
+          background 0.3s,
+          color 0.3s,
+          border-color 0.3s,
+          transform 0.3s;
+      }
+      .agent__deploy svg {
+        width: 12px;
+        height: 12px;
+        transition: transform 0.3s;
+      }
+      .agent:hover .agent__deploy {
+        background: linear-gradient(135deg, #a855f7, #ec4899);
+        color: #fff;
+        border-color: transparent;
+      }
+      .agent:hover .agent__deploy svg {
+        transform: translateX(2px);
+      }
+
       .market__cta {
         text-align: center;
       }
@@ -534,7 +1100,7 @@
         inset: 0;
         background: radial-gradient(
           ellipse at center,
-          rgba(168, 85, 247, 0.14),
+          rgba(168, 85, 247, 0.16),
           transparent 60%
         );
         pointer-events: none;
@@ -563,48 +1129,6 @@
         color: var(--w50);
         margin: 24px auto 0;
         max-width: 460px;
-      }
-
-      /* ═══ URGENCY ═══ */
-      .urgency {
-        background: var(--bg2);
-        padding: 110px 0;
-        text-align: center;
-        position: relative;
-      }
-      .urgency__line {
-        font-size: clamp(22px, 2.8vw, 30px);
-        font-weight: 600;
-        color: var(--w90);
-        max-width: 880px;
-        margin: 0 auto;
-        line-height: 1.5;
-        letter-spacing: -0.4px;
-      }
-      .urgency__line em {
-        font-style: normal;
-        background: var(--grad2);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-      .urgency__savings {
-        margin-top: 32px;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 22px;
-        border-radius: 100px;
-        background: rgba(34, 197, 94, 0.1);
-        border: 1px solid rgba(34, 197, 94, 0.25);
-        color: #4ade80;
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 0.2px;
-      }
-      .urgency__savings svg {
-        width: 14px;
-        height: 14px;
       }
 
       /* ═══ FOOTER ═══ */
@@ -648,14 +1172,49 @@
 
       /* ═══ RESPONSIVE ═══ */
       @media (max-width: 980px) {
-        .steps {
-          grid-template-columns: repeat(2, 1fr);
+        .process-sticky-outer {
+          height: auto;
+        }
+        .process-sticky-inner {
+          position: static;
+          min-height: 0;
+          padding: 80px 0;
+        }
+        .stepper {
+          grid-template-columns: repeat(5, 1fr);
+          margin-bottom: 40px;
+        }
+        .stepper__label {
+          font-size: 9px;
+          letter-spacing: 0.6px;
+        }
+        .showcase {
+          min-height: 0;
+        }
+        .showcase__panel {
+          position: relative;
+          opacity: 1;
+          transform: none;
+          pointer-events: auto;
+          display: block;
+        }
+        .showcase__panel + .showcase__panel {
+          border-top: 1px solid var(--border);
+        }
+        .showcase__content {
+          padding: 40px 28px;
+        }
+        .showcase__visual {
+          display: none;
         }
         .uses {
           grid-template-columns: 1fr;
         }
-        .tools {
+        .agents {
           grid-template-columns: repeat(2, 1fr);
+        }
+        .stats {
+          grid-template-columns: 1fr;
         }
       }
       @media (max-width: 640px) {
@@ -677,10 +1236,12 @@
           flex-wrap: wrap;
           justify-content: center;
         }
-        .step,
         .use,
-        .tool {
-          padding: 26px 22px;
+        .agent {
+          padding: 22px 20px;
+        }
+        .showcase__content {
+          padding: 32px 22px;
         }
       }
     </style>
@@ -693,11 +1254,11 @@
           ><img src="./NextGenAI-Logo.png" alt="NXTGENAI"
         /></a>
         <div class="nav__links">
-          <a href="#what" class="nav__link">What We Do</a>
           <a href="#process" class="nav__link">Process</a>
+          <a href="#impact" class="nav__link">Impact</a>
           <a href="#use-cases" class="nav__link">Use Cases</a>
-          <a href="#tools" class="nav__link">Tools</a>
-          <a href="#start" class="nav__cta">Start Custom Integration</a>
+          <a href="#studio" class="nav__link">Studio</a>
+          <a href="#demo" class="nav__cta">Book a Demo</a>
         </div>
       </div>
     </nav>
@@ -709,83 +1270,213 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
             <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
           </svg>
-          Custom AI Engineering
+          24/7 AI Automation
         </span>
         <h1 class="hero__title rv d1">
-          Custom AI Systems Built to<br /><em>Automate Your Business</em>
+          Stop Losing Leads to Missed<br /><em>Calls, Emails &amp; Replies</em>
         </h1>
         <p class="hero__sub rv d2">
-          We design and deploy tailored AI agents and workflows that handle
-          operations, capture leads, and streamline your business.
+          NxtGenAI deploys always-on AI agents that capture leads, schedule
+          appointments, and run operations 24/7 — across real estate,
+          healthcare, e-commerce, and professional services.
         </p>
-        <div class="rv d3">
-          <a href="#start" class="btn btn--primary">
-            Start Custom Integration
+        <div class="hero__ctas rv d3">
+          <a href="#demo" class="btn btn--primary">
+            Book a Demo
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
               <path d="M5 12h14" />
               <path d="m12 5 7 7-7 7" />
             </svg>
           </a>
+          <a href="#studio" class="btn btn--ghost">
+            Deploy Your Agent in a Single Click
+          </a>
         </div>
         <p class="hero__support rv d4">
-          Complete a short onboarding to receive a tailored system plan
+          Built for businesses that can't afford to miss an opportunity
         </p>
       </div>
     </section>
 
-    <!-- ═══ 2. WHAT WE DO ═══ -->
-    <section class="sec what" id="what">
-      <div class="ctn">
-        <span class="tag rv">What We Do</span>
-        <p class="what__quote rv d1">
-          We build <em>custom AI systems</em> for businesses — including lead
-          handling, automation, internal workflows, and integrations.
-        </p>
+    <!-- ═══ 2. PROCESS (scroll-pinned) ═══ -->
+    <section class="process-section" id="process">
+      <div class="process-sticky-outer">
+        <div class="process-sticky-inner">
+          <div class="ctn">
+            <div class="sh">
+              <span class="tag rv">How It Works</span>
+              <h2 class="sh__title rv d1">From idea to <em>live agent</em> in five steps</h2>
+              <p class="sh__sub rv d2">
+                Scroll through the deployment journey — pinned in place.
+              </p>
+            </div>
+
+            <!-- Stepper -->
+            <div class="stepper" aria-hidden="true">
+              <div class="stepper__track">
+                <div class="stepper__fill"></div>
+                <div class="stepper__pin"></div>
+              </div>
+              <div class="stepper__node is-active">
+                <div class="stepper__dot"><span>01</span></div>
+                <div class="stepper__label">Create Agent</div>
+              </div>
+              <div class="stepper__node">
+                <div class="stepper__dot"><span>02</span></div>
+                <div class="stepper__label">Initialize</div>
+              </div>
+              <div class="stepper__node">
+                <div class="stepper__dot"><span>03</span></div>
+                <div class="stepper__label">Install Skills</div>
+              </div>
+              <div class="stepper__node">
+                <div class="stepper__dot"><span>04</span></div>
+                <div class="stepper__label">Configure Access</div>
+              </div>
+              <div class="stepper__node">
+                <div class="stepper__dot"><span>05</span></div>
+                <div class="stepper__label">You're Live</div>
+              </div>
+            </div>
+
+            <!-- Showcase -->
+            <div class="showcase">
+              <div class="showcase__panel is-active" data-step="1">
+                <div class="showcase__content">
+                  <span class="showcase__num">Step 01</span>
+                  <h3 class="showcase__title">Create Agent</h3>
+                  <p class="showcase__desc">
+                    Pick from the NxtGenAI Studio — Content Calendar, Market
+                    Research, Eden Studio, CV Agent, or a vertical agent
+                    tuned to your industry.
+                  </p>
+                </div>
+                <div class="showcase__visual">
+                  <div class="showcase__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 5v14M5 12h14" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <div class="showcase__panel" data-step="2">
+                <div class="showcase__content">
+                  <span class="showcase__num">Step 02</span>
+                  <h3 class="showcase__title">Initializing Agent Instance</h3>
+                  <p class="showcase__desc">
+                    We provision a dedicated, isolated agent instance bound
+                    to your workspace — no shared state, no noisy neighbors.
+                  </p>
+                </div>
+                <div class="showcase__visual">
+                  <div class="showcase__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 12a9 9 0 1 1-6.2-8.55" />
+                      <path d="M21 4v5h-5" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <div class="showcase__panel" data-step="3">
+                <div class="showcase__content">
+                  <span class="showcase__num">Step 03</span>
+                  <h3 class="showcase__title">Installing Skills</h3>
+                  <p class="showcase__desc">
+                    Equip your agent with the skills it needs — content
+                    generation, market research, CV screening, image &amp;
+                    video. Mix and match per use case.
+                  </p>
+                </div>
+                <div class="showcase__visual">
+                  <div class="showcase__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 2 4 6v6c0 5 3.5 9.5 8 10 4.5-.5 8-5 8-10V6l-8-4z" />
+                      <path d="m9 12 2 2 4-4" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <div class="showcase__panel" data-step="4">
+                <div class="showcase__content">
+                  <span class="showcase__num">Step 04</span>
+                  <h3 class="showcase__title">Configuring Access</h3>
+                  <p class="showcase__desc">
+                    Connect inboxes, calendars, CRM and other tools so your
+                    agent can act on your behalf — securely, with scoped
+                    permissions.
+                  </p>
+                </div>
+                <div class="showcase__visual">
+                  <div class="showcase__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="11" width="18" height="11" rx="2" />
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <div class="showcase__panel" data-step="5">
+                <div class="showcase__content">
+                  <span class="showcase__num">Live</span>
+                  <h3 class="showcase__title">You're Live</h3>
+                  <p class="showcase__desc">
+                    Your AI agent is deployed and working 24/7 — capturing
+                    leads, replying to inbound, and running operations
+                    without you lifting a finger.
+                  </p>
+                </div>
+                <div class="showcase__visual">
+                  <div class="showcase__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ═══ 3. PROCESS ═══ -->
-    <section class="sec" id="process" style="background: var(--bg2)">
+    <!-- ═══ 3. MARKET PROBLEMS & IMPACT ═══ -->
+    <section class="sec impact" id="impact">
       <div class="ctn">
         <div class="sh">
-          <span class="tag rv">Our Process</span>
-          <h2 class="sh__title rv d1">Four steps to your <em>tailored system</em></h2>
+          <span class="tag rv">Market Problems &amp; Impact</span>
+          <h2 class="sh__title rv d1">The cost of <em>missed opportunities</em></h2>
           <p class="sh__sub rv d2">
-            From discovery to deployment — we guide you through every stage of
-            building your AI system.
+            Businesses lose revenue every day to slow replies and manual
+            workflows. AI agents close the gap.
           </p>
         </div>
-        <div class="steps">
-          <div class="step rv d1">
-            <span class="step__num">STEP 01</span>
-            <h3 class="step__title">Submit Your Business Details</h3>
-            <p class="step__desc">
-              Share your operations, goals, and the tasks you'd like AI to
-              handle.
+        <div class="stats">
+          <div class="stat rv d1">
+            <div class="stat__num">62%</div>
+            <div class="stat__title">Missed Opportunities</div>
+            <p class="stat__desc">
+              of inbound leads are lost when businesses don't respond fast
+              enough.
             </p>
           </div>
-          <div class="step rv d2">
-            <span class="step__num">STEP 02</span>
-            <h3 class="step__title">We Analyse Your Requirements</h3>
-            <p class="step__desc">
-              Our team reviews your workflows and identifies high-impact
-              automation opportunities.
+          <div class="stat rv d2">
+            <div class="stat__num">30%</div>
+            <div class="stat__title">Cost Savings</div>
+            <p class="stat__desc">
+              average operational cost reduction after deploying AI agents
+              for repetitive work.
             </p>
           </div>
-          <div class="step rv d3">
-            <span class="step__num">STEP 03</span>
-            <h3 class="step__title">Custom System Design</h3>
-            <p class="step__desc">
-              We architect a tailored AI system — agents, workflows, and
-              integrations mapped to your stack.
-            </p>
-          </div>
-          <div class="step rv d4">
-            <span class="step__num">STEP 04</span>
-            <h3 class="step__title">Build & Deploy</h3>
-            <p class="step__desc">
-              We build, test, and deploy your system — then support it as your
-              business grows.
+          <div class="stat rv d3">
+            <div class="stat__num">24/7</div>
+            <div class="stat__title">Always On</div>
+            <p class="stat__desc">
+              your agents capture leads, reply, and book appointments around
+              the clock — even while you sleep.
             </p>
           </div>
         </div>
@@ -797,23 +1488,25 @@
       <div class="ctn">
         <div class="sh">
           <span class="tag rv">Use Cases</span>
-          <h2 class="sh__title rv d1">What we <em>typically build</em></h2>
+          <h2 class="sh__title rv d1">Built for the work that <em>actually drives revenue</em></h2>
           <p class="sh__sub rv d2">
-            Real systems we deploy for businesses across industries.
+            Four high-impact scenarios where NxtGenAI agents go to work
+            immediately.
           </p>
         </div>
         <div class="uses">
           <div class="use rv d1">
             <div class="use__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                <path d="M3 9.5 12 3l9 6.5V21a1 1 0 0 1-1 1h-5v-7h-6v7H4a1 1 0 0 1-1-1z" />
               </svg>
             </div>
             <div>
-              <h3 class="use__title">AI handling calls and qualifying leads</h3>
+              <h3 class="use__title">Real Estate Notifications</h3>
               <p class="use__desc">
-                Voice agents that answer, qualify, and route prospects 24/7 —
-                so no opportunity slips through.
+                Instantly notify agents when new leads come in, listings
+                update, or buyers show intent — so no property opportunity
+                slips by.
               </p>
             </div>
           </div>
@@ -828,40 +1521,44 @@
               </svg>
             </div>
             <div>
-              <h3 class="use__title">Automated scheduling and follow-ups</h3>
+              <h3 class="use__title">Healthcare Scheduling</h3>
               <p class="use__desc">
-                Bookings, reminders, and personalised follow-up sequences that
-                run themselves without your team lifting a finger.
+                Book, reschedule, and confirm patient appointments
+                automatically — reducing no-shows and freeing up front-desk
+                time.
               </p>
             </div>
           </div>
           <div class="use rv d3">
             <div class="use__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
-                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
               </svg>
             </div>
             <div>
-              <h3 class="use__title">Real-time alerts for opportunities</h3>
+              <h3 class="use__title">Email Alerts</h3>
               <p class="use__desc">
-                Instant signals from your data, inbox, or pipeline — so your
-                team acts on what matters the moment it happens.
+                Smart email triage and instant alerts on the messages that
+                matter — so your team replies fast and never misses a hot
+                inquiry.
               </p>
             </div>
           </div>
           <div class="use rv d4">
             <div class="use__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="3" />
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M22 11h-6" />
+                <path d="M19 8v6" />
               </svg>
             </div>
             <div>
-              <h3 class="use__title">Internal workflow automation</h3>
+              <h3 class="use__title">Lead Capture</h3>
               <p class="use__desc">
-                Connect your tools, automate repetitive tasks, and replace
-                hours of manual work with a single intelligent system.
+                Always-on agents that qualify, tag, and route inbound leads
+                from web, chat, and forms straight into your CRM.
               </p>
             </div>
           </div>
@@ -869,64 +1566,229 @@
       </div>
     </section>
 
-    <!-- ═══ 5. MARKETPLACE (LIGHT) ═══ -->
-    <section class="sec sec--tight market" id="tools">
+    <!-- ═══ 5. AI AGENT PORTFOLIO ═══ -->
+    <section class="sec sec--tight market" id="studio">
       <div class="ctn">
         <div class="sh">
-          <span class="tag rv">Marketplace</span>
-          <h2 class="sh__title rv d1">A few of our <em>ready-made tools</em></h2>
+          <span class="tag rv">AI Agent Portfolio</span>
+          <h2 class="sh__title rv d1">NxtGenAI <em>Studio</em></h2>
           <p class="sh__sub rv d2">
-            Production tools we've built — proof of what we ship.
+            Production agents already running inside our platform — pick one
+            and deploy.
           </p>
         </div>
-        <div class="tools">
-          <div class="tool rv d1">
-            <div class="tool__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="23 7 16 12 23 17 23 7" />
-                <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
-              </svg>
+        <div class="agents">
+          <!-- Agent 1: Content Calendar -->
+          <div class="agent rv d1">
+            <div class="agent__head">
+              <div class="agent__avatar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+              </div>
+              <div class="agent__heading">
+                <div class="agent__type">Content Planner</div>
+                <h3 class="agent__name">30-Day Content Calendar</h3>
+              </div>
             </div>
-            <div class="tool__title">Video Generator</div>
-            <p class="tool__desc">Generate short-form videos from a single prompt.</p>
+            <p class="agent__desc">
+              Plans a complete 30-day social calendar across Instagram,
+              LinkedIn, TikTok, YouTube and more — tones, templates and
+              cadence dialled in.
+            </p>
+            <div class="agent__skills">
+              <span class="agent__skill">Multi-Platform</span>
+              <span class="agent__skill">Tones</span>
+              <span class="agent__skill">Templates</span>
+            </div>
+            <div class="agent__foot">
+              <span class="agent__meta">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg>
+                3 credits
+              </span>
+              <a href="#demo" class="agent__deploy">
+                Deploy
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </a>
+            </div>
           </div>
-          <div class="tool rv d2">
-            <div class="tool__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                <circle cx="8.5" cy="8.5" r="1.5" />
-                <polyline points="21 15 16 10 5 21" />
-              </svg>
+
+          <!-- Agent 2: Market Research -->
+          <div class="agent rv d2">
+            <div class="agent__head">
+              <div class="agent__avatar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 3v18h18" />
+                  <path d="m19 9-5 5-4-4-3 3" />
+                </svg>
+              </div>
+              <div class="agent__heading">
+                <div class="agent__type">Research Analyst</div>
+                <h3 class="agent__name">Market Research Generator</h3>
+              </div>
             </div>
-            <div class="tool__title">Image Generator</div>
-            <p class="tool__desc">High-quality on-brand visuals in seconds.</p>
+            <p class="agent__desc">
+              Runs competitor analysis, SWOT, audience personas, market
+              trends and full research reports — on any market, on demand.
+            </p>
+            <div class="agent__skills">
+              <span class="agent__skill">SWOT</span>
+              <span class="agent__skill">Personas</span>
+              <span class="agent__skill">Trends</span>
+            </div>
+            <div class="agent__foot">
+              <span class="agent__meta">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg>
+                3 credits
+              </span>
+              <a href="#demo" class="agent__deploy">
+                Deploy
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </a>
+            </div>
           </div>
-          <div class="tool rv d3">
-            <div class="tool__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <polyline points="14 2 14 8 20 8" />
-                <line x1="16" y1="13" x2="8" y2="13" />
-                <line x1="16" y1="17" x2="8" y2="17" />
-              </svg>
+
+          <!-- Agent 3: Eden Studio -->
+          <div class="agent rv d3">
+            <div class="agent__head">
+              <div class="agent__avatar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" />
+                </svg>
+              </div>
+              <div class="agent__heading">
+                <div class="agent__type">Visual Studio</div>
+                <h3 class="agent__name">Eden Studio</h3>
+              </div>
             </div>
-            <div class="tool__title">Copy Assistant</div>
-            <p class="tool__desc">On-brand long and short-form copy in one click.</p>
+            <p class="agent__desc">
+              Advanced AI image and video generation in an embedded
+              studio — perfect for on-brand visual content at speed.
+            </p>
+            <div class="agent__skills">
+              <span class="agent__skill">Image</span>
+              <span class="agent__skill">Video</span>
+              <span class="agent__skill">On-Brand</span>
+            </div>
+            <div class="agent__foot">
+              <span class="agent__meta">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg>
+                10 credits
+              </span>
+              <a href="#demo" class="agent__deploy">
+                Deploy
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </a>
+            </div>
           </div>
-          <div class="tool rv d4">
-            <div class="tool__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 3v18h18" />
-                <path d="m19 9-5 5-4-4-3 3" />
-              </svg>
+
+          <!-- Agent 4: CV Agent -->
+          <div class="agent rv d4">
+            <div class="agent__head">
+              <div class="agent__avatar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                </svg>
+              </div>
+              <div class="agent__heading">
+                <div class="agent__type">Hiring Agent</div>
+                <h3 class="agent__name">AI CV Strategy Agent</h3>
+              </div>
             </div>
-            <div class="tool__title">Insights Engine</div>
-            <p class="tool__desc">Surface trends and signals from your business data.</p>
+            <p class="agent__desc">
+              AI-powered candidate screening — analyses CVs against any
+              role and surfaces strengths, gaps and hire/no-hire signals.
+            </p>
+            <div class="agent__skills">
+              <span class="agent__skill">CV Analysis</span>
+              <span class="agent__skill">Screening</span>
+              <span class="agent__skill">Recommendations</span>
+            </div>
+            <div class="agent__foot">
+              <span class="agent__meta">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg>
+                5 credits
+              </span>
+              <a href="#demo" class="agent__deploy">
+                Deploy
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Agent 5: Real Estate -->
+          <div class="agent rv d4">
+            <div class="agent__head">
+              <div class="agent__avatar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 9.5 12 3l9 6.5V21a1 1 0 0 1-1 1h-5v-7h-6v7H4a1 1 0 0 1-1-1z" />
+                </svg>
+              </div>
+              <div class="agent__heading">
+                <div class="agent__type">Vertical Agent</div>
+                <h3 class="agent__name">Real Estate Listing Agent</h3>
+              </div>
+            </div>
+            <p class="agent__desc">
+              Crafts stunning property listings tuned for luxury, family,
+              investor, coastal and rural verticals — every property type.
+            </p>
+            <div class="agent__skills">
+              <span class="agent__skill">Luxury</span>
+              <span class="agent__skill">Investor</span>
+              <span class="agent__skill">Coastal</span>
+            </div>
+            <div class="agent__foot">
+              <span class="agent__meta">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg>
+                3 credits
+              </span>
+              <a href="#demo" class="agent__deploy">
+                Deploy
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
         <div class="market__cta rv">
-          <a href="#" class="btn btn--ghost">
-            Explore Tools
+          <a href="#demo" class="btn btn--ghost">
+            Deploy Your Agent in a Single Click
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
               <path d="M5 12h14" />
               <path d="m12 5 7 7-7 7" />
@@ -936,45 +1798,28 @@
       </div>
     </section>
 
-    <!-- ═══ 6. FINAL CTA ═══ -->
-    <section class="sec final" id="start">
+    <!-- ═══ 6. CONTACT / DEMO ═══ -->
+    <section class="sec final" id="demo">
       <div class="ctn final__inner">
-        <span class="tag rv">Get Started</span>
+        <span class="tag rv">Contact</span>
         <h2 class="final__title rv d1" style="margin-top: 22px">
-          Build Your <em>Custom AI System</em>
+          Book a Demo or <em>Request a Solution</em>
         </h2>
-        <div class="rv d2">
-          <a href="#" class="btn btn--primary">
-            Start Custom Integration
+        <p class="final__sub rv d2">
+          See NxtGenAI agents live, or tell us about the workflow you want
+          automated and we'll build it.
+        </p>
+        <div class="hero__ctas rv d3" style="margin-top: 32px">
+          <a href="mailto:hello@nxtgenai.com" class="btn btn--primary">
+            Book a Demo
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
               <path d="M5 12h14" />
               <path d="m12 5 7 7-7 7" />
             </svg>
           </a>
-        </div>
-        <p class="final__sub rv d3">
-          Applications are reviewed before system design and quoting
-        </p>
-      </div>
-    </section>
-
-    <!-- ═══ 7. URGENCY / VALUE ═══ -->
-    <section class="urgency">
-      <div class="ctn">
-        <p class="urgency__line rv">
-          One well-implemented automation can replace
-          <em>hours of manual work every week</em> — the question is whether
-          your business adopts it first, or your competitors do.
-        </p>
-        <div class="rv d2">
-          <span class="urgency__savings">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
-              <path d="m9 12 2 2 4-4" />
-              <circle cx="12" cy="12" r="10" />
-            </svg>
-            Potential savings: $5,000–$20,000+ annually depending on workflow
-            complexity
-          </span>
+          <a href="mailto:hello@nxtgenai.com" class="btn btn--ghost">
+            Request a Solution
+          </a>
         </div>
       </div>
     </section>
@@ -986,11 +1831,11 @@
           ><img src="./NextGenAI-Logo.png" alt="NXTGENAI"
         /></a>
         <div class="footer__nav">
-          <a href="#what">What We Do</a>
           <a href="#process">Process</a>
+          <a href="#impact">Impact</a>
           <a href="#use-cases">Use Cases</a>
-          <a href="#tools">Tools</a>
-          <a href="#start">Start</a>
+          <a href="#studio">Studio</a>
+          <a href="#demo">Book a Demo</a>
         </div>
         <div class="footer__copy">© 2026 NXTGENAI. All rights reserved.</div>
       </div>
@@ -1014,13 +1859,112 @@
         });
 
         var nav = document.querySelector(".nav");
+
+        // ─── Scroll-pinned process section ───
+        var processOuter = document.querySelector(".process-sticky-outer");
+        var stepper = document.querySelector(".stepper");
+        var stepperTrack = document.querySelector(".stepper__track");
+        var stepperNodes = document.querySelectorAll(".stepper__node");
+        var showcasePanels = document.querySelectorAll(".showcase__panel");
+        var lastActiveIdx = -1;
+        var lastP = -1;
+        var trackWidth = 0;
+        var stepCount = showcasePanels.length;
+
+        function isMobile() {
+          return window.innerWidth <= 980;
+        }
+
+        function measureTrack() {
+          if (stepperTrack) {
+            trackWidth = stepperTrack.getBoundingClientRect().width;
+            stepper.style.setProperty("--track-w", trackWidth + "px");
+          }
+        }
+        measureTrack();
+
+        function updateProcess() {
+          if (!processOuter || isMobile()) {
+            if (stepper && lastP !== 0) {
+              stepper.style.setProperty("--p", 0);
+              stepper.classList.remove("is-engaged");
+              lastP = 0;
+            }
+            return;
+          }
+          var rect = processOuter.getBoundingClientRect();
+          var vh = window.innerHeight;
+          var total = rect.height - vh;
+          if (total <= 0) return;
+          var raw = -rect.top / total;
+          if (raw < 0) raw = 0;
+          if (raw > 1) raw = 1;
+
+          var p = (raw * stepCount) / (stepCount - 1);
+          if (p > 1) p = 1;
+
+          var pRounded = Math.round(p * 10000) / 10000;
+          if (pRounded !== lastP) {
+            stepper.style.setProperty("--p", pRounded);
+            lastP = pRounded;
+          }
+
+          if (raw > 0 && raw < 1) {
+            if (!stepper.classList.contains("is-engaged"))
+              stepper.classList.add("is-engaged");
+          } else if (raw <= 0) {
+            stepper.classList.remove("is-engaged");
+          }
+
+          var idx = Math.floor(raw * stepCount);
+          if (idx >= stepCount) idx = stepCount - 1;
+
+          if (idx !== lastActiveIdx) {
+            for (var i = 0; i < stepCount; i++) {
+              var node = stepperNodes[i];
+              var panel = showcasePanels[i];
+              if (i < idx) {
+                node.classList.add("is-done");
+                node.classList.remove("is-active");
+                panel.classList.remove("is-active");
+              } else if (i === idx) {
+                node.classList.add("is-active");
+                node.classList.remove("is-done");
+                panel.classList.add("is-active");
+              } else {
+                node.classList.remove("is-active");
+                node.classList.remove("is-done");
+                panel.classList.remove("is-active");
+              }
+            }
+            lastActiveIdx = idx;
+          }
+        }
+
+        // ─── Single rAF-throttled scroll handler ───
+        var ticking = false;
+        function onScroll() {
+          if (!ticking) {
+            window.requestAnimationFrame(function () {
+              nav.classList.toggle("scrolled", window.scrollY > 40);
+              updateProcess();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }
+        window.addEventListener("scroll", onScroll, { passive: true });
         window.addEventListener(
-          "scroll",
+          "resize",
           function () {
-            nav.classList.toggle("scrolled", window.scrollY > 40);
+            lastActiveIdx = -1;
+            lastP = -1;
+            measureTrack();
+            updateProcess();
           },
           { passive: true }
         );
+        updateProcess();
 
         document.querySelectorAll('a[href^="#"]').forEach(function (a) {
           a.addEventListener("click", function (e) {

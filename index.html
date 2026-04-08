@@ -317,14 +317,12 @@
           rgba(255, 255, 255, 1) 100%
         );
         --glass-shadow:
-          0 1px 1px rgba(28, 25, 23, 0.04),
-          0 4px 8px rgba(28, 25, 23, 0.04),
+          0 1px 1px rgba(28, 25, 23, 0.04), 0 4px 8px rgba(28, 25, 23, 0.04),
           0 16px 40px rgba(28, 25, 23, 0.08),
           inset 0 1px 0 rgba(255, 255, 255, 0.85),
           inset 0 -1px 0 rgba(255, 255, 255, 0.3);
         --glass-shadow-hover:
-          0 1px 2px rgba(28, 25, 23, 0.05),
-          0 6px 12px rgba(28, 25, 23, 0.05),
+          0 1px 2px rgba(28, 25, 23, 0.05), 0 6px 12px rgba(28, 25, 23, 0.05),
           0 28px 64px rgba(28, 25, 23, 0.12),
           inset 0 1px 0 rgba(255, 255, 255, 1),
           inset 0 -1px 0 rgba(255, 255, 255, 0.4);
@@ -349,8 +347,16 @@
         pointer-events: none;
         z-index: 0;
         background:
-          radial-gradient(ellipse 70% 50% at 18% 12%, rgba(168, 85, 247, 0.12), transparent 65%),
-          radial-gradient(ellipse 60% 50% at 85% 88%, rgba(45, 212, 191, 0.1), transparent 65%);
+          radial-gradient(
+            ellipse 70% 50% at 18% 12%,
+            rgba(168, 85, 247, 0.12),
+            transparent 65%
+          ),
+          radial-gradient(
+            ellipse 60% 50% at 85% 88%,
+            rgba(45, 212, 191, 0.1),
+            transparent 65%
+          );
       }
       .page {
         position: relative;
@@ -397,7 +403,11 @@
         line-height: 1;
       }
       .card--5 .card__tag {
-        background: linear-gradient(135deg, rgba(45, 212, 191, 0.14), rgba(168, 85, 247, 0.14));
+        background: linear-gradient(
+          135deg,
+          rgba(45, 212, 191, 0.14),
+          rgba(168, 85, 247, 0.14)
+        );
         color: #0d9488;
         position: relative;
       }
@@ -436,7 +446,8 @@
           <div class="card__body">
             <div class="card__title">Show Product First — Light</div>
             <div class="card__desc">
-              Premium light theme: liquid-glass cards, paper grain, refractive gradient borders.
+              Premium light theme: liquid-glass cards, paper grain, refractive
+              gradient borders.
             </div>
           </div>
           <span class="card__tag">Light</span>

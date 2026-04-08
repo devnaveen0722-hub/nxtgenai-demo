@@ -95,11 +95,11 @@
         padding: 0 24px;
       }
       .sec {
-        padding: 120px 0;
+        padding: 100px 0;
         position: relative;
       }
       .sec--tight {
-        padding: 96px 0;
+        padding: 100px 0;
       }
 
       /* ─── Buttons ─── */
@@ -292,7 +292,7 @@
 
       /* ═══ HERO ═══ */
       .hero {
-        padding: 80px 0 120px;
+        padding: 100px 0;
         text-align: center;
         position: relative;
         overflow: hidden;
@@ -320,14 +320,17 @@
         z-index: 1;
       }
       .hero__title {
-        font-size: clamp(34px, 5.2vw, 64px);
+        font-size: clamp(26px, 3.6vw, 46px);
         font-weight: 900;
         color: var(--w);
-        letter-spacing: -2.2px;
-        line-height: 1.05;
-        max-width: 820px;
+        letter-spacing: -1.4px;
+        line-height: 1.12;
+        max-width: 880px;
         margin: 26px auto 22px;
+        white-space: normal;
       }
+      .hero__title br { display: block; }
+      .hero__title .nowrap { white-space: nowrap; }
       .hero__title em {
         font-style: normal;
         background: var(--grad1);
@@ -390,14 +393,21 @@
       .process-sticky-inner {
         position: sticky;
         top: 0;
-        min-height: 100vh;
+        height: 100vh;
         display: flex;
         align-items: center;
-        padding: 100px 0;
+        padding: 40px 0;
         will-change: transform;
       }
       .process-sticky-inner .sh {
-        margin-bottom: 56px;
+        margin-bottom: 32px;
+      }
+      .process-sticky-inner .sh__title {
+        margin-top: 12px;
+        font-size: clamp(26px, 3.4vw, 40px);
+      }
+      .process-sticky-inner .sh__sub {
+        margin-top: 12px;
       }
 
       /* ─── Stepper (top, no overlap with cards) ─── */
@@ -406,7 +416,7 @@
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         max-width: 880px;
-        margin: 0 auto 64px;
+        margin: 0 auto 36px;
         padding: 0 24px;
       }
       .stepper__track {
@@ -564,7 +574,7 @@
           0 50px 100px -32px rgba(15, 23, 42, 0.22),
           0 0 0 1px rgba(2, 132, 199, 0.04);
         overflow: hidden;
-        min-height: 460px;
+        min-height: 360px;
         transform: translateZ(0);
       }
       .showcase__panel {
@@ -604,7 +614,7 @@
         transform: none;
       }
       .showcase__content {
-        padding: 60px 56px;
+        padding: 44px 48px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -622,16 +632,16 @@
         text-transform: uppercase;
       }
       .showcase__title {
-        font-size: clamp(26px, 3vw, 38px);
+        font-size: clamp(22px, 2.6vw, 32px);
         font-weight: 800;
         color: var(--w);
-        letter-spacing: -1.2px;
-        line-height: 1.12;
-        margin: 22px 0 16px;
+        letter-spacing: -1px;
+        line-height: 1.15;
+        margin: 16px 0 12px;
       }
       .showcase__desc {
-        font-size: 16px;
-        line-height: 1.7;
+        font-size: 15px;
+        line-height: 1.65;
         color: var(--w50);
         max-width: 440px;
       }
@@ -692,9 +702,9 @@
       }
       .showcase__icon {
         position: relative;
-        width: 148px;
-        height: 148px;
-        border-radius: 36px;
+        width: 124px;
+        height: 124px;
+        border-radius: 32px;
         background: linear-gradient(135deg, #0369a1, #1d9bf0, #38bdf8);
         display: flex;
         align-items: center;
@@ -714,8 +724,8 @@
         animation: iconRing 4s ease-in-out infinite;
       }
       .showcase__icon svg {
-        width: 64px;
-        height: 64px;
+        width: 54px;
+        height: 54px;
       }
       .showcase__panel[data-step="2"] .showcase__icon {
         background: linear-gradient(135deg, #0369a1, #0ea5e9, #38bdf8);
@@ -865,6 +875,44 @@
         border-radius: 20px;
         box-shadow: var(--shadow-card);
         text-align: center;
+        transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      }
+      .stat:hover {
+        transform: translateY(-4px);
+        border-color: rgba(124, 58, 237, 0.32);
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 1) inset,
+          0 28px 60px -24px rgba(15, 23, 42, 0.22);
+      }
+      .stat__icon {
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 18px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(13, 148, 136, 0.08));
+        border: 1px solid rgba(124, 58, 237, 0.18);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--purple-light);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .stat:hover .stat__icon {
+        transform: scale(1.08) rotate(-3deg);
+      }
+      .stat__icon svg {
+        width: 26px;
+        height: 26px;
+      }
+      .stat:nth-child(2) .stat__icon {
+        color: var(--teal);
+        background: linear-gradient(135deg, rgba(13, 148, 136, 0.12), rgba(124, 58, 237, 0.06));
+        border-color: rgba(13, 148, 136, 0.22);
+      }
+      .stat:nth-child(3) .stat__icon {
+        color: #ec4899;
+        background: linear-gradient(135deg, rgba(236, 72, 153, 0.12), rgba(124, 58, 237, 0.06));
+        border-color: rgba(236, 72, 153, 0.22);
       }
       .stat__num {
         font-size: clamp(40px, 4.4vw, 56px);
@@ -1351,7 +1399,7 @@
           24/7 AI Automation
         </span>
         <h1 class="hero__title rv d1">
-          Stop Losing Leads to Missed<br /><em>Calls, Emails &amp; Replies</em>
+          <span class="nowrap">Stop Losing Leads to Missed Calls,</span><br /><em>Emails &amp; Replies</em>
         </h1>
         <p class="hero__sub rv d2">
           NxtGenAI Studio deploys always-on AI agents that capture leads, schedule
@@ -1534,6 +1582,12 @@
         </div>
         <div class="stats">
           <div class="stat rv d1">
+            <div class="stat__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 17 13.5 8.5 8.5 13.5 2 7" />
+                <polyline points="16 17 22 17 22 11" />
+              </svg>
+            </div>
             <div class="stat__num">62%</div>
             <div class="stat__title">Missed Opportunities</div>
             <p class="stat__desc">
@@ -1542,6 +1596,12 @@
             </p>
           </div>
           <div class="stat rv d2">
+            <div class="stat__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              </svg>
+            </div>
             <div class="stat__num">30%</div>
             <div class="stat__title">Cost Savings</div>
             <p class="stat__desc">
@@ -1550,6 +1610,12 @@
             </p>
           </div>
           <div class="stat rv d3">
+            <div class="stat__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
             <div class="stat__num">24/7</div>
             <div class="stat__title">Always On</div>
             <p class="stat__desc">
